@@ -18,34 +18,32 @@ the following fields:
 
 @table @code
 @item tm_sec
-Seconds, between 0 and 60 inclusive (60 allows for leap seconds).
+Seconds.
 
 @item tm_min
-Minutes, between 0 and 59 inclusive.
+Minutes.
 
 @item tm_hour
-Hours, between 0 and 23 inclusive.
+Hours.
 
 @item tm_mday
-Day of the month, between 1 and 31 inclusive.
+Day.
 
 @item tm_mon
-Month, between 0 (January) and 11 (December).
+Month.
 
 @item tm_year
-Year (since 1900), can be negative for earlier years.
+Year (since 1900).
 
 @item tm_wday
-Day of week, between 0 (Sunday) and 6 (Saturday).
+Day of week: the number of days since Sunday.
 
 @item tm_yday
-Number of days elapsed since last January 1, between 0 and 365 inclusive.
+Number of days elapsed since last January 1.
 
 @item tm_isdst
 Daylight Savings Time flag: positive means DST in effect, zero means DST
 not in effect, negative means no information about DST is available.
-Although for mktime(), negative means that it should decide if DST is in
-effect or not.
 @end table
 
 @menu
@@ -56,10 +54,8 @@ effect or not.
 * gmtime::      Convert time to UTC (GMT) traditional representation
 * localtime::   Convert time to local representation
 * mktime::      Convert time to arithmetic representation
-* strftime::    Convert date and time to a user-formatted string
+* strftime::    Flexible calendar time formatter
 * time::        Get current calendar time (as single number)
-* __tz_lock::   Lock time zone global variables
-* tzset::       Set timezone info
 @end menu
 
 @page
@@ -88,9 +84,3 @@ effect or not.
 
 @page
 @include time/time.def
-
-@page
-@include time/tzlock.def
-
-@page
-@include time/tzset.def

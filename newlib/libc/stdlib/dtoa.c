@@ -229,19 +229,18 @@ _DEFUN (_dtoa_r,
   int denorm;
   __ULong x;
 #endif
-  _Bigint *b, *b1, *delta, *mlo = NULL, *mhi, *S;
+  _Bigint *b, *b1, *delta, *mlo, *mhi, *S;
   double ds;
   char *s, *s0;
 
   d.d = _d;
 
-  _REENT_CHECK_MP(ptr);
-  if (_REENT_MP_RESULT(ptr))
+  if (ptr->_result)
     {
-      _REENT_MP_RESULT(ptr)->_k = _REENT_MP_RESULT_K(ptr);
-      _REENT_MP_RESULT(ptr)->_maxwds = 1 << _REENT_MP_RESULT_K(ptr);
-      Bfree (ptr, _REENT_MP_RESULT(ptr));
-      _REENT_MP_RESULT(ptr) = 0;
+      ptr->_result->_k = ptr->_result_k;
+      ptr->_result->_maxwds = 1 << ptr->_result_k;
+      Bfree (ptr, ptr->_result);
+      ptr->_result = 0;
     }
 
   if (word0 (d) & Sign_bit)
@@ -292,7 +291,7 @@ _DEFUN (_dtoa_r,
 #ifdef Sudden_Underflow
   i = (int) (word0 (d) >> Exp_shift1 & (Exp_mask >> Exp_shift1));
 #else
-  if ((i = (int) (word0 (d) >> Exp_shift1 & (Exp_mask >> Exp_shift1))) != 0)
+  if (i = (int) (word0 (d) >> Exp_shift1 & (Exp_mask >> Exp_shift1)))
     {
 #endif
       d2.d = d.d;
@@ -338,23 +337,15 @@ _DEFUN (_dtoa_r,
       /* d is denormalized */
 
       i = bbits + be + (Bias + (P - 1) - 1);
-#if defined (_DOUBLE_IS_32BITS)
-      x = word0 (d) << (32 - i);
-#else
-      x = (i > 32) ? (word0 (d) << (64 - i)) | (word1 (d) >> (i - 32))
-       : (word1 (d) << (32 - i));
-#endif
+      x = i > 32 ? word0 (d) << 64 - i | word1 (d) >> i - 32
+	: word1 (d) << 32 - i;
       d2.d = x;
       word0 (d2) -= 31 * Exp_msk1;	/* adjust exponent */
       i -= (Bias + (P - 1) - 1) + 1;
       denorm = 1;
     }
 #endif
-#if defined (_DOUBLE_IS_32BITS)
-  ds = (d2.d - 1.5) * 0.289529651 + 0.176091269 + i * 0.30103001;
-#else
   ds = (d2.d - 1.5) * 0.289529654602168 + 0.1760912590558 + i * 0.301029995663981;
-#endif
   k = (int) ds;
   if (ds < 0. && ds != k)
     k--;			/* want k = floor(ds) */
@@ -397,11 +388,11 @@ _DEFUN (_dtoa_r,
       try_quick = 0;
     }
   leftright = 1;
-  ilim = ilim1 = -1;
   switch (mode)
     {
     case 0:
     case 1:
+      ilim = ilim1 = -1;
       i = 18;
       ndigits = 0;
       break;
@@ -424,11 +415,11 @@ _DEFUN (_dtoa_r,
 	i = 1;
     }
   j = sizeof (__ULong);
-  for (_REENT_MP_RESULT_K(ptr) = 0; sizeof (_Bigint) - sizeof (__ULong) + j <= i;
+  for (ptr->_result_k = 0; sizeof (_Bigint) - sizeof (__ULong) + j <= i;
        j <<= 1)
-    _REENT_MP_RESULT_K(ptr)++;
-  _REENT_MP_RESULT(ptr) = Balloc (ptr, _REENT_MP_RESULT_K(ptr));
-  s = s0 = (char *) _REENT_MP_RESULT(ptr);
+    ptr->_result_k++;
+  ptr->_result = Balloc (ptr, ptr->_result_k);
+  s = s0 = (char *) ptr->_result;
 
   if (ilim >= 0 && ilim <= Quick_max && try_quick)
     {
@@ -458,7 +449,7 @@ _DEFUN (_dtoa_r,
 	      }
 	  d.d /= ds;
 	}
-      else if ((j1 = -k) != 0)
+      else if (j1 = -k)
 	{
 	  d.d *= tens[j1 & 0xf];
 	  for (j = j1 >> 4; j; j >>= 1, i++)
@@ -573,7 +564,7 @@ _DEFUN (_dtoa_r,
 	  if (i == ilim)
 	    {
 	      d.d += d.d;
-             if ((d.d > ds) || ((d.d == ds) && (L & 1)))
+	      if (d.d > ds || d.d == ds && L & 1)
 		{
 		bump_up:
 		  while (*--s == '9')
@@ -649,7 +640,7 @@ _DEFUN (_dtoa_r,
 	      Bfree (ptr, b);
 	      b = b1;
 	    }
-         if ((j = b5 - m5) != 0)
+	  if (j = b5 - m5)
 	    b = pow5mult (ptr, b, j);
 	}
       else
@@ -661,7 +652,6 @@ _DEFUN (_dtoa_r,
 
   /* Check for special case that d is a normalized power of 2. */
 
-  spec_case = 0;
   if (mode < 2)
     {
       if (!word1 (d) && !(word0 (d) & Bndry_mask)
@@ -675,6 +665,8 @@ _DEFUN (_dtoa_r,
 	  s2 += Log2P;
 	  spec_case = 1;
 	}
+      else
+	spec_case = 0;
     }
 
   /* Arrange for convenient computation of quotients:
@@ -686,10 +678,10 @@ _DEFUN (_dtoa_r,
    */
 
 #ifdef Pack_32
-  if ((i = ((s5 ? 32 - hi0bits (S->_x[S->_wds - 1]) : 1) + s2) & 0x1f) != 0)
+  if (i = ((s5 ? 32 - hi0bits (S->_x[S->_wds - 1]) : 1) + s2) & 0x1f)
     i = 32 - i;
 #else
-  if ((i = ((s5 ? 32 - hi0bits (S->_x[S->_wds - 1]) : 1) + s2) & 0xf) != 0)
+  if (i = ((s5 ? 32 - hi0bits (S->_x[S->_wds - 1]) : 1) + s2) & 0xf)
     i = 16 - i;
 #endif
   if (i > 4)
@@ -773,17 +765,17 @@ _DEFUN (_dtoa_r,
 	      goto ret;
 	    }
 #endif
-         if ((j < 0) || ((j == 0) && !mode
+	  if (j < 0 || j == 0 && !mode
 #ifndef ROUND_BIASED
 	      && !(word1 (d) & 1)
 #endif
-           ))
+	    )
 	    {
 	      if (j1 > 0)
 		{
 		  b = lshift (ptr, b, 1);
 		  j1 = cmp (b, S);
-                 if (((j1 > 0) || ((j1 == 0) && (dig & 1)))
+		  if ((j1 > 0 || j1 == 0 && dig & 1)
 		      && dig++ == '9')
 		    goto round_9_up;
 		}
@@ -827,7 +819,7 @@ _DEFUN (_dtoa_r,
 
   b = lshift (ptr, b, 1);
   j = cmp (b, S);
-  if ((j > 0) || ((j == 0) && (dig & 1)))
+  if (j > 0 || j == 0 && dig & 1)
     {
     roundoff:
       while (*--s == '9')

@@ -27,7 +27,7 @@ DESCRIPTION
 Use <<system>> to pass a command string <<*<[s]>>> to <</bin/sh>> on
 your system, and wait for it to finish executing.
 
-Use ``<<system(NULL)>>'' to test whether your system has <</bin/sh>>
+Use `<<system(NULL)>>' to test whether your system has <</bin/sh>>
 available.
 
 The alternate function <<_system_r>> is a reentrant version.  The
@@ -53,27 +53,21 @@ Supporting OS subroutines required: <<_exit>>, <<_execve>>, <<_fork_r>>,
 <<_wait_r>>.
 */
 
-#include <_ansi.h>
 #include <errno.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <_syslist.h>
-#include <reent.h>
 
-#if defined (unix) || defined (__CYGWIN__)
-static int _EXFUN(do_system, (struct _reent *ptr _AND _CONST char *s));
+#if defined (unix) || defined (__CYGWIN32__)
+static int do_system ();
 #endif
 
 int
-_DEFUN(_system_r, (ptr, s),
-     struct _reent *ptr _AND
-     _CONST char *s)
+_system_r (ptr, s)
+     struct _reent *ptr;
+     _CONST char *s;
 {
-#if defined(HAVE_SYSTEM)
-  return _system (s);
-  ptr = ptr;
-#elif defined(NO_EXEC)
+#ifdef NO_EXEC
   if (s == NULL)
     return 0;
   errno = ENOSYS;
@@ -85,7 +79,7 @@ _DEFUN(_system_r, (ptr, s),
      For now we always return 0 and leave it to each target to explicitly
      handle otherwise (this can always be relaxed in the future).  */
 
-#if defined (unix) || defined (__CYGWIN__)
+#if defined (unix) || defined (__CYGWIN32__)
   if (s == NULL)
     return 1;
   return do_system (ptr, s);
@@ -102,29 +96,23 @@ _DEFUN(_system_r, (ptr, s),
 #ifndef _REENT_ONLY
 
 int
-_DEFUN(system, (s),
-     _CONST char *s)
+system (s)
+     _CONST char *s;
 {
   return _system_r (_REENT, s);
 }
 
 #endif
 
-#if defined (unix) && !defined (__CYGWIN__) && !defined(__rtems__)
-extern char **environ;
-
-/* Only deal with a pointer to environ, to work around subtle bugs with shared
-   libraries and/or small data systems where the user declares his own
-   'environ'.  */
-static char ***p_environ = &environ;
-
+#if defined (unix) && !defined (__CYGWIN32__)
 static int
-_DEFUN(do_system, (ptr, s),
-     struct _reent *ptr _AND
-     _CONST char *s)
+do_system (ptr, s)
+     struct _reent *ptr;
+     _CONST char *s;
 {
   char *argv[4];
   int pid, status;
+  extern char *environ[];
 
   argv[0] = "sh";
   argv[1] = "-c";
@@ -133,7 +121,7 @@ _DEFUN(do_system, (ptr, s),
 
   if ((pid = _fork_r (ptr)) == 0)
     {
-      _execve ("/bin/sh", argv, *p_environ);
+      _execve ("/bin/sh", argv, environ);
       exit (100);
     }
   else if (pid == -1)
@@ -149,14 +137,15 @@ _DEFUN(do_system, (ptr, s),
 }
 #endif
 
-#if defined (__CYGWIN__)
+#if defined (__CYGWIN32__)
 static int
-_DEFUN(do_system, (ptr, s),
-     struct _reent *ptr _AND
-     _CONST char *s)
+do_system (ptr, s)
+     struct _reent *ptr;
+     _CONST char *s;
 {
   char *argv[4];
   int pid, status;
+  extern char *environ[];
 
   argv[0] = "sh";
   argv[1] = "-c";
@@ -180,7 +169,6 @@ _DEFUN(do_system, (ptr, s),
     return -1;
   else
     {
-      extern int _wait (int *);
       int rc = _wait (&status);
       if (rc == -1)
 	return -1;

@@ -31,10 +31,6 @@ int closedir(DIR *);
 void seekdir(DIR *dir, long loc);
 long telldir(DIR *dir);
 
-#ifdef _COMPILING_NEWLIB
-void _seekdir(DIR *dir, long offset);
-#endif
-
 #include <sys/types.h>
 
 #include <limits.h>
@@ -47,12 +43,6 @@ struct dirent {
 	unsigned short	d_namlen;
 	char		d_name[NAME_MAX + 1];
 };
-
-int scandir ( const char *dirname,
-   struct dirent *** namelist,
-   int (*select)(const struct dirent *),
-   int (*dcomp)(const struct dirent **, const struct dirent **)
-);
 
 #ifdef __cplusplus
 }

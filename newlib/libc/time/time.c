@@ -1,3 +1,5 @@
+/* FIXME: doc says "not avail" due to #if 0.
+   	  DELETE that line if inappropriate! */
 /*
 FUNCTION
 <<time>>---get current calendar time (as single number)
@@ -30,6 +32,8 @@ Supporting OS subroutine required: Some implementations require
 <<gettimeofday>>.
 */
 
+#ifdef HAVE_GETTIMEOFDAY
+
 /* Most times we have a system call in newlib/libc/sys/.. to do this job */
 
 #include <_ansi.h>
@@ -43,7 +47,7 @@ _DEFUN (time, (t),
 {
   struct timeval now;
 
-  if (_gettimeofday_r (_REENT, &now, NULL) >= 0)
+  if (_gettimeofday_r (_REENT, &now, (struct timezone *) 0) >= 0)
     {
       if (t)
 	*t = now.tv_sec;
@@ -51,3 +55,5 @@ _DEFUN (time, (t),
     }
   return -1;
 }
+
+#endif

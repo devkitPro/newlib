@@ -13,44 +13,38 @@
 
 /*
 FUNCTION
-<<scalbn>>, <<scalbnf>>, <<scalbln>>, <<scalblnf>>--scale by power of FLT_RADIX (=2)
+<<scalbn>>, <<scalbnf>>---scale by integer
 INDEX
 	scalbn
 INDEX
 	scalbnf
-INDEX
-	scalbln
-INDEX
-	scalblnf
 
 ANSI_SYNOPSIS
 	#include <math.h>
-	double scalbn(double <[x]>, int <[n]>);
-	float scalbnf(float <[x]>, int <[n]>);
-	double scalbln(double <[x]>, long int <[n]>);
-	float scalblnf(float <[x]>, long int <[n]>);
+	double scalbn(double <[x]>, int <[y]>);
+	float scalbnf(float <[x]>, int <[y]>);
+
+TRAD_SYNOPSIS
+	#include <math.h>
+	double scalbn(<[x]>,<[y]>)
+	double <[x]>;
+	int <[y]>;
+	float scalbnf(<[x]>,<[y]>)
+	float <[x]>;
+	int <[y]>;
 
 DESCRIPTION
-The <<scalbn>> and <<scalbln>> functions compute 
-	@ifnottex
-	<[x]> times FLT_RADIX to the power <[n]>.
-	@end ifnottex
-	@tex
-	$x \cdot FLT\_RADIX^n$.
-	@end tex
-efficiently.  The result is computed by manipulating the exponent, rather than
-by actually performing an exponentiation or multiplication.  In this
-floating-point implementation FLT_RADIX=2, which makes the <<scalbn>>
-functions equivalent to the <<ldexp>> functions.
+<<scalbn>> and <<scalbnf>> scale <[x]> by <[n]>, returning <[x]> times
+2 to the power <[n]>.  The result is computed by manipulating the
+exponent, rather than by actually performing an exponentiation or
+multiplication.
 
 RETURNS
-<[x]> times 2 to the power <[n]>.  A range error may occur.
+<[x]> times 2 to the power <[n]>.
 
 PORTABILITY
-ANSI C, POSIX
-
-SEEALSO
-<<ldexp>>
+Neither <<scalbn>> nor <<scalbnf>> is required by ANSI C or by the System V
+Interface Definition (Issue 2).
 
 */
 
@@ -97,11 +91,10 @@ tiny   = 1.0e-300;
         if (k >  0x7fe) return huge*copysign(huge,x); /* overflow  */
         if (k > 0) 				/* normal result */
 	    {SET_HIGH_WORD(x,(hx&0x800fffff)|(k<<20)); return x;}
-        if (k <= -54) {
+        if (k <= -54)
             if (n > 50000) 	/* in case integer overflow in n+k */
 		return huge*copysign(huge,x);	/*overflow*/
 	    else return tiny*copysign(tiny,x); 	/*underflow*/
-      }
         k += 54;				/* subnormal result */
 	SET_HIGH_WORD(x,(hx&0x800fffff)|(k<<20));
         return x*twom54;

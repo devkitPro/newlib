@@ -1,4 +1,3 @@
-#ifndef _NO_GETCWD
 /*
  * Copyright (c) 1989, 1991 The Regents of the University of California.
  * All rights reserved.
@@ -11,6 +10,10 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	California, Berkeley and its contributors.
  * 4. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
@@ -46,7 +49,7 @@ static char sccsid[] = "@(#)getcwd.c	5.11 (Berkeley) 2/24/91";
 
 #define	ISDOT(dp) \
 	(dp->d_name[0] == '.' && (dp->d_name[1] == '\0' || \
-           (dp->d_name[1] == '.' && dp->d_name[2] == '\0')))
+	    dp->d_name[1] == '.' && dp->d_name[2] == '\0'))
 
 #ifndef _REENT_ONLY
 
@@ -121,7 +124,7 @@ getcwd (pt, size)
   for (first = 1;; first = 0)
     {
       /* Stat the current level. */
-      if (stat (up, &s))
+      if (_stat (up, &s))
 	goto err;
 
       /* Save current node values. */
@@ -162,7 +165,7 @@ getcwd (pt, size)
       *bup = '\0';
 
       /* Open and stat parent directory. */
-      if (!(dir = opendir (up)) || fstat (__dirfd (dir), &s))
+      if (!(dir = _opendir (up)) || _fstat (__dirfd (dir), &s))
 	goto err;
 
       /* Add trailing slash for next directory. */
@@ -179,7 +182,7 @@ getcwd (pt, size)
 	{
 	  for (;;)
 	    {
-	      if (!(dp = readdir (dir)))
+	      if (!(dp = _readdir (dir)))
 		goto notfound;
 	      if (dp->d_ino == ino)
 		break;
@@ -188,7 +191,7 @@ getcwd (pt, size)
       else
 	for (;;)
 	  {
-	    if (!(dp = readdir (dir)))
+	    if (!(dp = _readdir (dir)))
 	      goto notfound;
 	    if (ISDOT (dp))
 	      continue;
@@ -235,7 +238,7 @@ getcwd (pt, size)
 	*--bpt = '/';
       bpt -= strlen (dp->d_name);
       bcopy (dp->d_name, bpt, strlen (dp->d_name));
-      (void) closedir (dir);
+      (void) _closedir (dir);
 
       /* Truncate any file name. */
       *bup = '\0';
@@ -260,4 +263,3 @@ err:
 }
 
 #endif /* _REENT_ONLY */
-#endif /* !_NO_GETCWD  */

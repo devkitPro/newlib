@@ -21,15 +21,10 @@ FUNCTION
 
 INDEX
 	fputs
-INDEX
-	_fputs_r
 
 ANSI_SYNOPSIS
 	#include <stdio.h>
 	int fputs(const char *<[s]>, FILE *<[fp]>);
-
-	#include <stdio.h>
-	int _fputs_r(struct _reent *<[ptr]>, const char *<[s]>, FILE *<[fp]>);
 
 TRAD_SYNOPSIS
 	#include <stdio.h>
@@ -37,18 +32,9 @@ TRAD_SYNOPSIS
 	char *<[s]>;
 	FILE *<[fp]>;
 
-	#include <stdio.h>
-	int _fputs_r(<[ptr]>, <[s]>, <[fp]>)
-	struct _reent *<[ptr]>;
-	char *<[s]>;
-	FILE *<[fp]>;
-
 DESCRIPTION
 <<fputs>> writes the string at <[s]> (but without the trailing null)
 to the file or stream identified by <[fp]>.
-
-<<_fputs_r>> is simply the reentrant version of <<fputs>> that takes
-an additional reentrant struct pointer argument: <[ptr]>.
 
 RETURNS
 If successful, the result is <<0>>; otherwise, the result is <<EOF>>.
@@ -61,23 +47,19 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 <<lseek>>, <<read>>, <<sbrk>>, <<write>>.
 */
 
-#include <_ansi.h>
 #include <stdio.h>
 #include <string.h>
 #include "fvwrite.h"
-#include "local.h"
 
 /*
  * Write the given string to the given file.
  */
 
 int
-_DEFUN(_fputs_r, (ptr, s, fp),
-       struct _reent * ptr _AND
-       char _CONST * s _AND
-       FILE * fp)
+_DEFUN (fputs, (s, fp),
+	char _CONST * s _AND
+	FILE * fp)
 {
-  int result;
   struct __suio uio;
   struct __siov iov;
 
@@ -85,22 +67,5 @@ _DEFUN(_fputs_r, (ptr, s, fp),
   iov.iov_len = uio.uio_resid = strlen (s);
   uio.uio_iov = &iov;
   uio.uio_iovcnt = 1;
-
-  CHECK_INIT(ptr, fp);
-
-  _flockfile (fp);
-  ORIENT (fp, -1);
-  result = __sfvwrite_r (ptr, fp, &uio);
-  _funlockfile (fp);
-  return result;
+  return __sfvwrite (fp, &uio);
 }
-
-#ifndef _REENT_ONLY
-int
-_DEFUN(fputs, (s, fp),
-       char _CONST * s _AND
-       FILE * fp)
-{
-  return _fputs_r (_REENT, s, fp);
-}
-#endif /* !_REENT_ONLY */

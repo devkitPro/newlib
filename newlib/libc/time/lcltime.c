@@ -8,8 +8,6 @@ FUNCTION
 
 INDEX
 	localtime
-INDEX
-	localtime_r
 
 ANSI_SYNOPSIS
 	#include <time.h>
@@ -53,8 +51,7 @@ struct tm *
 _DEFUN (localtime, (tim_p),
 	_CONST time_t * tim_p)
 {
-  _REENT_CHECK_TM(_REENT);
-  return localtime_r (tim_p, (struct tm *)_REENT_TM(_REENT));
+  return localtime_r (tim_p, &(_REENT->_new._reent._localtime_buf));
 }
 
 #endif

@@ -15,8 +15,8 @@ TRAD_SYNOPSIS
 	char *<[a]>;
 
 DESCRIPTION
-	<<strupr>> converts each character in the string at <[a]> to
-	uppercase.
+	<<strupr>> converts each characters in the string at <[a]> to
+	upper case.
 
 RETURNS
 	<<strupr>> returns its argument, <[a]>.
@@ -27,20 +27,23 @@ PORTABILITY
 <<strupr>> requires no supporting OS subroutines.
 
 QUICKREF
-	strupr
-*/
+	strupr */
 
 #include <string.h>
 #include <ctype.h>
 
 char *
-_DEFUN (strupr, (s),
-	char *s)
+strupr (a)
+     char *a;
 {
-  unsigned char *ucs = (unsigned char *) s;
-  for ( ; *ucs != '\0'; ucs++)
+  char *ret = a;
+
+  while (*a != '\0')
     {
-      *ucs = toupper(*ucs);
+      if (islower (*a))
+	*a = toupper (*a);
+      ++a;
     }
-  return s;
+
+  return ret;
 }

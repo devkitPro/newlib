@@ -1,14 +1,12 @@
 /*
  * ==================================================== 
- * Copyright (C) 1998, 2002 by Red Hat Inc. All rights reserved. 
+ * Copyright (C) 1998 by Cygnus Solutions. All rights reserved. 
  *      
  * Permission to use, copy, modify, and distribute this 
  * software is freely granted, provided that this notice
  * is preserved.        
  * ==================================================== 
  */
-
-#if !defined(_SOFT_FLOAT)
 
 /*
 Fast version of log using Intel float instructions.
@@ -22,7 +20,6 @@ There is no error checking or setting of errno.
 	#include "i386mach.h"
 
 	.global SYM (_f_log)
-       SOTYPE_FUNCTION(_f_log)
 
 SYM (_f_log):
 	pushl ebp
@@ -36,5 +33,3 @@ SYM (_f_log):
 
 	leave
 	ret
-
-#endif

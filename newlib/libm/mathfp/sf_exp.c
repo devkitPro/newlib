@@ -82,11 +82,11 @@ _DEFUN (expf, (float),
   return (ldexpf (R, N));
 }
 
-#ifdef _DOUBLE_IS_32BITS
+#ifdef _DOUBLE_IS_32_BITS
 
 double exp (double x)
 {
   return (double) expf ((float) x);
 }
 
-#endif /* _DOUBLE_IS_32BITS */
+#endif /* _DOUBLE_IS_32_BITS */

@@ -1,3 +1,8 @@
+/* This file may have been modified by DJ Delorie (Jan 1991).  If so,
+** these modifications are Coyright (C) 1991 DJ Delorie, 24 Kirsten Ave,
+** Rochester NH, 03867-2954, USA.
+*/
+
 /*
  * Copyright (c) 1987 Regents of the University of California.
  * All rights reserved.
@@ -23,7 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern int _unsetenv_r _PARAMS ((struct _reent *, const char *));
+extern void _unsetenv_r _PARAMS ((struct _reent *, const char *));
 
 /*
  * setenv --
@@ -44,11 +49,11 @@ _DEFUN (setenv, (name, value, rewrite),
  * unsetenv(name) --
  *	Delete environmental variable "name".
  */
-int
+void
 _DEFUN (unsetenv, (name),
         _CONST char *name)
 {
-  return _unsetenv_r (_REENT, name);
+  _unsetenv_r (_REENT, name);
 }
 
 #endif /* !_REENT_ONLY */

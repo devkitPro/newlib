@@ -1,57 +1,118 @@
 /*
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms are permitted
- * provided that the above copyright notice and this paragraph are
- * duplicated in all such forms and that any documentation,
- * advertising materials, and other materials related to such
- * distribution and use acknowledge that the software was developed
- * by the University of California, Berkeley.  The name of the
- * University may not be used to endorse or promote products derived
- * from this software without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
- */
-/* doc in siprintf.c */
+FUNCTION
+        <<iprintf>>---write formatted output (integer only)
+INDEX
+	iprintf
+
+ANSI_SYNOPSIS
+        #include <stdio.h>
+
+        int iprintf(const char *<[format]>, ...);
+
+TRAD_SYNOPSIS
+	#include <stdio.h>
+
+	int iprintf(<[format]> [, <[arg]>, ...])
+	char *<[format]>;
+
+DESCRIPTION
+<<iprintf>> is a restricted version of <<printf>>: it has the same
+arguments and behavior, save that it cannot perform any floating-point
+formatting: the <<f>>, <<g>>, <<G>>, <<e>>, and <<F>> type specifiers
+are not recognized.
+
+RETURNS
+        <<iprintf>> returns the number of bytes in the output string,
+        save that the concluding <<NULL>> is not counted.
+        <<iprintf>> returns when the end of the format string is
+        encountered.  If an error occurs, <<iprintf>>
+        returns <<EOF>>.
+
+PORTABILITY
+<<iprintf>> is not required by ANSI C.
+
+Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
+<<lseek>>, <<read>>, <<sbrk>>, <<write>>.
+*/
 
 #include <_ansi.h>
-#include <reent.h>
 #include <stdio.h>
-#include <stdarg.h>
-#include "local.h"
 
 #ifndef _REENT_ONLY
 
+#ifdef _HAVE_STDC
+
+#include <stdarg.h>
+
 int
-_DEFUN(iprintf, (fmt),
-       const char *fmt _DOTS)
+iprintf (const char *fmt,...)
 {
   int ret;
   va_list ap;
-  struct _reent *ptr = _REENT;
 
-  _REENT_SMALL_CHECK_INIT (ptr);
   va_start (ap, fmt);
-  ret = _vfiprintf_r (ptr, _stdout_r (ptr), fmt, ap);
+  _stdout_r (_REENT)->_data = _REENT;
+  ret = vfiprintf (stdout, fmt, ap);
   va_end (ap);
   return ret;
 }
 
+#else
+
+#include <varargs.h>
+
+int
+iprintf (fmt, va_alist)
+     char *fmt;
+     va_dcl
+{
+  int ret;
+  va_list ap;
+
+  va_start (ap);
+  _stdout_r (_REENT)->_data = _REENT;
+  ret = vfiprintf (stdout, fmt, ap);
+  va_end (ap);
+  return ret;
+}
+
+#endif /* ! _HAVE_STDC */
 #endif /* ! _REENT_ONLY */
 
+#ifdef _HAVE_STDC
+
+#include <stdarg.h>
+
 int
-_DEFUN(_iprintf_r, (ptr, fmt),
-       struct _reent *ptr _AND
-       const char *fmt _DOTS)
+_iprintf_r (struct _reent *ptr, const char *fmt, ...)
 {
   int ret;
   va_list ap;
 
-  _REENT_SMALL_CHECK_INIT (ptr);
   va_start (ap, fmt);
-  ret = _vfiprintf_r (ptr, _stdout_r (ptr), fmt, ap);
+  ret = vfiprintf (_stdout_r (ptr), fmt, ap);
   va_end (ap);
   return ret;
 }
+
+#else
+
+#include <varargs.h>
+
+int
+_iprintf_r (data, fmt, va_alist)
+     char *data;
+     char *fmt;
+     va_dcl
+{
+  int ret;
+  struct _reent *ptr = data;
+  va_list ap;
+
+  va_start (ap);
+  ret = vfiprintf (_stdout_r (ptr), fmt, ap);
+  va_end (ap);
+  return ret;
+}
+
+#endif

@@ -138,7 +138,7 @@ _DEFUN (_strtoul_r, (rptr, nptr, endptr, base),
 	char **endptr _AND
 	int base)
 {
-	register const unsigned char *s = (const unsigned char *)nptr;
+	register const char *s = nptr;
 	register unsigned long acc;
 	register int c;
 	register unsigned long cutoff;
@@ -174,7 +174,7 @@ _DEFUN (_strtoul_r, (rptr, nptr, endptr, base),
 			break;
 		if (c >= base)
 			break;
-               if (any < 0 || acc > cutoff || (acc == cutoff && c > cutlim))
+		if (any < 0 || acc > cutoff || acc == cutoff && c > cutlim)
 			any = -1;
 		else {
 			any = 1;
@@ -188,7 +188,7 @@ _DEFUN (_strtoul_r, (rptr, nptr, endptr, base),
 	} else if (neg)
 		acc = -acc;
 	if (endptr != 0)
-		*endptr = (char *) (any ? (char *)s - 1 : nptr);
+		*endptr = (char *) (any ? s - 1 : nptr);
 	return (acc);
 }
 

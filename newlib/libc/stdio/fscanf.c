@@ -16,63 +16,45 @@
  */
 
 #include <_ansi.h>
-#include <reent.h>
 #include <stdio.h>
-#ifdef _HAVE_STDC
-#include <stdarg.h>
-#else
-#include <varargs.h>
-#endif
-#include "local.h"
 
-#ifndef _REENT_ONLY
+#ifdef _HAVE_STDC
+
+#include <stdarg.h>
+
+extern int __svfscanf ();
 
 int
-#ifdef _HAVE_STDC
-fscanf(FILE *fp, _CONST char *fmt, ...)
-#else
-fscanf(FILE *fp, fmt, va_alist)
-       FILE *fp;
-       char *fmt;
-       va_dcl
-#endif
+fscanf (FILE * fp, const char *fmt, ...)
 {
   int ret;
   va_list ap;
 
-#ifdef _HAVE_STDC
   va_start (ap, fmt);
-#else
-  va_start (ap);
-#endif
-  ret = _vfscanf_r (_REENT, fp, fmt, ap);
+  ret = __svfscanf (fp, fmt, ap);
   va_end (ap);
   return ret;
 }
 
-#endif /* !_REENT_ONLY */
+#else
+
+#include <varargs.h>
+
+extern int __svfscanf ();
 
 int
-#ifdef _HAVE_STDC
-_fscanf_r(struct _reent *ptr, FILE *fp, _CONST char *fmt, ...)
-#else
-_fscanf_r(ptr, FILE *fp, fmt, va_alist)
-          struct _reent *ptr;
-          FILE *fp;
-          char *fmt;
-          va_dcl
-#endif
+fscanf (fp, fmt, va_alist)
+     FILE *fp;
+     char *fmt;
+     va_dcl
 {
   int ret;
   va_list ap;
 
-#ifdef _HAVE_STDC
-  va_start (ap, fmt);
-#else
   va_start (ap);
-#endif
-  ret = _vfscanf_r (ptr, fp, fmt, ap);
+  ret = __svfscanf (fp, fmt, ap);
   va_end (ap);
-  return (ret);
+  return ret;
 }
 
+#endif

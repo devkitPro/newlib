@@ -5,8 +5,6 @@
 
 #include <machine/ieeefp.h>
 
-_BEGIN_STD_C
-
 /* FIXME FIXME FIXME:
    Neither of __ieee_{float,double}_shape_tape seem to be used anywhere
    except in libm/test.  If that is the case, please delete these from here.
@@ -184,9 +182,6 @@ typedef int fp_rdi;
 fp_rdi _EXFUN(fpgetroundtoi,(void));
 fp_rdi _EXFUN(fpsetroundtoi,(fp_rdi));
 
-#undef isnan
-#undef isinf
-
 int _EXFUN(isnan, (double));
 int _EXFUN(isinf, (double));
 int _EXFUN(finite, (double));
@@ -213,22 +208,14 @@ int _EXFUN(finitef, (float));
 #define __IEEE_DBL_NAN_EXP 0x7ff
 #define __IEEE_FLT_NAN_EXP 0xff
 
-#ifndef __ieeefp_isnanf
-#define __ieeefp_isnanf(x) (((*(long *)&(x) & 0x7f800000L)==0x7f800000L) && \
-			    ((*(long *)&(x) & 0x007fffffL)!=0000000000L))
-#endif
-#define isnanf(x)	__ieeefp_isnanf(x)
 
-#ifndef __ieeefp_isinff
-#define __ieeefp_isinff(x) (((*(long *)&(x) & 0x7f800000L)==0x7f800000L) && \
-			    ((*(long *)&(x) & 0x007fffffL)==0000000000L))
-#endif
-#define isinff(x)	__ieeefp_isinff(x)
+#define isnanf(x) (((*(long *)&(x) & 0x7f800000L)==0x7f800000L) && \
+		   ((*(long *)&(x) & 0x007fffffL)!=0000000000L))
 
-#ifndef __ieeefp_finitef
-#define __ieeefp_finitef(x) (((*(long *)&(x) & 0x7f800000L)!=0x7f800000L))
-#endif
-#define finitef(x)	__ieeefp_finitef(x)
+#define isinff(x) (((*(long *)&(x) & 0x7f800000L)==0x7f800000L) && \
+		   ((*(long *)&(x) & 0x007fffffL)==0000000000L))
+
+#define finitef(x) (((*(long *)&(x) & 0x7f800000L)!=0x7f800000L))
 
 #ifdef _DOUBLE_IS_32BITS
 #undef __IEEE_DBL_EXPBIAS
@@ -250,7 +237,5 @@ int _EXFUN(finitef, (float));
 #define __ieee_double_shape_type __ieee_float_shape_type
 
 #endif /* _DOUBLE_IS_32BITS */
-
-_END_STD_C
 
 #endif /* _IEEE_FP_H_ */

@@ -35,14 +35,14 @@
 	float z;
 	struct exception exc;
 	z = __ieee754_asinf(x);
-	if(_LIB_VERSION == _IEEE_ || isnan(x)) return z;
+	if(_LIB_VERSION == _IEEE_ || isnanf(x)) return z;
 	if(fabsf(x)>(float)1.0) {
 	    /* asinf(|x|>1) */
 	    exc.type = DOMAIN;
 	    exc.name = "asinf";
 	    exc.err = 0;
 	    exc.arg1 = exc.arg2 = (double)x;
-	    exc.retval = nan("");
+	    exc.retval = 0.0;
 	    if(_LIB_VERSION == _POSIX_)
 	      errno = EDOM;
 	    else if (!matherr(&exc)) {

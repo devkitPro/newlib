@@ -2,8 +2,6 @@
    These implementations just call the usual system calls.  */
 
 #include <reent.h>
-#include <signal.h>
-#include <unistd.h>
 #include <_syslist.h>
 
 /* Some targets provides their own versions of these functions.  Those
@@ -50,10 +48,10 @@ DESCRIPTION
 */
 
 int
-_DEFUN (_kill_r, (ptr, pid, sig),
-     struct _reent *ptr _AND
-     int pid _AND
-     int sig)
+_kill_r (ptr, pid, sig)
+     struct _reent *ptr;
+     int pid;
+     int sig;
 {
   int ret;
 
@@ -89,8 +87,8 @@ DESCRIPTION
 */
 
 int
-_DEFUN (_getpid_r, (ptr),
-     struct _reent *ptr)
+_getpid_r (ptr)
+     struct _reent *ptr;
 {
   int ret;
   ret = _getpid ();

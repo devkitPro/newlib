@@ -24,18 +24,18 @@ INDEX
 ANSI_SYNOPSIS
 	#include <math.h>
 	double pow(double <[x]>, double <[y]>);
-	float powf(float <[x]>, float <[y]>);
+	float pow(float <[x]>, float <[y]>);
 
 TRAD_SYNOPSIS
 	#include <math.h>
 	double pow(<[x]>, <[y]>);
 	double <[x]>, <[y]>;
 
-	float powf(<[x]>, <[y]>);
+	float pow(<[x]>, <[y]>);
 	float <[x]>, <[y]>;
 
 DESCRIPTION
-	<<pow>> and <<powf>> calculate <[x]> raised to the exponent <[y]>.
+	<<pow>> and <<powf>> calculate <[x]> raised to the exp1.0nt <[y]>.
 	@tex
 	(That is, $x^y$.)
 	@end tex
@@ -93,7 +93,7 @@ PORTABILITY
 		exc.err = 0;
 		exc.arg1 = x;
 		exc.arg2 = y;
-		exc.retval = 1.0;
+		exc.retval = x;
 		if (_LIB_VERSION == _IEEE_ ||
 		    _LIB_VERSION == _POSIX_) exc.retval = 1.0;
 		else if (!matherr(&exc)) {

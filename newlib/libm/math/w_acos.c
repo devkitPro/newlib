@@ -44,9 +44,9 @@ DESCRIPTION
 	its calculations on <<floats>>.
 
 RETURNS
-	@ifnottex
+	@ifinfo
 	<<acos>> and <<acosf>> return values in radians, in the range of 0 to pi.
-	@end ifnottex
+	@end ifinfo
 	@tex
 	<<acos>> and <<acosf>> return values in radians, in the range of <<0>> to $\pi$.
 	@end tex
@@ -101,7 +101,7 @@ MATHREF
 	    exc.name = "acos";
 	    exc.err = 0;
 	    exc.arg1 = exc.arg2 = x;
-	    exc.retval = nan("");
+	    exc.retval = 0.0;
 	    if (_LIB_VERSION == _POSIX_)
 	       errno = EDOM;
 	    else if (!matherr(&exc)) {

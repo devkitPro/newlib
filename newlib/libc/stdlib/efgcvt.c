@@ -1,15 +1,11 @@
 /*
 FUNCTION
-<<ecvt>>, <<ecvtf>>, <<fcvt>>, <<fcvtf>>---double or float to string
+<<ecvt>>,<<ecvtf>>,<<fcvt>>,<<fcvtf>>---double or float to string
 
 INDEX
 	ecvt
 INDEX
-	ecvtf
-INDEX
 	fcvt
-INDEX
-	fcvtf
 
 ANSI_SYNOPSIS
 	#include <stdlib.h>

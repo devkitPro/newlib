@@ -1,5 +1,3 @@
-#ifndef _NO_EXECVE
-
 /* execle.c */
 
 /* This and the other exec*.c files in this directory require 
@@ -13,19 +11,17 @@
 #include <stdarg.h>
 
 int
-_DEFUN(execle, (path, arg0, ...),
-      _CONST char *path _AND
-      _CONST char *arg0 _DOTS)
+execle (_CONST char *path, _CONST char *arg0, ...)
 
 #else
 
 #include <varargs.h>
 
 int
-_DEFUN(execle, (path, arg0, va_alist),
-     _CONST char *path _AND
-     _CONST char *arg0 _AND
-     va_dcl)
+execle (path, arg0, va_alist)
+     _CONST char *path;
+     _CONST char *arg0;
+     va_dcl
 
 #endif
 
@@ -46,5 +42,3 @@ _DEFUN(execle, (path, arg0, va_alist),
 
   return _execve (path, (char * _CONST *) argv, (char * _CONST *) envp);
 }
-
-#endif /* !_NO_EXECVE  */

@@ -40,9 +40,9 @@ DESCRIPTION
 
 <<atan2>> computes the inverse tangent (arc tangent) of <[y]>/<[x]>. 
 <<atan2>> produces the correct result even for angles near 
-@ifnottex
+@ifinfo
 pi/2 or -pi/2 
-@end ifnottex
+@end ifinfo
 @tex
 $\pi/2$ or $-\pi/2$
 @end tex
@@ -53,12 +53,14 @@ $\pi/2$ or $-\pi/2$
 
 RETURNS
 <<atan2>> and <<atan2f>> return a value in radians, in the range of 
-@ifnottex
+@ifinfo
 -pi to pi.
-@end ifnottex
+@end ifinfo
 @tex
 $-\pi$ to $\pi$.
 @end tex
+
+If both <[x]> and <[y]> are 0.0, <<atan2>> causes a <<DOMAIN>> error.
 
 You can modify error handling for these functions using <<matherr>>.
 
@@ -84,7 +86,32 @@ PORTABILITY
 	double y,x;
 #endif
 {
+#ifdef _IEEE_LIBM
 	return __ieee754_atan2(y,x);
+#else
+	double z;
+	struct exception exc;
+	z = __ieee754_atan2(y,x);
+	if(_LIB_VERSION == _IEEE_||isnan(x)||isnan(y)) return z;
+	if(x==0.0&&y==0.0) {
+	    /* atan2(+-0,+-0) */
+	    exc.arg1 = y;
+	    exc.arg2 = x;
+	    exc.type = DOMAIN;
+	    exc.name = "atan2";
+	    exc.err = 0;
+	    exc.retval = 0.0;
+	    if(_LIB_VERSION == _POSIX_)
+	       errno = EDOM;
+	    else if (!matherr(&exc)) {
+	       errno = EDOM;
+	    }
+	    if (exc.err != 0)
+	       errno = exc.err;
+	    return exc.retval; 
+	} else
+	    return z;
+#endif
 }
 
 #endif /* defined(_DOUBLE_IS_32BITS) */

@@ -13,7 +13,7 @@
 
 /*
 FUNCTION
-       <<ilogb>>, <<ilogbf>>---get exponent of floating-point number
+       <<ilogb>>, <<ilogbf>>---get exponent of floating point number
 INDEX
 	ilogb
 INDEX
@@ -35,7 +35,7 @@ TRAD_SYNOPSIS
 
 DESCRIPTION
 
-	All nonzero, normal numbers can be described as <[m]> *
+	All non zero, normal numbers can be described as <[m]> *
 	2**<[p]>.  <<ilogb>> and <<ilogbf>> examine the argument
 	<[val]>, and return <[p]>.  The functions <<frexp>> and
 	<<frexpf>> are similar to <<ilogb>> and <<ilogbf>>, but also
@@ -44,24 +44,13 @@ DESCRIPTION
 RETURNS
 
 <<ilogb>> and <<ilogbf>> return the power of two used to form the
-floating-point argument.
-If <[val]> is <<0>>, they return <<FP_ILOGB0>>.
-If <[val]> is infinite, they return <<INT_MAX>>.
-If <[val]> is NaN, they return <<FP_ILOGBNAN>>.
-(<<FP_ILOGB0>> and <<FP_ILOGBNAN>> are defined in math.h, but in turn are
-defined as INT_MIN or INT_MAX from limits.h.  The value of FP_ILOGB0 may be
-either INT_MIN or -INT_MAX.  The value of FP_ILOGBNAN may be either INT_MAX or
-INT_MIN.)
-
-@comment The bugs might not be worth noting, given the mass non-C99/POSIX
-@comment behavior of much of the Newlib math library.
-@comment BUGS
-@comment On errors, errno is not set per C99 and POSIX requirements even if
-@comment (math_errhandling & MATH_ERRNO) is non-zero.
+floating point argument.  If <[val]> is <<0>>, they return <<-
+INT_MAX>> (<<INT_MAX>> is defined in limits.h).  If <[val]> is
+infinite, or NaN, they return <<INT_MAX>>.
 
 PORTABILITY
-C99, POSIX
-*/
+	Neither <<ilogb>> nor <<ilogbf>> is required by ANSI C or by
+	the System V Interface Definition (Issue 2).  */
 
 /* ilogb(double x)
  * return the binary exponent of non-zero x
@@ -69,8 +58,8 @@ C99, POSIX
  * ilogb(inf/NaN) = 0x7fffffff (no signal is raised)
  */
 
-#include <limits.h>
 #include "fdlibm.h"
+#include <limits.h>
 
 #ifndef _DOUBLE_IS_32BITS
 
@@ -87,7 +76,7 @@ C99, POSIX
 	hx &= 0x7fffffff;
 	if(hx<0x00100000) {
 	    if((hx|lx)==0) 
-		return FP_ILOGB0;	/* ilogb(0) = special case error */
+		return - INT_MAX;	/* ilogb(0) = 0x80000001 */
 	    else			/* subnormal x */
 		if(hx==0) {
 		    for (ix = -1043; lx>0; lx<<=1) ix -=1;
@@ -97,10 +86,7 @@ C99, POSIX
 	    return ix;
 	}
 	else if (hx<0x7ff00000) return (hx>>20)-1023;
-	#if FP_ILOGBNAN != INT_MAX
-	else if (hx>0x7ff00000) return FP_ILOGBNAN;	/* NAN */
-	#endif
-	else return INT_MAX;	/* infinite (or, possibly, NAN) */
+	else return INT_MAX;
 }
 
 #endif /* _DOUBLE_IS_32BITS */

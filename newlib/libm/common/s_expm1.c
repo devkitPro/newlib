@@ -35,9 +35,9 @@ TRAD_SYNOPSIS
 DESCRIPTION
 	<<expm1>> and <<expm1f>> calculate the exponential of <[x]>
 	and subtract 1, that is,
-	@ifnottex
+	@ifinfo
 	e raised to the power <[x]> minus 1 (where e
-	@end ifnottex
+	@end ifinfo
 	@tex
 	$e^x - 1$ (where $e$
 	@end tex
@@ -239,10 +239,9 @@ Q5  =  -2.01099218183624371326e-07; /* BE8AFDB7 6E09C32D */
 	    e  = (x*(e-c)-c);
 	    e -= hxs;
 	    if(k== -1) return 0.5*(x-e)-0.5;
-          if(k==1) {
+	    if(k==1) 
 	       	if(x < -0.25) return -2.0*(e-(x+0.5));
 	       	else 	      return  one+2.0*(x-e);
-          }
 	    if (k <= -2 || k>56) {   /* suffice to return exp(x)-1 */
 	        __uint32_t high;
 	        y = one-(e-x);

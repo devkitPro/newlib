@@ -1,7 +1,6 @@
 #include <_ansi.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/time.h>
 #include "sys/syscall.h"
 int errno;
 
@@ -36,12 +35,6 @@ int
 _close (int file)
 {
   return __trap34 (SYS_close, file, 0, 0);
-}
-
-int
-_link (char *old, char *new)
-{
-  return -1;
 }
 
 caddr_t
@@ -98,13 +91,6 @@ isatty (fd)
 {
   return 1;
 }
-
-_isatty (fd)
-     int fd;
-{
-  return 1;
-}
-
 
 _exit (n)
 {
@@ -181,48 +167,4 @@ int
 _pipe (int *fd)
 {
   return __trap34 (SYS_pipe, fd);
-}
-
-/* This is only provided because _gettimeofday_r and _times_r are
-   defined in the same module, so we avoid a link error.  */
-clock_t
-_times (struct tms *tp)
-{
-  return -1;
-}
-
-int
-_gettimeofday (struct timeval *tv, void *tz)
-{
-  tv->tv_usec = 0;
-  tv->tv_sec = __trap34 (SYS_time);
-  return 0;
-}
-
-static inline int
-__setup_argv_for_main (int argc)
-{
-  char **argv;
-  int i = argc;
-
-  argv = __builtin_alloca ((1 + argc) * sizeof (*argv));
-
-  argv[i] = NULL;
-  while (i--) {
-    argv[i] = __builtin_alloca (1 + __trap34 (SYS_argnlen, i));
-    __trap34 (SYS_argn, i, argv[i]);
-  }
-
-  return main (argc, argv);
-}
-
-int
-__setup_argv_and_call_main ()
-{
-  int argc = __trap34 (SYS_argc);
-
-  if (argc <= 0)
-    return main (argc, NULL);
-  else
-    return __setup_argv_for_main (argc);
 }

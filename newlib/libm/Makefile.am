@@ -3,23 +3,15 @@
 AUTOMAKE_OPTIONS = cygnus
 
 if NEWLIB_HW_FP
-MATHDIR = mathfp
+SUBDIRS = mathfp common .
+SUBLIBS = mathfp/lib.a common/lib.a
 else
-MATHDIR = math
+SUBDIRS = math common . 
+SUBLIBS = math/lib.a common/lib.a
 endif
 
-SUBDIRS = $(MATHDIR) common complex machine 
-
-libm_la_LDFLAGS = -Xcompiler -nostdlib
-
-if USE_LIBTOOL
-SUBLIBS = $(MATHDIR)/lib$(MATHDIR).$(aext) common/libcommon.$(aext) complex/libcomplex.$(aext)  $(LIBM_MACHINE_LIB)
-noinst_LTLIBRARIES = libm.la
-libm_la_SOURCES =
-libm_la_LIBADD = $(SUBLIBS)
-else
-SUBLIBS = $(MATHDIR)/lib.$(aext) common/lib.$(aext) complex/lib.$(aext) $(LIBM_MACHINE_LIB)
 noinst_LIBRARIES = libm.a
+
 libm.a: $(SUBLIBS)
 	rm -f $@
 	rm -rf tmp
@@ -31,15 +23,12 @@ libm.a: $(SUBLIBS)
 	$(AR) $(AR_FLAGS) ../$@ *.o
 	$(RANLIB) $@
 	rm -rf tmp
-endif
 
 $(SUBLIBS):
 
 info_TEXINFOS = libm.texinfo
 
-libm_TEXINFOS = targetdep.tex
-
-libm.dvi: targetdep.tex math/stmp-def complex/stmp-def
+libm.info: targetdep.tex math/stmp-def
 
 stmp-targetdep: force
 	rm -f tmp.texi
@@ -56,12 +45,10 @@ targetdep.tex: stmp-targetdep ; @true
 
 math/stmp-def: stmp-targetdep ; @true
 
-complex/stmp-def: stmp-targetdep ; @true
-
 .PHONY: force
 force:
 
 CLEANFILES = tmp.texi targetdep.tex stmp-targetdep
 
-ACLOCAL_AMFLAGS = -I .. -I ../..
+ACLOCAL_AMFLAGS = -I ..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host

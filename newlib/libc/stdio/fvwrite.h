@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1990, 2007 The Regents of the University of California.
+ * Copyright (c) 1990 The Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -19,7 +19,7 @@
 #include <_ansi.h>
 
 /*
- * I/O descriptors for __sfvwrite_r().
+ * I/O descriptors for __sfvwrite().
  */
 struct __siov {
 	_CONST _PTR     iov_base;
@@ -32,5 +32,7 @@ struct __suio {
 };
 
 
-extern int _EXFUN(__sfvwrite_r,(struct _reent *, FILE *, struct __suio *));
-extern int _EXFUN(__swsetup_r,(struct _reent *, FILE *));
+extern int _EXFUN(__sfvwrite,(FILE *, struct __suio *));
+extern int _EXFUN(__swsetup,(FILE *));
+
+

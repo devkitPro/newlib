@@ -17,25 +17,14 @@
 
 /*
 FUNCTION
-<<fseek>>, <<fseeko>>---set file position
+<<fseek>>---set file position
 
 INDEX
 	fseek
-INDEX
-	fseeko
-INDEX
-	_fseek_r
-INDEX
-	_fseeko_r
 
 ANSI_SYNOPSIS
 	#include <stdio.h>
 	int fseek(FILE *<[fp]>, long <[offset]>, int <[whence]>)
-	int fseeko(FILE *<[fp]>, off_t <[offset]>, int <[whence]>)
-	int _fseek_r(struct _reent *<[ptr]>, FILE *<[fp]>,
-	             long <[offset]>, int <[whence]>)
-	int _fseeko_r(struct _reent *<[ptr]>, FILE *<[fp]>,
-	             off_t <[offset]>, int <[whence]>)
 
 TRAD_SYNOPSIS
 	#include <stdio.h>
@@ -44,29 +33,12 @@ TRAD_SYNOPSIS
 	long <[offset]>;
 	int <[whence]>;
 
-	int fseeko(<[fp]>, <[offset]>, <[whence]>)
-	FILE *<[fp]>;
-	off_t <[offset]>;
-	int <[whence]>;
-
-	int _fseek_r(<[ptr]>, <[fp]>, <[offset]>, <[whence]>)
-	struct _reent *<[ptr]>;
-	FILE *<[fp]>;
-	long <[offset]>;
-	int <[whence]>;
-
-	int _fseeko_r(<[ptr]>, <[fp]>, <[offset]>, <[whence]>)
-	struct _reent *<[ptr]>;
-	FILE *<[fp]>;
-	off_t <[offset]>;
-	int <[whence]>;
-
 DESCRIPTION
 Objects of type <<FILE>> can have a ``position'' that records how much
 of the file your program has already read.  Many of the <<stdio>> functions
 depend on this position, and many change it as a side effect.
 
-You can use <<fseek>>/<<fseeko>> to set the position for the file identified by
+You can use <<fseek>> to set the position for the file identified by
 <[fp]>.  The value of <[offset]> determines the new position, in one
 of three ways selected by the value of <[whence]> (defined as macros
 in `<<stdio.h>>'):
@@ -81,10 +53,10 @@ from the beginning of the file) desired.  <[offset]> must be positive.
 <[offset]> can meaningfully be either positive (to increase the size
 of the file) or negative.
 
-See <<ftell>>/<<ftello>> to determine the current file position.
+See <<ftell>> to determine the current file position.
 
 RETURNS
-<<fseek>>/<<fseeko>> return <<0>> when successful.  On failure, the
+<<fseek>> returns <<0>> when successful.  If <<fseek>> fails, the
 result is <<EOF>>.  The reason for failure is indicated in <<errno>>:
 either <<ESPIPE>> (the stream identified by <[fp]> doesn't support
 repositioning) or <<EINVAL>> (invalid file position).
@@ -92,16 +64,11 @@ repositioning) or <<EINVAL>> (invalid file position).
 PORTABILITY
 ANSI C requires <<fseek>>.
 
-<<fseeko>> is defined by the Single Unix specification.
-
 Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 <<lseek>>, <<read>>, <<sbrk>>, <<write>>.
 */
 
-#include <_ansi.h>
-#include <reent.h>
 #include <stdio.h>
-#include <string.h>
 #include <time.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -109,7 +76,7 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 #include <sys/stat.h>
 #include "local.h"
 
-#define	POS_ERR	(-(_fpos_t)1)
+#define	POS_ERR	(-(fpos_t)1)
 
 /*
  * Seek the given file to the given offset.
@@ -117,28 +84,22 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
  */
 
 int
-_DEFUN(_fseek_r, (ptr, fp, offset, whence),
-       struct _reent *ptr _AND
-       register FILE *fp  _AND
-       long offset        _AND
-       int whence)
+fseek (fp, offset, whence)
+     register FILE *fp;
+     long offset;
+     int whence;
 {
-  _fpos_t _EXFNPTR(seekfn, (struct _reent *, _PTR, _fpos_t, int));
-  _fpos_t target;
-  _fpos_t curoff = 0;
+  struct _reent *ptr;
+  fpos_t _EXFUN ((*seekfn), (void *, fpos_t, int));
+  fpos_t target, curoff;
   size_t n;
-#ifdef __USE_INTERNAL_STAT64
-  struct stat64 st;
-#else
   struct stat st;
-#endif
   int havepos;
 
   /* Make sure stdio is set up.  */
 
-  CHECK_INIT (ptr, fp);
-
-  _flockfile (fp);
+  CHECK_INIT (fp);
+  ptr = fp->_data;
 
   /* If we've been doing some writing, and we're in append mode
      then we don't really know where the filepos is.  */
@@ -146,7 +107,7 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
   if (fp->_flags & __SAPP && fp->_flags & __SWR)
     {
       /* So flush the buffer and seek to the end.  */
-      _fflush_r (ptr, fp);
+      fflush (fp);
     }
 
   /* Have to be able to seek.  */
@@ -154,7 +115,6 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
   if ((seekfn = fp->_seek) == NULL)
     {
       ptr->_errno = ESPIPE;	/* ??? */
-      _funlockfile (fp);
       return EOF;
     }
 
@@ -171,17 +131,14 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
        * we have to first find the current stream offset a la
        * ftell (see ftell for details).
        */
-      _fflush_r (ptr, fp);   /* may adjust seek offset on append stream */
+      fflush(fp);   /* may adjust seek offset on append stream */
       if (fp->_flags & __SOFF)
 	curoff = fp->_offset;
       else
 	{
-	  curoff = seekfn (ptr, fp->_cookie, (_fpos_t) 0, SEEK_CUR);
+	  curoff = (*seekfn) (fp->_cookie, (fpos_t) 0, SEEK_CUR);
 	  if (curoff == -1L)
-	    {
-	      _funlockfile (fp);
-	      return EOF;
-	    }
+	    return EOF;
 	}
       if (fp->_flags & __SRD)
 	{
@@ -204,7 +161,6 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
 
     default:
       ptr->_errno = EINVAL;
-      _funlockfile (fp);
       return (EOF);
     }
 
@@ -218,18 +174,14 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
    */
 
   if (fp->_bf._base == NULL)
-    __smakebuf_r (ptr, fp);
+    __smakebuf (fp);
   if (fp->_flags & (__SWR | __SRW | __SNBF | __SNPT))
     goto dumb;
   if ((fp->_flags & __SOPT) == 0)
     {
       if (seekfn != __sseek
 	  || fp->_file < 0
-#ifdef __USE_INTERNAL_STAT64
-	  || _fstat64_r (ptr, fp->_file, &st)
-#else
 	  || _fstat_r (ptr, fp->_file, &st)
-#endif
 	  || (st.st_mode & S_IFMT) != S_IFREG)
 	{
 	  fp->_flags |= __SNPT;
@@ -252,19 +204,9 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
     target = offset;
   else
     {
-#ifdef __USE_INTERNAL_STAT64
-      if (_fstat64_r (ptr, fp->_file, &st))
-#else
       if (_fstat_r (ptr, fp->_file, &st))
-#endif
 	goto dumb;
       target = st.st_size + offset;
-    }
-  if ((long)target != target)
-    {
-      ptr->_errno = EOVERFLOW;
-      _funlockfile (fp);
-      return EOF;
     }
 
   if (!havepos)
@@ -273,7 +215,7 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
 	curoff = fp->_offset;
       else
 	{
-	  curoff = seekfn (ptr, fp->_cookie, 0L, SEEK_CUR);
+	  curoff = (*seekfn) (fp->_cookie, 0L, SEEK_CUR);
 	  if (curoff == POS_ERR)
 	    goto dumb;
 	}
@@ -306,20 +248,20 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
   /*
    * If the target offset is within the current buffer,
    * simply adjust the pointers, clear EOF, undo ungetc(),
-   * and return.
+   * and return.  (If the buffer was modified, we have to
+   * skip this; see fgetline.c.)
    */
 
-  if (target >= curoff && target < curoff + n)
+  if ((fp->_flags & __SMOD) == 0 &&
+      target >= curoff && target < curoff + n)
     {
       register int o = target - curoff;
 
       fp->_p = fp->_bf._base + o;
       fp->_r = n - o;
       if (HASUB (fp))
-	FREEUB (ptr, fp);
+	FREEUB (fp);
       fp->_flags &= ~__SEOF;
-      memset (&fp->_mbstate, 0, sizeof (_mbstate_t));
-      _funlockfile (fp);
       return 0;
     }
 
@@ -333,23 +275,20 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
    */
 
   curoff = target & ~(fp->_blksize - 1);
-  if (seekfn (ptr, fp->_cookie, curoff, SEEK_SET) == POS_ERR)
+  if ((*seekfn) (fp->_cookie, curoff, SEEK_SET) == POS_ERR)
     goto dumb;
   fp->_r = 0;
-  fp->_p = fp->_bf._base;
   if (HASUB (fp))
-    FREEUB (ptr, fp);
+    FREEUB (fp);
   fp->_flags &= ~__SEOF;
   n = target - curoff;
   if (n)
     {
-      if (__srefill_r (ptr, fp) || fp->_r < n)
+      if (__srefill (fp) || fp->_r < n)
 	goto dumb;
       fp->_p += n;
       fp->_r -= n;
     }
-  memset (&fp->_mbstate, 0, sizeof (_mbstate_t));
-  _funlockfile (fp);
   return 0;
 
   /*
@@ -358,40 +297,14 @@ _DEFUN(_fseek_r, (ptr, fp, offset, whence),
    */
 
 dumb:
-  if (_fflush_r (ptr, fp)
-      || seekfn (ptr, fp->_cookie, offset, whence) == POS_ERR)
-    {
-      _funlockfile (fp);
-      return EOF;
-    }
+  if (fflush (fp) || (*seekfn) (fp->_cookie, offset, whence) == POS_ERR)
+    return EOF;
   /* success: clear EOF indicator and discard ungetc() data */
   if (HASUB (fp))
-    FREEUB (ptr, fp);
+    FREEUB (fp);
   fp->_p = fp->_bf._base;
   fp->_r = 0;
   /* fp->_w = 0; *//* unnecessary (I think...) */
   fp->_flags &= ~__SEOF;
-  /* Reset no-optimization flag after successful seek.  The
-     no-optimization flag may be set in the case of a read
-     stream that is flushed which by POSIX/SUSv3 standards,
-     means that a corresponding seek must not optimize.  The
-     optimization is then allowed if no subsequent flush
-     is performed.  */
-  fp->_flags &= ~__SNPT;
-  memset (&fp->_mbstate, 0, sizeof (_mbstate_t));
-  _funlockfile (fp);
   return 0;
 }
-
-#ifndef _REENT_ONLY
-
-int
-_DEFUN(fseek, (fp, offset, whence),
-       register FILE *fp _AND
-       long offset       _AND
-       int whence)
-{
-  return _fseek_r (_REENT, fp, offset, whence);
-}
-
-#endif /* !_REENT_ONLY */

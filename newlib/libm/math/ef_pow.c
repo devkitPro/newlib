@@ -73,13 +73,12 @@ ivln2_l  =  7.0526075433e-06; /* 0x36eca570 =1/ln2 tail*/
 	ix = hx&0x7fffffff;  iy = hy&0x7fffffff;
 
     /* y==zero: x**0 = 1 */
-	if(FLT_UWORD_IS_ZERO(iy)) return one; 	
+	if(iy==0) return one; 	
 
-    /* x|y==NaN return NaN unless x==1 then return 1 */
-	if(FLT_UWORD_IS_NAN(ix) ||
-	   FLT_UWORD_IS_NAN(iy))
-	    if(ix==0x3f800000) return one;
-	    else return nanf("");
+    /* +-NaN return x+y */
+	if(ix > 0x7f800000 ||
+	   iy > 0x7f800000)
+		return x+y;	
 
     /* determine if y is an odd int when x < 0
      * yisint = 0	... y is not an integer
@@ -97,9 +96,9 @@ ivln2_l  =  7.0526075433e-06; /* 0x36eca570 =1/ln2 tail*/
 	} 
 
     /* special value of y */
-	if (FLT_UWORD_IS_INFINITE(iy)) {	/* y is +-inf */
+	if (iy==0x7f800000) {	/* y is +-inf */
 	    if (ix==0x3f800000)
-		return one;		/* +-1**+-inf = 1 */
+	        return  y - y;	/* inf**+-1 is NaN */
 	    else if (ix > 0x3f800000)/* (|x|>1)**+-inf = inf,0 */
 	        return (hy>=0)? y: zero;
 	    else			/* (|x|<1)**-,+inf = inf,0 */
@@ -116,7 +115,7 @@ ivln2_l  =  7.0526075433e-06; /* 0x36eca570 =1/ln2 tail*/
 
 	ax   = fabsf(x);
     /* special value of x */
-	if(FLT_UWORD_IS_INFINITE(ix)||FLT_UWORD_IS_ZERO(ix)||ix==0x3f800000){
+	if(ix==0x7f800000||ix==0||ix==0x3f800000){
 	    z = ax;			/*x is +-0,+-inf,+-1*/
 	    if(hy<0) z = one/z;	/* z = (1/|x|) */
 	    if(hx<0) {
@@ -138,7 +137,7 @@ ivln2_l  =  7.0526075433e-06; /* 0x36eca570 =1/ln2 tail*/
 	    if(ix>0x3f800007) return (hy>0)? huge*huge:tiny*tiny;
 	/* now |1-x| is tiny <= 2**-20, suffice to compute 
 	   log(x) by x-x^2/2+x^3/3-x^4/4 */
-	    t = ax-1;		/* t has 20 trailing zeros */
+	    t = x-1;		/* t has 20 trailing zeros */
 	    w = (t*t)*((float)0.5-t*((float)0.333333333333-t*(float)0.25));
 	    u = ivln2_h*t;	/* ivln2_h has 16 sig. bits */
 	    v = t*ivln2_l-w*ivln2;
@@ -150,7 +149,7 @@ ivln2_l  =  7.0526075433e-06; /* 0x36eca570 =1/ln2 tail*/
 	    float s2,s_h,s_l,t_h,t_l;
 	    n = 0;
 	/* take care subnormal number */
-	    if(FLT_UWORD_IS_SUBNORMAL(ix))
+	    if(ix<0x00800000)
 		{ax *= two24; n -= 24; GET_FLOAT_WORD(ix,ax); }
 	    n  += ((ix)>>23)-0x7f;
 	    j  = ix&0x007fffff;
@@ -210,21 +209,20 @@ ivln2_l  =  7.0526075433e-06; /* 0x36eca570 =1/ln2 tail*/
 	p_h = y1*t1;
 	z = p_l+p_h;
 	GET_FLOAT_WORD(j,z);
-	i = j&0x7fffffff;
-	if (j>0) {
-	    if (i>FLT_UWORD_EXP_MAX)
-	        return s*huge*huge;			/* overflow */
-	    else if (i==FLT_UWORD_EXP_MAX)
-	        if(p_l+ovt>z-p_h) return s*huge*huge;	/* overflow */
-        } else {
-	    if (i>FLT_UWORD_EXP_MIN)
-	        return s*tiny*tiny;			/* underflow */
-	    else if (i==FLT_UWORD_EXP_MIN)
-	        if(p_l<=z-p_h) return s*tiny*tiny;	/* underflow */
+	if (j>0x43000000)				/* if z > 128 */
+	    return s*huge*huge;				/* overflow */
+	else if (j==0x43000000) {			/* if z == 128 */
+	    if(p_l+ovt>z-p_h) return s*huge*huge;	/* overflow */
+	}
+	else if ((j&0x7fffffff)>0x43160000)		/* z <= -150 */
+	    return s*tiny*tiny;				/* underflow */
+	else if (j==0xc3160000){			/* z == -150 */
+	    if(p_l<=z-p_h) return s*tiny*tiny;		/* underflow */
 	}
     /*
      * compute 2**(p_h+p_l)
      */
+	i = j&0x7fffffff;
 	k = (i>>23)-0x7f;
 	n = 0;
 	if(i>0x3f000000) {		/* if |z| > 0.5, set n = [z+0.5] */

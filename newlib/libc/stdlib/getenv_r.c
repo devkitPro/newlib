@@ -19,7 +19,7 @@ TRAD_SYNOPSIS
 
 DESCRIPTION
 <<_getenv_r>> searches the list of environment variable names and values
-(using the global pointer ``<<char **environ>>'') for a variable whose
+(using the global pointer `<<char **environ>>') for a variable whose
 name matches the string at <[name]>.  If a variable name matches,
 <<_getenv_r>> returns a pointer to the associated value.
 
@@ -29,14 +29,14 @@ A pointer to the (string) value of the environment variable, or
 
 PORTABILITY
 <<_getenv_r>> is not ANSI; the rules for properly forming names of environment
-variables vary from one system to another.  This implementation does not
-permit '=' to be in identifiers.
+variables vary from one system to another.
 
 <<_getenv_r>> requires a global pointer <<environ>>.
 */
 
 /* This file may have been modified by DJ Delorie (Jan 1991).  If so,
-** these modifications are Copyright (C) 1991 DJ Delorie.
+** these modifications are Coyright (C) 1991 DJ Delorie, 24 Kirsten Ave,
+** Rochester NH, 03867-2954, USA.
 */
 
 /*
@@ -65,16 +65,12 @@ permit '=' to be in identifiers.
 
 extern char **environ;
 
-/* Only deal with a pointer to environ, to work around subtle bugs with shared
-   libraries and/or small data systems where the user declares his own
-   'environ'.  */
-static char ***p_environ = &environ;
-
 /*
  * _findenv --
  *	Returns pointer to value associated with name, if any, else NULL.
  *	Sets offset to be the offset of the name/value combination in the
  *	environmental array, for use by setenv(3) and unsetenv(3).
+ *	Explicitly removes '=' in argument name.
  *
  *	This routine *should* be a static; don't use it.
  */
@@ -93,28 +89,25 @@ _DEFUN (_findenv_r, (reent_ptr, name, offset),
 
   /* In some embedded systems, this does not get set.  This protects
      newlib from dereferencing a bad pointer.  */
-  if (!*p_environ)
-    {
-      ENV_UNLOCK;
-      return NULL;
-    }
+  if (!environ)
+    return NULL;
 
   c = name;
-  while (*c && *c != '=')  c++;
- 
-  /* Identifiers may not contain an '=', so cannot match if does */
-  if(*c != '=')
+  len = 0;
+  while (*c && *c != '=')
     {
-    len = c - name;
-    for (p = *p_environ; *p; ++p)
-      if (!strncmp (*p, name, len))
-        if (*(c = *p + len) == '=')
+      c++;
+      len++;
+    }
+
+  for (p = environ; *p; ++p)
+    if (!strncmp (*p, name, len))
+      if (*(c = *p + len) == '=')
 	{
-	  *offset = p - *p_environ;
-	  ENV_UNLOCK;
+	  *offset = p - environ;
+          ENV_UNLOCK;
 	  return (char *) (++c);
 	}
-    }
   ENV_UNLOCK;
   return NULL;
 }
@@ -130,6 +123,7 @@ _DEFUN (_getenv_r, (reent_ptr, name),
 	_CONST char *name)
 {
   int offset;
+  char *_findenv_r ();
 
   return _findenv_r (reent_ptr, name, &offset);
 }

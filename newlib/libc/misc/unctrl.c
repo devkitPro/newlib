@@ -1,6 +1,6 @@
 /*
 FUNCTION
-	<<unctrl>>---get printable representation of a character
+	<<unctrl>>---translate characters to upper case
 
 INDEX
 	unctrl
@@ -70,9 +70,9 @@ No supporting OS subroutines are required.
 
 #include <_ansi.h>
 
-#if defined(LIBC_SCCS) && !defined(lint)
+#ifndef lint
 static char sccsid[] = "@(#)unctrl.c	8.1 (Berkeley) 6/4/93";
-#endif /* LIBC_SCCS and not lint */
+#endif /* not lint */
 
 _CONST char * _CONST __unctrl[256] = {
 	"^@",  "^A",  "^B",  "^C",  "^D",  "^E",  "^F",  "^G",

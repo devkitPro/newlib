@@ -33,8 +33,8 @@
 	float z;
 	struct exception exc;
 	z=__ieee754_powf(x,y);
-	if(_LIB_VERSION == _IEEE_|| isnan(y)) return z;
-	if(isnan(x)) {
+	if(_LIB_VERSION == _IEEE_|| isnanf(y)) return z;
+	if(isnanf(x)) {
 	    if(y==(float)0.0) { 
 		/* powf(NaN,0.0) */
 		/* error only if _LIB_VERSION == _SVID_ & _XOPEN_ */
@@ -43,7 +43,7 @@
 		exc.err = 0;
 		exc.arg1 = (double)x;
 		exc.arg2 = (double)y;
-		exc.retval = 1.0;
+		exc.retval = x;
 		if (_LIB_VERSION == _IEEE_ ||
 		    _LIB_VERSION == _POSIX_) exc.retval = 1.0;
 		else if (!matherr(&exc)) {
@@ -97,7 +97,7 @@
 	}
 	if(!finitef(z)) {
 	    if(finitef(x)&&finitef(y)) {
-	        if(isnan(z)) {
+	        if(isnanf(z)) {
 		    /* neg**non-integral */
 		    exc.type = DOMAIN;
 		    exc.name = "powf";

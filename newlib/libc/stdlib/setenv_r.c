@@ -1,5 +1,6 @@
 /* This file may have been modified by DJ Delorie (Jan 1991).  If so,
-** these modifications are Copyright (C) 1991 DJ Delorie.
+** these modifications are Coyright (C) 1991 DJ Delorie, 24 Kirsten Ave,
+** Rochester NH, 03867-2954, USA.
 */
 
 /*
@@ -26,16 +27,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
-#include <errno.h>
 #include "envlock.h"
-
-extern char **environ;
-
-/* Only deal with a pointer to environ, to work around subtle bugs with shared
-   libraries and/or small data systems where the user declares his own
-   'environ'.  */
-static char ***p_environ = &environ;
 
 /* _findenv_r is defined in getenv_r.c.  */
 extern char *_findenv_r _PARAMS ((struct _reent *, const char *, int *));
@@ -44,8 +36,6 @@ extern char *_findenv_r _PARAMS ((struct _reent *, const char *, int *));
  * _setenv_r --
  *	Set the value of the environmental variable "name" to be
  *	"value".  If rewrite is set, replace any current value.
- *	If "name" contains equal sign, -1 is returned, and errno is
- *	set to EINVAL;
  */
 
 int
@@ -55,18 +45,15 @@ _DEFUN (_setenv_r, (reent_ptr, name, value, rewrite),
 	_CONST char *value _AND
 	int rewrite)
 {
+  extern char **environ;
   static int alloced;		/* if allocated space before */
   register char *C;
   int l_value, offset;
 
-  if (strchr(name, '='))
-    {
-      errno = EINVAL;
-      return -1;
-    }
-
   ENV_LOCK;
 
+  if (*value == '=')		/* no `=' in value */
+    ++value;
   l_value = strlen (value);
   if ((C = _findenv_r (reent_ptr, name, &offset)))
     {				/* find if already exists */
@@ -77,11 +64,8 @@ _DEFUN (_setenv_r, (reent_ptr, name, value, rewrite),
         }
       if (strlen (C) >= l_value)
 	{			/* old larger; copy over */
-	  while ((*C++ = *value++) != 0);
+	  while (*C++ = *value++);
           ENV_UNLOCK;
-	  /* if we are changing the TZ environment variable, update timezone info */
-	  if (strcmp (name, "TZ") == 0)
-	    tzset ();
 	  return 0;
 	}
     }
@@ -90,12 +74,12 @@ _DEFUN (_setenv_r, (reent_ptr, name, value, rewrite),
       register int cnt;
       register char **P;
 
-      for (P = *p_environ, cnt = 0; *P; ++P, ++cnt);
+      for (P = environ, cnt = 0; *P; ++P, ++cnt);
       if (alloced)
 	{			/* just increase size */
-	  *p_environ = (char **) _realloc_r (reent_ptr, (char *) environ,
-					     (size_t) (sizeof (char *) * (cnt + 2)));
-	  if (!*p_environ)
+	  environ = (char **) _realloc_r (reent_ptr, (char *) environ,
+				       (size_t) (sizeof (char *) * (cnt + 2)));
+	  if (!environ)
             {
               ENV_UNLOCK;
 	      return -1;
@@ -110,27 +94,23 @@ _DEFUN (_setenv_r, (reent_ptr, name, value, rewrite),
               ENV_UNLOCK;
 	      return (-1);
             }
-	  memcpy((char *) P,(char *) *p_environ, cnt * sizeof (char *));
-	  *p_environ = P;
+	  bcopy ((char *) environ, (char *) P, cnt * sizeof (char *));
+	  environ = P;
 	}
-      (*p_environ)[cnt + 1] = NULL;
+      environ[cnt + 1] = NULL;
       offset = cnt;
     }
   for (C = (char *) name; *C && *C != '='; ++C);	/* no `=' in name */
-  if (!((*p_environ)[offset] =	/* name + `=' + value */
+  if (!(environ[offset] =	/* name + `=' + value */
 	_malloc_r (reent_ptr, (size_t) ((int) (C - name) + l_value + 2))))
     {
       ENV_UNLOCK;
       return -1;
     }
-  for (C = (*p_environ)[offset]; (*C = *name++) && *C != '='; ++C);
-  for (*C++ = '='; (*C++ = *value++) != 0;);
+  for (C = environ[offset]; (*C = *name++) && *C != '='; ++C);
+  for (*C++ = '='; *C++ = *value++;);
 
   ENV_UNLOCK;
-
-  /* if we are setting the TZ environment variable, update timezone info */
-  if (strncmp ((*p_environ)[offset], "TZ=", 3) == 0)
-    tzset ();
 
   return 0;
 }
@@ -139,30 +119,21 @@ _DEFUN (_setenv_r, (reent_ptr, name, value, rewrite),
  * _unsetenv_r(name) --
  *	Delete environmental variable "name".
  */
-int
+void
 _DEFUN (_unsetenv_r, (reent_ptr, name),
         struct _reent *reent_ptr _AND
         _CONST char *name)
 {
+  extern char **environ;
   register char **P;
   int offset;
- 
-  /* Name cannot be NULL, empty, or contain an equal sign.  */ 
-  if (name == NULL || name[0] == '\0' || strchr(name, '='))
-    {
-      errno = EINVAL;
-      return -1;
-    }
 
   ENV_LOCK;
 
   while (_findenv_r (reent_ptr, name, &offset))	/* if set multiple times */
-    { 
-      for (P = &(*p_environ)[offset];; ++P)
-        if (!(*P = *(P + 1)))
-	  break;
-    }
+    for (P = &environ[offset];; ++P)
+      if (!(*P = *(P + 1)))
+	break;
 
   ENV_UNLOCK;
-  return 0;
 }

@@ -86,12 +86,8 @@
 #include <reent.h>
 #include "mprec.h"
 
-/* This is defined in sys/reent.h as (sizeof (size_t) << 3) now, as in NetBSD.
-   The old value of 15 was wrong and made newlib vulnerable against buffer
-   overrun attacks (CVE-2009-0689), same as other implementations of gdtoa
-   based on BSD code.
+/* reent.c knows this value */
 #define _Kmax 15
-*/
 
 _Bigint *
 _DEFUN (Balloc, (ptr, k), struct _reent *ptr _AND int k)
@@ -99,22 +95,21 @@ _DEFUN (Balloc, (ptr, k), struct _reent *ptr _AND int k)
   int x;
   _Bigint *rv ;
 
-  _REENT_CHECK_MP(ptr);
-  if (_REENT_MP_FREELIST(ptr) == NULL)
+  if (ptr->_freelist == NULL)
     {
       /* Allocate a list of pointers to the mprec objects */
-      _REENT_MP_FREELIST(ptr) = (struct _Bigint **) _calloc_r (ptr, 
+      ptr->_freelist = (struct _Bigint **) _calloc_r (ptr, 
 						      sizeof (struct _Bigint *),
 						      _Kmax + 1);
-      if (_REENT_MP_FREELIST(ptr) == NULL)
+      if (ptr->_freelist == NULL)
 	{
 	  return NULL;
 	}
     }
 
-  if ((rv = _REENT_MP_FREELIST(ptr)[k]) != 0)
+  if (rv = ptr->_freelist[k])
     {
-      _REENT_MP_FREELIST(ptr)[k] = rv->_next;
+      ptr->_freelist[k] = rv->_next;
     }
   else
     {
@@ -135,11 +130,10 @@ _DEFUN (Balloc, (ptr, k), struct _reent *ptr _AND int k)
 void
 _DEFUN (Bfree, (ptr, v), struct _reent *ptr _AND _Bigint * v)
 {
-  _REENT_CHECK_MP(ptr);
   if (v)
     {
-      v->_next = _REENT_MP_FREELIST(ptr)[v->_k];
-      _REENT_MP_FREELIST(ptr)[v->_k] = v;
+      v->_next = ptr->_freelist[v->_k];
+      ptr->_freelist[v->_k] = v;
     }
 }
 
@@ -360,7 +354,7 @@ _DEFUN (mult, (ptr, a, b), struct _reent * ptr _AND _Bigint * a _AND _Bigint * b
 #ifdef Pack_32
   for (; xb < xbe; xb++, xc0++)
     {
-      if ((y = *xb & 0xffff) != 0)
+      if (y = *xb & 0xffff)
 	{
 	  x = xa;
 	  xc = xc0;
@@ -376,7 +370,7 @@ _DEFUN (mult, (ptr, a, b), struct _reent * ptr _AND _Bigint * a _AND _Bigint * b
 	  while (x < xae);
 	  *xc = carry;
 	}
-      if ((y = *xb >> 16) != 0)
+      if (y = *xb >> 16)
 	{
 	  x = xa;
 	  xc = xc0;
@@ -426,16 +420,15 @@ _DEFUN (pow5mult,
   int i;
   static _CONST int p05[3] = {5, 25, 125};
 
-  if ((i = k & 3) != 0)
+  if (i = k & 3)
     b = multadd (ptr, b, p05[i - 1], 0);
 
   if (!(k >>= 2))
     return b;
-  _REENT_CHECK_MP(ptr);
-  if (!(p5 = _REENT_MP_P5S(ptr)))
+  if (!(p5 = ptr->_p5s))
     {
       /* first time */
-      p5 = _REENT_MP_P5S(ptr) = i2b (ptr, 625);
+      p5 = ptr->_p5s = i2b (ptr, 625);
       p5->_next = 0;
     }
   for (;;)
@@ -491,7 +484,7 @@ _DEFUN (lshift, (ptr, b, k), struct _reent * ptr _AND _Bigint * b _AND int k)
 	  z = *x++ >> k1;
 	}
       while (x < xe);
-      if ((*x1 = z) != 0)
+      if (*x1 = z)
 	++n1;
     }
 #else
@@ -670,7 +663,7 @@ _DEFUN (ulp, (_x), double _x)
 	  word0 (a) = 0;
 	  L -= Exp_shift;
 #ifndef _DOUBLE_IS_32BITS
-         word1 (a) = L >= 31 ? 1 : 1 << (31 - L);
+	  word1 (a) = L >= 31 ? 1 : 1 << 31 - L;
 #endif
 	}
     }
@@ -704,20 +697,20 @@ _DEFUN (b2d, (a, e),
 #ifdef Pack_32
   if (k < Ebits)
     {
-      d0 = Exp_1 | y >> (Ebits - k);
+      d0 = Exp_1 | y >> Ebits - k;
       w = xa > xa0 ? *--xa : 0;
 #ifndef _DOUBLE_IS_32BITS
-      d1 = y << ((32 - Ebits) + k) | w >> (Ebits - k);
+      d1 = y << (32 - Ebits) + k | w >> Ebits - k;
 #endif
       goto ret_d;
     }
   z = xa > xa0 ? *--xa : 0;
   if (k -= Ebits)
     {
-      d0 = Exp_1 | y << k | z >> (32 - k);
+      d0 = Exp_1 | y << k | z >> 32 - k;
       y = xa > xa0 ? *--xa : 0;
 #ifndef _DOUBLE_IS_32BITS
-      d1 = z << k | y >> (32 - k);
+      d1 = z << k | y >> 32 - k;
 #endif
     }
   else
@@ -796,18 +789,16 @@ _DEFUN (d2b,
   z |= Exp_msk11;
 #endif
 #else
-  if ((de = (int) (d0 >> Exp_shift)) != 0)
+  if (de = (int) (d0 >> Exp_shift))
     z |= Exp_msk1;
 #endif
 #ifdef Pack_32
 #ifndef _DOUBLE_IS_32BITS
-  if (d1)
+  if (y = d1)
     {
-      y = d1;
-      k = lo0bits (&y);
-      if (k)
+      if (k = lo0bits (&y))
 	{
-         x[0] = y | z << (32 - k);
+	  x[0] = y | z << 32 - k;
 	  z >>= k;
 	}
       else
@@ -829,11 +820,9 @@ _DEFUN (d2b,
 #endif
     }
 #else
-  if (d1)
+  if (y = d1)
     {
-      y = d1;
-      k = lo0bits (&y);
-      if (k)
+      if (k = lo0bits (&y))
 	if (k >= 16)
 	  {
 	    x[0] = y | z << 32 - k & 0xffff;
@@ -989,61 +978,3 @@ _DEFUN (_mprec_log10, (dig),
     }
   return v;
 }
-
-void
-_DEFUN (copybits, (c, n, b),
-	__ULong *c _AND
-	int n _AND
-	_Bigint *b)
-{
-	__ULong *ce, *x, *xe;
-#ifdef Pack_16
-	int nw, nw1;
-#endif
-
-	ce = c + ((n-1) >> kshift) + 1;
-	x = b->_x;
-#ifdef Pack_32
-	xe = x + b->_wds;
-	while(x < xe)
-		*c++ = *x++;
-#else
-	nw = b->_wds;
-	nw1 = nw & 1;
-	for(xe = x + (nw - nw1); x < xe; x += 2)
-		Storeinc(c, x[1], x[0]);
-	if (nw1)
-		*c++ = *x;
-#endif
-	while(c < ce)
-		*c++ = 0;
-}
-
-__ULong
-_DEFUN (any_on, (b, k),
-	_Bigint *b _AND
-	int k)
-{
-	int n, nwds;
-	__ULong *x, *x0, x1, x2;
-
-	x = b->_x;
-	nwds = b->_wds;
-	n = k >> kshift;
-	if (n > nwds)
-		n = nwds;
-	else if (n < nwds && (k &= kmask)) {
-		x1 = x2 = x[n];
-		x1 >>= k;
-		x1 <<= k;
-		if (x1 != x2)
-			return 1;
-		}
-	x0 = x;
-	x += n;
-	while(x > x0)
-		if (*--x)
-			return 1;
-	return 0;
-}
-

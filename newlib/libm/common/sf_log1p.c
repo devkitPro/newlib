@@ -51,7 +51,6 @@ static float zero = 0.0;
 	ax = hx&0x7fffffff;
 
 	k = 1;
-	if (!FLT_UWORD_IS_FINITE(hx)) return x+x;
 	if (hx < 0x3ed413d7) {			/* x < 0.41422  */
 	    if(ax>=0x3f800000) {		/* x <= -1.0 */
 		if(x==(float)-1.0) return -two25/zero; /* log1p(-1)=+inf */
@@ -66,7 +65,8 @@ static float zero = 0.0;
 	    }
 	    if(hx>0||hx<=((__int32_t)0xbe95f61f)) {
 		k=0;f=x;hu=1;}	/* -0.2929<x<0.41422 */
-	}
+	} 
+	if (hx >= 0x7f800000) return x+x;
 	if(k!=0) {
 	    if(hx<0x5a000000) {
 		u  = (float)1.0+x; 
@@ -93,8 +93,8 @@ static float zero = 0.0;
 	}
 	hfsq=(float)0.5*f*f;
 	if(hu==0) {	/* |f| < 2**-20 */
-           if(f==zero) { if(k==0) return zero;  
-                       else {c += k*ln2_lo; return k*ln2_hi+c;}}
+	    if(f==zero) if(k==0) return zero;  
+			else {c += k*ln2_lo; return k*ln2_hi+c;}
 	    R = hfsq*((float)1.0-(float)0.66666666666666666*f);
 	    if(k==0) return f-R; else
 	    	     return k*ln2_hi-((R-(k*ln2_lo+c))-f);

@@ -13,5 +13,6 @@ int
 _fstat (int file,
 	struct stat *st)
 {
-  return TRAP0 (SYS_fstat, file, st, 0);
+  st->st_mode = S_IFCHR;
+  return 0;
 }

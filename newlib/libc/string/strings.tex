@@ -10,46 +10,33 @@ managing areas of memory.  The corresponding declarations are in
 * bcopy::       Copy memory regions
 * bzero::       Initialize memory to zero
 * index::       Search for character in string
-* memccpy::     Copy memory regions up to end-token
 * memchr::      Find character in memory
 * memcmp::      Compare two memory areas
 * memcpy::      Copy memory regions
-* memmem::      Find memory segment
 * memmove::     Move possibly overlapping memory
-* mempcpy::	Copy memory regions and locate end
 * memset::      Set an area of memory
 * rindex::      Reverse search for character in string
-* stpcpy::      Copy string returning a pointer to its end
-* stpncpy::     Counted copy string returning a pointer to its end
 * strcasecmp::	Compare strings ignoring case
-* strcasestr::	Find string segment ignoring case
 * strcat::      Concatenate strings
 * strchr::      Search for character in string
 * strcmp::      Character string compare
-* strcoll::     Locale-specific character string compare
+* strcoll::     Locale specific character string compare
 * strcpy::      Copy string
 * strcspn::     Count chars not in string
 * strerror::    Convert error number to string
-* strerror_r::  Convert error number to string
 * strlen::      Character string length
-* strlwr::	Convert string to lowercase
+* strlwr::	Convert string to lower case
 * strncasecmp::	Compare strings ignoring case
 * strncat::     Concatenate strings
 * strncmp::     Character string compare
 * strncpy::     Counted copy string
-* strnlen::     Character string length
 * strpbrk::     Find chars in string
 * strrchr::     Reverse search for character in string
-* strsignal::	Return signal message string
 * strspn::      Find initial match
 * strstr::      Find string segment
 * strtok::      Get next token from a string
 * strupr::	Convert string to upper case
 * strxfrm::     Transform string
-* swab::        Swap adjacent bytes
-* wcscasecmp::  Compare wide character strings ignoring case
-* wcsdup::      Wide character string duplicate
-* wcsncasecmp:: Compare wide character strings ignoring case
 @end menu
 
 @page
@@ -65,9 +52,6 @@ managing areas of memory.  The corresponding declarations are in
 @include string/index.def
 
 @page
-@include string/memccpy.def
-
-@page
 @include string/memchr.def
 
 @page
@@ -77,13 +61,7 @@ managing areas of memory.  The corresponding declarations are in
 @include string/memcpy.def
 
 @page
-@include string/memmem.def
-
-@page
 @include string/memmove.def
-
-@page
-@include string/mempcpy.def
 
 @page
 @include string/memset.def
@@ -92,16 +70,7 @@ managing areas of memory.  The corresponding declarations are in
 @include string/rindex.def
 
 @page
-@include string/stpcpy.def
-
-@page
-@include string/stpncpy.def
-
-@page
 @include string/strcasecmp.def
-
-@page
-@include string/strcasestr.def
 
 @page
 @include string/strcat.def
@@ -125,9 +94,6 @@ managing areas of memory.  The corresponding declarations are in
 @include string/strerror.def
 
 @page
-@include string/strerror_r.def
-
-@page
 @include string/strlen.def
 
 @page
@@ -146,16 +112,10 @@ managing areas of memory.  The corresponding declarations are in
 @include string/strncpy.def
 
 @page
-@include string/strnlen.def
-
-@page
 @include string/strpbrk.def
 
 @page
 @include string/strrchr.def
-
-@page
-@include string/strsignal.def
 
 @page
 @include string/strspn.def
@@ -171,15 +131,3 @@ managing areas of memory.  The corresponding declarations are in
 
 @page
 @include string/strxfrm.def
-
-@page
-@include string/swab.def
-
-@page
-@include string/wcscasecmp.def
-
-@page
-@include string/wcsdup.def
-
-@page
-@include string/wcsncasecmp.def

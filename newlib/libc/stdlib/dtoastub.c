@@ -5,7 +5,7 @@
 
 /* Nothing in newlib actually *calls* dtoa, they all call _dtoa_r, so this 
    is a safe way of providing it to the user. */
-#ifndef _REENT_ONLY
+#ifndef NO_REENT
 
 char *
 _DEFUN (__dtoa,

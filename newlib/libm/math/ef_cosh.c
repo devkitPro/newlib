@@ -39,7 +39,7 @@ static float one = 1.0, half=0.5, huge = 1.0e30;
 	ix &= 0x7fffffff;
 
     /* x is INF or NaN */
-	if(!FLT_UWORD_IS_FINITE(ix)) return x*x;	
+	if(ix>=0x7f800000) return x*x;	
 
     /* |x| in [0,0.5*ln2], return 1+expm1(|x|)^2/(2*exp(|x|)) */
 	if(ix<0x3eb17218) {
@@ -56,11 +56,10 @@ static float one = 1.0, half=0.5, huge = 1.0e30;
 	}
 
     /* |x| in [22, log(maxdouble)] return half*exp(|x|) */
-	if (ix <= FLT_UWORD_LOG_MAX)
-	  return half*__ieee754_expf(fabsf(x));
+	if (ix < 0x42b17180)  return half*__ieee754_expf(fabsf(x));
 
     /* |x| in [log(maxdouble), overflowthresold] */
-	if (ix <= FLT_UWORD_LOG_2MAX) {
+	if (ix<=0x42b2d4fc) {
 	    w = __ieee754_expf(half*fabsf(x));
 	    t = half*w;
 	    return t*w;

@@ -12,21 +12,18 @@
 #include <sys/times.h>
 #include <errno.h>
 #include <reent.h>
-#include <signal.h>
-#include <unistd.h>
-#include <sys/wait.h>
 #include "swi.h"
 
 /* Forward prototypes.  */
-int     _system     _PARAMS ((const char *));
-int     _rename     _PARAMS ((const char *, const char *));
-int     _isatty		_PARAMS ((int));
+#ifndef _PARAMS
+#error UGG
+#endif
+int     isatty		_PARAMS ((int));
 clock_t _times		_PARAMS ((struct tms *));
-int     _gettimeofday	_PARAMS ((struct timeval *, void *));
+int     _gettimeofday	_PARAMS ((struct timeval *, struct timezone *));
 void    _raise 		_PARAMS ((void));
-int     _unlink		_PARAMS ((const char *));
+int     _unlink		_PARAMS ((void));
 int     _link 		_PARAMS ((void));
-int     _stat 		_PARAMS ((const char *, struct stat *));
 int     _fstat 		_PARAMS ((int, struct stat *));
 caddr_t _sbrk		_PARAMS ((int));
 int     _getpid		_PARAMS ((int));
@@ -57,17 +54,20 @@ register char * stack_ptr asm ("sp");
 
 /* following is copied from libc/stdio/local.h to check std streams */
 extern void   _EXFUN(__sinit,(struct _reent *));
-#define CHECK_INIT(ptr) \
-  do						\
-    {						\
-      if ((ptr) && !(ptr)->__sdidinit)		\
-	__sinit (ptr);				\
-    }						\
+#define CHECK_INIT(fp) \
+  do                                    \
+    {                                   \
+      if ((fp)->_data == 0)             \
+        (fp)->_data = _REENT;           \
+      if (!(fp)->_data->__sdidinit)     \
+        __sinit ((fp)->_data);          \
+    }                                   \
   while (0)
 
-/* Adjust our internal handles to stay away from std* handles.  */
+/* Adjust our internal handles to stay away from std* handles */
 #define FILE_HANDLE_OFFSET (0x20)
 
+static int std_files_checked;
 static int monitor_stdin;
 static int monitor_stdout;
 static int monitor_stderr;
@@ -100,31 +100,31 @@ static inline int
 do_AngelSWI (int reason, void * arg)
 {
   int value;
-  asm volatile ("mov r0, %1; mov r1, %2; " AngelSWIInsn " %a3; mov %0, r0"
+  asm volatile ("mov r0, %1; mov r1, %2; swi %a3; mov %0, r0"
        : "=r" (value) /* Outputs */
        : "r" (reason), "r" (arg), "i" (AngelSWI) /* Inputs */
-       : "r0", "r1", "r2", "r3", "ip", "lr", "memory", "cc"
+       : "r0", "r1", "lr"
 		/* Clobbers r0 and r1, and lr if in supervisor mode */);
-                /* Accordingly to page 13-77 of ARM DUI 0040D other registers
-                   can also be clobbered.  Some memory positions may also be
-                   changed by a system call, so they should not be kept in
-                   registers. Note: we are assuming the manual is right and
-                   Angel is respecting the APCS.  */
   return value;
 }
 #endif /* ARM_RDI_MONITOR */
 
-/* Function to convert std(in|out|err) handles to internal versions.  */
+/* Function to convert std(in|out|err) handles to internal versions */
 static int
 remap_handle (int fh)
 {
-  CHECK_INIT(_REENT);
-
-  if (fh == STDIN_FILENO)
+  if (!std_files_checked)
+    {
+       CHECK_INIT(stdin);
+       CHECK_INIT(stdout);
+       CHECK_INIT(stderr);
+       std_files_checked = 1;
+    }
+  if (fh == __sfileno (stdin))
     return monitor_stdin;
-  if (fh == STDOUT_FILENO)
+  if (fh == __sfileno (stdout))
     return monitor_stdout;
-  if (fh == STDERR_FILENO)
+  if (fh == __sfileno (stderr))
     return monitor_stderr;
 
   return fh - FILE_HANDLE_OFFSET;
@@ -200,7 +200,8 @@ wrap (int result)
   return result;
 }
 
-/* Returns # chars not! written.  */
+/* Returns # chars not! written */
+
 int
 _swiread (int file,
 	  char * ptr,
@@ -237,7 +238,7 @@ _read (int file,
   if (slot != MAX_OPEN_FILES)
     openfiles [slot].pos += len - x;
 
-  /* x == len is not an error, at least if we want feof() to work.  */
+  /* x == len is not an error, at least if we want feof() to work */
   return len - x;
 }
 
@@ -268,7 +269,7 @@ _swilseek (int file,
       ptr += do_AngelSWI (AngelSWI_Reason_FLen, block);
     }
   
-  /* This code only does absolute seeks.  */
+  /* This code only does absolute seeks */
   block[0] = remap_handle (file);
   block[1] = ptr;
   res = do_AngelSWI (AngelSWI_Reason_Seek, block);
@@ -282,7 +283,7 @@ _swilseek (int file,
       ptr += res;
     }
 
-  /* This code only does absolute seeks.  */
+  /* This code only does absolute seeks */
   asm ("mov r0, %2; mov r1, %3; swi %a1; mov %0, r0"
        : "=r" (res)
        : "i" (SWI_Seek), "r" (fh), "r" (ptr)
@@ -292,7 +293,7 @@ _swilseek (int file,
   if (slot != MAX_OPEN_FILES && res == 0)
     openfiles[slot].pos = ptr;
 
-  /* This is expected to return the position in the file.  */
+  /* This is expected to return the position in the file */
   return res == 0 ? ptr : -1;
 }
 
@@ -304,7 +305,7 @@ _lseek (int file,
   return wrap (_swilseek (file, ptr, dir));
 }
 
-/* Returns #chars not! written.  */
+/* Returns #chars not! written */
 int
 _swiwrite (
 	   int    file,
@@ -345,8 +346,6 @@ _write (int    file,
   return len - x;
 }
 
-extern int strlen (const char *);
-
 int
 _swiopen (const char * path,
 	  int          flags)
@@ -361,7 +360,7 @@ _swiopen (const char * path,
   if (i == MAX_OPEN_FILES)
     return -1;
 
-  /* The flags are Unix-style, so we need to convert them.  */
+  /* The flags are Unix-style, so we need to convert them */
 #ifdef O_BINARY
   if (flags & O_BINARY)
     aflags |= 1;
@@ -378,7 +377,7 @@ _swiopen (const char * path,
 
   if (flags & O_APPEND)
     {
-      aflags &= ~4;     /* Can't ask for w AND a; means just 'a'.  */
+      aflags &= ~4;     /* Can't ask for w AND a; means just 'a' */
       aflags |= 8;
     }
   
@@ -435,47 +434,40 @@ _close (int file)
   return wrap (_swiclose (file));
 }
 
-int
-_kill (int pid, int sig)
+void
+_exit (int n)
 {
-  (void)pid; (void)sig;
+  /* FIXME: return code is thrown away.  */
+  
 #ifdef ARM_RDI_MONITOR
-  /* Note: The pid argument is thrown away.  */
-  switch (sig) {
-	  case SIGABRT:
-		  return do_AngelSWI (AngelSWI_Reason_ReportException,
-				  (void *) ADP_Stopped_RunTimeError);
-	  default:
-		  return do_AngelSWI (AngelSWI_Reason_ReportException,
-				  (void *) ADP_Stopped_ApplicationExit);
-  }
+  do_AngelSWI (AngelSWI_Reason_ReportException,
+	      (void *) ADP_Stopped_ApplicationExit);
 #else
   asm ("swi %a0" :: "i" (SWI_Exit));
 #endif
 }
 
-void
-_exit (int status)
+int
+_kill (int n, int m)
 {
-  /* There is only one SWI for both _exit and _kill. For _exit, call
-     the SWI with the second argument set to -1, an invalid value for
-     signum, so that the SWI handler can distinguish the two calls.
-     Note: The RDI implementation of _kill throws away both its
-     arguments.  */
-  _kill(status, -1);
+#ifdef ARM_RDI_MONITOR
+  return do_AngelSWI (AngelSWI_Reason_ReportException,
+		      (void *) ADP_Stopped_ApplicationExit);
+#else
+  asm ("swi %a0" :: "i" (SWI_Exit));
+#endif
 }
 
 int
 _getpid (int n)
 {
   return 1;
-  n = n;
 }
 
 caddr_t
 _sbrk (int incr)
 {
-  extern char   end asm ("end");	/* Defined by the linker.  */
+  extern char   end asm ("end");	/* Defined by the linker */
   static char * heap_end;
   char *        prev_heap_end;
 
@@ -486,18 +478,8 @@ _sbrk (int incr)
   
   if (heap_end + incr > stack_ptr)
     {
-      /* Some of the libstdc++-v3 tests rely upon detecting
-	 out of memory errors, so do not abort here.  */
-#if 0
-      extern void abort (void);
-
       _write (1, "_sbrk: Heap and stack collision\n", 32);
-      
       abort ();
-#else
-      errno = ENOMEM;
-      return (caddr_t) -1;
-#endif
     }
   
   heap_end += incr;
@@ -505,31 +487,12 @@ _sbrk (int incr)
   return (caddr_t) prev_heap_end;
 }
 
-extern void memset (struct stat *, int, unsigned int);
-
 int
 _fstat (int file, struct stat * st)
 {
   memset (st, 0, sizeof (* st));
   st->st_mode = S_IFCHR;
   st->st_blksize = 1024;
-  return 0;
-  file = file;
-}
-
-int _stat (const char *fname, struct stat *st)
-{
-  int file;
-
-  /* The best we can do is try to open the file readonly.  If it exists,
-     then we can guess a few things about it.  */
-  if ((file = _open (fname, O_RDONLY)) < 0)
-    return -1;
-
-  memset (st, 0, sizeof (* st));
-  st->st_mode = S_IFREG | S_IREAD;
-  st->st_blksize = 1024;
-  _swiclose (file); /* Not interested in the error.  */
   return 0;
 }
 
@@ -540,16 +503,9 @@ _link (void)
 }
 
 int
-_unlink (const char *path)
+_unlink (void)
 {
-#ifdef ARM_RDI_MONITOR
-  int block[2];
-  block[0] = path;
-  block[1] = strlen(path);
-  return wrap (do_AngelSWI (AngelSWI_Reason_Remove, block)) ? -1 : 0;
-#else  
   return -1;
-#endif
 }
 
 void
@@ -559,12 +515,12 @@ _raise (void)
 }
 
 int
-_gettimeofday (struct timeval * tp, void * tzvp)
+_gettimeofday (struct timeval * tp, struct timezone * tzp)
 {
-  struct timezone *tzp = tzvp;
+
   if (tp)
     {
-    /* Ask the host for the seconds since the Unix epoch.  */
+    /* Ask the host for the seconds since the Unix epoch */
 #ifdef ARM_RDI_MONITOR
       tp->tv_sec = do_AngelSWI (AngelSWI_Reason_Time,NULL);
 #else
@@ -577,7 +533,7 @@ _gettimeofday (struct timeval * tp, void * tzvp)
       tp->tv_usec = 0;
     }
 
-  /* Return fixed data for the timezone.  */
+  /* Return fixed data for the timezone */
   if (tzp)
     {
       tzp->tz_minuteswest = 0;
@@ -587,7 +543,7 @@ _gettimeofday (struct timeval * tp, void * tzvp)
   return 0;
 }
 
-/* Return a clock that ticks at 100Hz.  */
+/* Return a clock that ticks at 100Hz. */
 clock_t 
 _times (struct tms * tp)
 {
@@ -612,62 +568,8 @@ _times (struct tms * tp)
 
 
 int
-_isatty (int fd)
+isatty (int fd)
 {
-#ifdef ARM_RDI_MONITOR
-  int fh = remap_handle (fd);
-  return wrap (do_AngelSWI (AngelSWI_Reason_IsTTY, &fh));
-#else
-  return (fd <= 2) ? 1 : 0;  /* one of stdin, stdout, stderr */
-#endif
+  return 1;
 }
 
-int
-_system (const char *s)
-{
-#ifdef ARM_RDI_MONITOR
-  int block[2];
-  int e;
-
-  /* Hmmm.  The ARM debug interface specification doesn't say whether
-     SYS_SYSTEM does the right thing with a null argument, or assign any
-     meaning to its return value.  Try to do something reasonable....  */
-  if (!s)
-    return 1;  /* maybe there is a shell available? we can hope. :-P */
-  block[0] = s;
-  block[1] = strlen (s);
-  e = wrap (do_AngelSWI (AngelSWI_Reason_System, block));
-  if ((e >= 0) && (e < 256))
-    {
-      /* We have to convert e, an exit status to the encoded status of
-         the command.  To avoid hard coding the exit status, we simply
-	 loop until we find the right position.  */
-      int exit_code;
-
-      for (exit_code = e; e && WEXITSTATUS (e) != exit_code; e <<= 1)
-	continue;
-    }
-  return e;
-#else
-  if (s == NULL)
-    return 0;
-  errno = ENOSYS;
-  return -1;
-#endif
-}
-
-int
-_rename (const char * oldpath, const char * newpath)
-{
-#ifdef ARM_RDI_MONITOR
-  int block[4];
-  block[0] = oldpath;
-  block[1] = strlen(oldpath);
-  block[2] = newpath;
-  block[3] = strlen(newpath);
-  return wrap (do_AngelSWI (AngelSWI_Reason_Rename, block)) ? -1 : 0;
-#else  
-  errno = ENOSYS;
-  return -1;
-#endif
-}

@@ -1,7 +1,7 @@
 /*	$NetBSD: popen.c,v 1.11 1995/06/16 07:05:33 jtc Exp $	*/
 
 /*
- * Copyright (c) 1988, 1993, 2006
+ * Copyright (c) 1988, 1993
  *	The Regents of the University of California.  All rights reserved.
  *
  * This code is derived from software written by Ken Arnold and
@@ -15,6 +15,10 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	California, Berkeley and its contributors.
  * 4. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
@@ -31,55 +35,6 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-
-/*
-FUNCTION
-<<popen>>, <<pclose>>---tie a stream to a command string
-
-INDEX
-	popen
-INDEX
-	pclose
-
-ANSI_SYNOPSIS
-	#include <stdio.h>
-	FILE *popen(const char *<[s]>, const char *<[mode]>);
-
-	int pclose(FILE *<[f]>);
-
-DESCRIPTION
-Use <<popen>> to create a stream to a child process executing a
-command string <<*<[s]>>> as processed by <</bin/sh>> on your system.
-The argument <[mode]> must start with either `<<r>>', where the stream
-reads from the child's <<stdout>>, or `<<w>>', where the stream writes
-to the child's <<stdin>>.  As an extension, <[mode]> may also contain
-`<<e>>' to set the close-on-exec bit of the parent's file descriptor.
-The stream created by <<popen>> must be closed by <<pclose>> to avoid
-resource leaks.
-
-Streams created by prior calls to <<popen>> are not visible in
-subsequent <<popen>> children, regardless of the close-on-exec bit.
-
-Use ``<<system(NULL)>>'' to test whether your system has <</bin/sh>>
-available.
-
-RETURNS
-<<popen>> returns a file stream opened with the specified <[mode]>,
-or <<NULL>> if a child process could not be created.  <<pclose>>
-returns -1 if the stream was not created by <<popen>> or if the
-application used <<wait>> or similar to steal the status; otherwise
-it returns the exit status of the child which can be interpreted
-in the same manner as a status obtained by <<waitpid>>.
-
-PORTABILITY
-POSIX.2 requires <<popen>> and <<pclose>>, but only specifies a mode
-of just <<r>> or <<w>>.  Where <<sh>> is found is left unspecified.
-
-Supporting OS subroutines required: <<_exit>>, <<_execve>>, <<_fork_r>>,
-<<_wait_r>>, <<pipe>>, <<fcntl>>, <<sbrk>>.
-*/
-
-#ifndef _NO_POPEN
 
 #if defined(LIBC_SCCS) && !defined(lint)
 #if 0
@@ -100,29 +55,23 @@ static char rcsid[] = "$NetBSD: popen.c,v 1.11 1995/06/16 07:05:33 jtc Exp $";
 #include <stdlib.h>
 #include <string.h>
 #include <paths.h>
-#include <fcntl.h>
 
 static struct pid {
 	struct pid *next;
 	FILE *fp;
 	pid_t pid;
-} *pidlist;
-
+} *pidlist; 
+	
 FILE *
-_DEFUN(popen, (program, type),
-	const char *program _AND
-	const char *type)
+popen(program, type)
+	const char *program;
+	const char *type;
 {
-	struct pid *cur, *last;
+	struct pid *cur;
 	FILE *iop;
 	int pdes[2], pid;
 
-       if ((*type != 'r' && *type != 'w')
-	   || (type[1]
-#ifdef HAVE_FCNTL
-	       && (type[2] || (type[1] != 'e'))
-#endif
-			       )) {
+	if (*type != 'r' && *type != 'w' || type[1]) {
 		errno = EINVAL;
 		return (NULL);
 	}
@@ -148,9 +97,7 @@ _DEFUN(popen, (program, type),
 				(void)dup2(pdes[1], STDOUT_FILENO);
 				(void)close(pdes[1]);
 			}
-			if (pdes[0] != STDOUT_FILENO) {
-				(void) close(pdes[0]);
-			}
+			(void) close(pdes[0]);
 		} else {
 			if (pdes[0] != STDIN_FILENO) {
 				(void)dup2(pdes[0], STDIN_FILENO);
@@ -158,11 +105,12 @@ _DEFUN(popen, (program, type),
 			}
 			(void)close(pdes[1]);
 		}
-		/* Close all fd's created by prior popen.  */
-		for (last = NULL, cur = pidlist; cur;
-		     last = cur, cur = cur->next)
-			(void)close (fileno (cur->fp));
 		execl(_PATH_BSHELL, "sh", "-c", program, NULL);
+#ifdef __CYGWIN32__
+		/* On cygwin32, we may not have /bin/sh.  In that
+                   case, try to find sh on PATH.  */
+		execlp("sh", "sh", "-c", program, NULL);
+#endif
 		_exit(127);
 		/* NOTREACHED */
 	}
@@ -175,13 +123,6 @@ _DEFUN(popen, (program, type),
 		iop = fdopen(pdes[1], type);
 		(void)close(pdes[0]);
 	}
-
-#ifdef HAVE_FCNTL
-	/* Mark pipe cloexec if requested.  */
-	if (type[1] == 'e')
-		fcntl (fileno (iop), F_SETFD,
-		       fcntl (fileno (iop), F_GETFD, 0) | FD_CLOEXEC);
-#endif /* HAVE_FCNTL */
 
 	/* Link into list of file descriptors. */
 	cur->fp = iop;
@@ -198,8 +139,8 @@ _DEFUN(popen, (program, type),
  *	if already `pclosed', or waitpid returns an error.
  */
 int
-_DEFUN(pclose, (iop),
-	FILE *iop)
+pclose(iop)
+	FILE *iop;
 {
 	register struct pid *cur, *last;
 	int pstat;
@@ -224,8 +165,6 @@ _DEFUN(pclose, (iop),
 	else
 		last->next = cur->next;
 	free(cur);
-
+		
 	return (pid == -1 ? -1 : pstat);
 }
-
-#endif  /* !_NO_POPEN  */

@@ -35,29 +35,28 @@
 	if((ha-hb)>0xf000000L) {return a+b;} /* x/y > 2**30 */
 	k=0;
 	if(ha > 0x58800000L) {	/* a>2**50 */
-	   if(!FLT_UWORD_IS_FINITE(ha)) {	/* Inf or NaN */
+	   if(ha >= 0x7f800000L) {	/* Inf or NaN */
 	       w = a+b;			/* for sNaN */
-	       if(FLT_UWORD_IS_INFINITE(ha)) w = a;
-	       if(FLT_UWORD_IS_INFINITE(hb)) w = b;
+	       if(ha == 0x7f800000L) w = a;
+	       if(hb == 0x7f800000L) w = b;
 	       return w;
 	   }
-	   /* scale a and b by 2**-68 */
-	   ha -= 0x22000000L; hb -= 0x22000000L;	k += 68;
+	   /* scale a and b by 2**-60 */
+	   ha -= 0x5d800000L; hb -= 0x5d800000L;	k += 60;
 	   SET_FLOAT_WORD(a,ha);
 	   SET_FLOAT_WORD(b,hb);
 	}
 	if(hb < 0x26800000L) {	/* b < 2**-50 */
-	    if(FLT_UWORD_IS_ZERO(hb)) {
-	        return a;
-	    } else if(FLT_UWORD_IS_SUBNORMAL(hb)) {
-		SET_FLOAT_WORD(t1,0x7e800000L);	/* t1=2^126 */
+	    if(hb <= 0x007fffffL) {	/* subnormal b or 0 */	
+	        if(hb==0) return a;
+		SET_FLOAT_WORD(t1,0x3f000000L);	/* t1=2^126 */
 		b *= t1;
 		a *= t1;
 		k -= 126;
-	    } else {		/* scale a and b by 2^68 */
-	        ha += 0x22000000; 	/* a *= 2^68 */
-		hb += 0x22000000;	/* b *= 2^68 */
-		k -= 68;
+	    } else {		/* scale a and b by 2^60 */
+	        ha += 0x5d800000; 	/* a *= 2^60 */
+		hb += 0x5d800000;	/* b *= 2^60 */
+		k -= 60;
 		SET_FLOAT_WORD(a,ha);
 		SET_FLOAT_WORD(b,hb);
 	    }

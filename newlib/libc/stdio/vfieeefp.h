@@ -29,7 +29,6 @@
 /* This header file is a modification of mprec.h that only contains floating
    point union code. */
 
-#include <newlib.h>
 #include <ieeefp.h>
 #include <math.h>
 #include <float.h>
@@ -57,85 +56,6 @@
 #if defined(IEEE_8087) + defined(IEEE_MC68k) + defined(VAX) + defined(IBM) != 1
 Exactly one of IEEE_8087, IEEE_MC68k, VAX, or IBM should be defined.
 #endif
-
-#ifdef _WANT_IO_LONG_DOUBLE
-/* If we are going to examine or modify specific bits in a long double using
-   the lword0 or lwordx macros, then we must wrap the long double inside
-   a union.  This is necessary to avoid undefined behavior according to
-   the ANSI C spec.  */
-
-#ifdef IEEE_8087
-#if LDBL_MANT_DIG == 24
-struct ldieee
-{
-  unsigned manh:23;
-  unsigned exp:8;
-  unsigned sign:1;
-};
-#elif LDBL_MANT_DIG == 53
-struct ldieee
-{
-  unsigned manl:20;
-  unsigned manh:32;
-  unsigned exp:11;
-  unsigned sign:1;
-};
-#elif LDBL_MANT_DIG == 64
-struct ldieee
-{
-  unsigned manl:32;
-  unsigned manh:32;
-  unsigned exp:15;
-  unsigned sign:1;
-};
-#elif LDBL_MANT_DIG > 64
-struct ldieee
-{
-  unsigned manl3:16;
-  unsigned manl2:32;
-  unsigned manl:32;
-  unsigned manh:32;
-  unsigned exp:15;
-  unsigned sign:1;
-};
-#endif /* LDBL_MANT_DIG */
-#else  /* !IEEE_8087 */
-#if LDBL_MANT_DIG == 24
-struct ldieee
-{
-  unsigned sign:1;
-  unsigned exp:8;
-  unsigned manh:23;
-};
-#elif LDBL_MANT_DIG == 53
-struct ldieee
-{
-  unsigned sign:1;
-  unsigned exp:11;
-  unsigned manh:32;
-  unsigned manl:20;
-};
-#elif LDBL_MANT_DIG == 64
-struct ldieee
-{
-  unsigned sign:1;
-  unsigned exp:15;
-  unsigned manh:32;
-  unsigned manl:32;
-};
-#elif LDBL_MANT_DIG > 64
-struct ldieee
-{
-  unsigned sign:1;
-  unsigned exp:15;
-  unsigned manh:32;
-  unsigned manl:32;
-  unsigned manl2:32;
-  unsigned manl3;16;
-};
-#endif /* LDBL_MANT_DIG */
-#endif /* !IEEE_8087 */
-#endif /* _WANT_IO_LONG_DOUBLE */
 
 /* If we are going to examine or modify specific bits in a double using
    the word0 and/or word1 macros, then we must wrap the double inside
@@ -170,7 +90,9 @@ union double_union
 #define Exp_mask    ((__uint32_t)0x7f800000L)
 #define P    	    24
 #define Bias 	    127
-#define IEEE_Arith
+#if 0
+#define IEEE_Arith  /* it is, but the code doesn't handle IEEE singles yet */
+#endif
 #define Emin        (-126)
 #define Exp_1       ((__uint32_t)0x3f800000L)
 #define Exp_11      ((__uint32_t)0x3f800000L)

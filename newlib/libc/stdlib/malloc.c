@@ -23,8 +23,6 @@ INDEX
 INDEX
 	realloc
 INDEX
-	reallocf
-INDEX
 	free
 INDEX
 	memalign
@@ -34,8 +32,6 @@ INDEX
 	_malloc_r
 INDEX
 	_realloc_r
-INDEX
-	_reallocf_r
 INDEX
 	_free_r
 INDEX
@@ -47,7 +43,6 @@ ANSI_SYNOPSIS
 	#include <stdlib.h>
 	void *malloc(size_t <[nbytes]>);
 	void *realloc(void *<[aptr]>, size_t <[nbytes]>);
-	void *reallocf(void *<[aptr]>, size_t <[nbytes]>);
 	void free(void *<[aptr]>);
 
 	void *memalign(size_t <[align]>, size_t <[nbytes]>);
@@ -56,8 +51,6 @@ ANSI_SYNOPSIS
 
 	void *_malloc_r(void *<[reent]>, size_t <[nbytes]>);
 	void *_realloc_r(void *<[reent]>, 
-                         void *<[aptr]>, size_t <[nbytes]>);
-	void *_reallocf_r(void *<[reent]>, 
                          void *<[aptr]>, size_t <[nbytes]>);
 	void _free_r(void *<[reent]>, void *<[aptr]>);
 
@@ -72,10 +65,6 @@ TRAD_SYNOPSIS
 	size_t <[nbytes]>;
 
 	char *realloc(<[aptr]>, <[nbytes]>)
-	char *<[aptr]>;
-	size_t <[nbytes]>;
-
-	char *reallocf(<[aptr]>, <[nbytes]>)
 	char *<[aptr]>;
 	size_t <[nbytes]>;
 
@@ -94,11 +83,6 @@ TRAD_SYNOPSIS
 	size_t <[nbytes]>;
 
 	char *_realloc_r(<[reent]>, <[aptr]>, <[nbytes]>)
-	char *<[reent]>;
-	char *<[aptr]>;
-	size_t <[nbytes]>;
-
-	char *_reallocf_r(<[reent]>, <[aptr]>, <[nbytes]>)
 	char *<[reent]>;
 	char *<[aptr]>;
 	size_t <[nbytes]>;
@@ -140,11 +124,6 @@ memory storage pool by calling <<free>> with the address of the object
 as the argument.  You can also use <<realloc>> for this purpose by
 calling it with <<0>> as the <[nbytes]> argument.
 
-The <<reallocf>> function behaves just like <<realloc>> except if the
-function is required to allocate new storage and this fails.  In this
-case <<reallocf>> will free the original object passed in whereas
-<<realloc>> will not.
-
 The <<memalign>> function returns a block of size <[nbytes]> aligned
 to a <[align]> boundary.  The <[align]> argument must be a power of
 two.
@@ -155,9 +134,9 @@ available in the block.  This may or may not be more than the size
 requested from <<malloc>>, due to alignment or minimum size
 constraints.
 
-The alternate functions <<_malloc_r>>, <<_realloc_r>>, <<_reallocf_r>>, 
-<<_free_r>>, <<_memalign_r>>, and <<_malloc_usable_size_r>> are reentrant
-versions.  The extra argument <[reent]> is a pointer to a reentrancy structure.
+The alternate functions <<_malloc_r>>, <<_realloc_r>>, <<_free_r>>,
+<<_memalign_r>>, and <<_malloc_usable_size_r>> are reentrant versions.
+The extra argument <[reent]> is a pointer to a reentrancy structure.
 
 If you have multiple threads of execution which may call any of these
 routines, or if any of these routines may be called reentrantly, then

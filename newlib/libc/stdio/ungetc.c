@@ -14,55 +14,11 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
-/*
-FUNCTION
-<<ungetc>>---push data back into a stream
-
-INDEX
-	ungetc
-INDEX
-	_ungetc_r
-
-ANSI_SYNOPSIS
-	#include <stdio.h>
-	int ungetc(int <[c]>, FILE *<[stream]>);
-
-	int _ungetc_r(struct _reent *<[reent]>, int <[c]>, FILE *<[stream]>);
-
-DESCRIPTION
-<<ungetc>> is used to return bytes back to <[stream]> to be read again.
-If <[c]> is EOF, the stream is unchanged.  Otherwise, the unsigned
-char <[c]> is put back on the stream, and subsequent reads will see
-the bytes pushed back in reverse order.  Pushed byes are lost if the
-stream is repositioned, such as by <<fseek>>, <<fsetpos>>, or
-<<rewind>>.
-
-The underlying file is not changed, but it is possible to push back
-something different than what was originally read.  Ungetting a
-character will clear the end-of-stream marker, and decrement the file
-position indicator.  Pushing back beyond the beginning of a file gives
-unspecified behavior.
-
-The alternate function <<_ungetc_r>> is a reentrant version.  The
-extra argument <[reent]> is a pointer to a reentrancy structure.
-
-RETURNS
-The character pushed back, or <<EOF>> on error.
-
-PORTABILITY
-ANSI C requires <<ungetc>>, but only requires a pushback buffer of one
-byte; although this implementation can handle multiple bytes, not all
-can.  Pushing back a signed char is a common application bug.
-
-Supporting OS subroutines required: <<sbrk>>.
-*/
 
 #if defined(LIBC_SCCS) && !defined(lint)
 static char sccsid[] = "%W% (Berkeley) %G%";
 #endif /* LIBC_SCCS and not lint */
 
-#include <_ansi.h>
-#include <reent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -77,9 +33,8 @@ static char sccsid[] = "%W% (Berkeley) %G%";
 
 /*static*/
 int
-_DEFUN(__submore, (rptr, fp),
-       struct _reent *rptr _AND
-       register FILE *fp)
+__submore (fp)
+     register FILE *fp;
 {
   register int i;
   register unsigned char *p;
@@ -89,7 +44,7 @@ _DEFUN(__submore, (rptr, fp),
       /*
        * Get a new buffer (rather than expanding the old one).
        */
-      if ((p = (unsigned char *) _malloc_r (rptr, (size_t) BUFSIZ)) == NULL)
+      if ((p = (unsigned char *) _malloc_r (fp->_data, (size_t) BUFSIZ)) == NULL)
 	return EOF;
       fp->_ub._base = p;
       fp->_ub._size = BUFSIZ;
@@ -100,10 +55,10 @@ _DEFUN(__submore, (rptr, fp),
       return 0;
     }
   i = fp->_ub._size;
-  p = (unsigned char *) _realloc_r (rptr, (_PTR) (fp->_ub._base), i << 1);
+  p = (unsigned char *) _realloc_r (fp->_data, (_PTR) (fp->_ub._base), i << 1);
   if (p == NULL)
     return EOF;
-  _CAST_VOID memcpy ((_PTR) (p + i), (_PTR) p, (size_t) i);
+  (void) memcpy ((void *) (p + i), (void *) p, (size_t) i);
   fp->_p = p + i;
   fp->_ub._base = p;
   fp->_ub._size = i << 1;
@@ -111,10 +66,9 @@ _DEFUN(__submore, (rptr, fp),
 }
 
 int
-_DEFUN(_ungetc_r, (rptr, c, fp),
-       struct _reent *rptr _AND
-       int c               _AND
-       register FILE *fp)
+ungetc (c, fp)
+     int c;
+     register FILE *fp;
 {
   if (c == EOF)
     return (EOF);
@@ -123,11 +77,7 @@ _DEFUN(_ungetc_r, (rptr, c, fp),
      ??? Might be able to remove this as some other stdio routine should
      have already been called to get the char we are un-getting.  */
 
-  CHECK_INIT (rptr, fp);
-
-  _flockfile (fp);
-
-  ORIENT (fp, -1);
+  CHECK_INIT (fp);
 
   /* After ungetc, we won't be at eof anymore */
   fp->_flags &= ~__SEOF;
@@ -139,17 +89,11 @@ _DEFUN(_ungetc_r, (rptr, c, fp),
        * Otherwise, flush any current write stuff.
        */
       if ((fp->_flags & __SRW) == 0)
-        {
-          _funlockfile (fp);
-          return EOF;
-        }
+	return EOF;
       if (fp->_flags & __SWR)
 	{
-	  if (_fflush_r (rptr, fp))
-            {
-              _funlockfile (fp);
-              return EOF;
-            }
+	  if (fflush (fp))
+	    return EOF;
 	  fp->_flags &= ~__SWR;
 	  fp->_w = 0;
 	  fp->_lbfsize = 0;
@@ -165,14 +109,10 @@ _DEFUN(_ungetc_r, (rptr, c, fp),
 
   if (HASUB (fp))
     {
-      if (fp->_r >= fp->_ub._size && __submore (rptr, fp))
-        {
-          _funlockfile (fp);
-          return EOF;
-        }
+      if (fp->_r >= fp->_ub._size && __submore (fp))
+	return EOF;
       *--fp->_p = c;
       fp->_r++;
-      _funlockfile (fp);
       return c;
     }
 
@@ -186,7 +126,6 @@ _DEFUN(_ungetc_r, (rptr, c, fp),
     {
       fp->_p--;
       fp->_r++;
-      _funlockfile (fp);
       return c;
     }
 
@@ -202,16 +141,5 @@ _DEFUN(_ungetc_r, (rptr, c, fp),
   fp->_ubuf[sizeof (fp->_ubuf) - 1] = c;
   fp->_p = &fp->_ubuf[sizeof (fp->_ubuf) - 1];
   fp->_r = 1;
-  _funlockfile (fp);
   return c;
 }
-
-#ifndef _REENT_ONLY
-int
-_DEFUN(ungetc, (c, fp),
-       int c               _AND
-       register FILE *fp)
-{
-  return _ungetc_r (_REENT, c, fp);
-}
-#endif /* !_REENT_ONLY */

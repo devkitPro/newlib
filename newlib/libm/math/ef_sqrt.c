@@ -29,23 +29,26 @@ static	float	one	= 1.0, tiny=1.0e-30;
 #endif
 {
 	float z;
-	__uint32_t r,hx;
+	__int32_t 	sign = (__int32_t)0x80000000; 
+	__uint32_t r;
 	__int32_t ix,s,q,m,t,i;
 
 	GET_FLOAT_WORD(ix,x);
-	hx = ix&0x7fffffff;
 
     /* take care of Inf and NaN */
-	if(!FLT_UWORD_IS_FINITE(hx))
+	if((ix&0x7f800000L)==0x7f800000L) {			
 	    return x*x+x;		/* sqrt(NaN)=NaN, sqrt(+inf)=+inf
 					   sqrt(-inf)=sNaN */
-    /* take care of zero and -ves */
-	if(FLT_UWORD_IS_ZERO(hx)) return x;/* sqrt(+-0) = +-0 */
-	if(ix<0) return (x-x)/(x-x);		/* sqrt(-ve) = sNaN */
-
+	} 
+    /* take care of zero */
+	if(ix<=0) {
+	    if((ix&(~sign))==0) return x;/* sqrt(+-0) = +-0 */
+	    else if(ix<0)
+		return (x-x)/(x-x);		/* sqrt(-ve) = sNaN */
+	}
     /* normalize x */
 	m = (ix>>23);
-	if(FLT_UWORD_IS_SUBNORMAL(hx)) {		/* subnormal x */
+	if(m==0) {				/* subnormal x */
 	    for(i=0;(ix&0x00800000L)==0;i++) ix<<=1;
 	    m -= i-1;
 	}

@@ -16,34 +16,24 @@
  */
 
 /*
+
 FUNCTION
-<<sscanf>>, <<fscanf>>, <<scanf>>---scan and format input
+	<<scanf>>, <<fscanf>>, <<sscanf>>---scan and format input
 
 INDEX
 	scanf
 INDEX
-	_scanf_r
-INDEX
 	fscanf
 INDEX
-	_fscanf_r
-INDEX
 	sscanf
-INDEX
-	_sscanf_r
 
 ANSI_SYNOPSIS
         #include <stdio.h>
 
-        int scanf(const char *<[format]>, ...);
-        int fscanf(FILE *<[fd]>, const char *<[format]>, ...);
-        int sscanf(const char *<[str]>, const char *<[format]>, ...);
-
-        int _scanf_r(struct _reent *<[ptr]>, const char *<[format]>, ...);
-        int _fscanf_r(struct _reent *<[ptr]>, FILE *<[fd]>, 
-                      const char *<[format]>, ...);
-        int _sscanf_r(struct _reent *<[ptr]>, const char *<[str]>,
-                      const char *<[format]>, ...);
+        int scanf(const char *<[format]> [, <[arg]>, ...]);
+        int fscanf(FILE *<[fd]>, const char *<[format]> [, <[arg]>, ...]);
+        int sscanf(const char *<[str]>, const char *<[format]> 
+                   [, <[arg]>, ...]);
 
 
 TRAD_SYNOPSIS
@@ -57,20 +47,6 @@ TRAD_SYNOPSIS
 	char *<[format]>;
 
 	int sscanf(<[str]>, <[format]> [, <[arg]>, ...]);
-	char *<[str]>;
-	char *<[format]>;
-
-	int _scanf_r(<[ptr]>, <[format]> [, <[arg]>, ...])
-        struct _reent *<[ptr]>;
-	char *<[format]>;
-
-	int _fscanf_r(<[ptr]>, <[fd]>, <[format]> [, <[arg]>, ...]);
-        struct _reent *<[ptr]>;
-	FILE *<[fd]>;
-	char *<[format]>;
-
-	int _sscanf_r(<[ptr]>, <[str]>, <[format]> [, <[arg]>, ...]);
-        struct _reent *<[ptr]>;
 	char *<[str]>;
 	char *<[format]>;
 
@@ -97,10 +73,6 @@ DESCRIPTION
         <<fscanf>> and <<sscanf>> are identical to <<scanf>>, other than the
         source of input: <<fscanf>> reads from a file, and <<sscanf>>
 		from a string.
-
-        The routines <<_scanf_r>>, <<_fscanf_r>>, and <<_sscanf_r>> are reentrant
-        versions of <<scanf>>, <<fscanf>>, and <<sscanf>> that take an additional
-        first argument pointing to a reentrancy structure.
 
         The string at <<*<[format]>>> is a character sequence composed
         of zero or more directives. Directives are composed of
@@ -151,56 +123,31 @@ DESCRIPTION
 		Then <<scanf>> proceeds to the next format specification.
 
         o size
-		<<h>>, <<j>>, <<l>>, <<L>>, <<t>>, and <<z>> are optional size
-		characters which override the default way that <<scanf>>
-		interprets the data type of the corresponding argument.
+		<<h>>, <<l>>, and <<L>> are optional size characters which
+		override the default way that <<scanf>> interprets the
+		data type of the corresponding argument.
 
 
 .Modifier   Type(s)
-.   hh      d, i, o, u, x, n  convert input to char,
-.                             store in char object
-.
-.   h       d, i, o, u, x, n  convert input to short,
+.   h       d, i, o, u, x     convert input to short,
 .                             store in short object
 .
 .   h       D, I, O, U, X     no effect
-.           e, f, c, s, p
+.           e, f, c, s, n, p
 .
-.   j       d, i, o, u, x, n  convert input to intmax_t,
-.                             store in intmax_t object
-.
-.   j       all others        no effect
-.
-.   l       d, i, o, u, x, n  convert input to long,
+.   l       d, i, o, u, x     convert input to long,
 .                             store in long object
 .
 .   l       e, f, g           convert input to double
 .                             store in a double object
 .
 .   l       D, I, O, U, X     no effect
-.           c, s, p
+.           c, s, n, p
 .
-.   ll      d, i, o, u, x, n  convert to long long,
-.                             store in long long
-.
-.   L       d, i, o, u, x, n  convert to long long,
-.                             store in long long
-.
-.   L       e, f, g, E, G     convert to long double,
+.   L       d, i, o, u, x     convert to long double,
 .                             store in long double
 .
-.   L       all others        no effect
-.
-.   t       d, i, o, u, x, n  convert input to ptrdiff_t,
-.                             store in ptrdiff_t object
-.
-.   t       all others        no effect
-.
-.   z       d, i, o, u, x, n  convert input to size_t,
-.                             store in size_t object
-.
-.   z       all others        no effect
-.
+.   L      all others         no effect
 
 
         o <[type]>
@@ -255,11 +202,11 @@ DESCRIPTION
 		<<(int *arg)>>.
 
 		o e, f, g
-		Read a floating-point number into the corresponding <[arg]>:
+		Read a floating point number into the corresponding <[arg]>:
 		<<(float *arg)>>.
 
 		o E, F, G
-		Read a floating-point number into the corresponding <[arg]>:
+		Read a floating point number into the corresponding <[arg]>:
 		<<(double *arg)>>.
 
 		o  i
@@ -394,76 +341,46 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 #endif
 #include "local.h"
 
-#ifndef _REENT_ONLY 
-
-#ifdef _HAVE_STDC
-int 
-_DEFUN(sscanf, (str, fmt),
-       _CONST char *str _AND
-       _CONST char *fmt _DOTS)
-#else
-int 
-sscanf(str, fmt, va_alist)
-       _CONST char *str;
-       _CONST char *fmt;
-       va_dcl
-#endif
+/* | ARGSUSED */
+/*SUPPRESS 590*/
+static
+int
+eofread (cookie, buf, len)
+     _PTR cookie;
+     char *buf;
+     int len;
 {
-  int ret;
-  va_list ap;
-  FILE f;
-
-  f._flags = __SRD | __SSTR;
-  f._bf._base = f._p = (unsigned char *) str;
-  f._bf._size = f._r = strlen (str);
-  f._read = __seofread;
-  f._ub._base = NULL;
-  f._lb._base = NULL;
-  f._file = -1;  /* No file. */
-#ifdef _HAVE_STDC
-  va_start (ap, fmt);
-#else
-  va_start (ap);
-#endif
-  ret = __ssvfscanf_r (_REENT, &f, fmt, ap);
-  va_end (ap);
-  return ret;
+  return 0;
 }
 
-#endif /* !_REENT_ONLY */
-
 #ifdef _HAVE_STDC
 int 
-_DEFUN(_sscanf_r, (ptr, str, fmt), 
-       struct _reent *ptr _AND
-       _CONST char *str   _AND
-       _CONST char *fmt _DOTS)
+_DEFUN (sscanf, (str, fmt), _CONST char *str _AND _CONST char *fmt _DOTS)
 #else
 int 
-_sscanf_r(ptr, str, fmt, va_alist)
-          struct _reent *ptr;
-          _CONST char *str;
-          _CONST char *fmt;
-          va_dcl
+sscanf (str, fmt, va_alist)
+     _CONST char *str;
+     _CONST char *fmt;
+     va_dcl
 #endif
 {
   int ret;
   va_list ap;
   FILE f;
 
-  f._flags = __SRD | __SSTR;
+  f._flags = __SRD;
   f._bf._base = f._p = (unsigned char *) str;
   f._bf._size = f._r = strlen (str);
-  f._read = __seofread;
+  f._read = eofread;
   f._ub._base = NULL;
   f._lb._base = NULL;
-  f._file = -1;  /* No file. */
+  f._data = _REENT;
 #ifdef _HAVE_STDC
   va_start (ap, fmt);
 #else
   va_start (ap);
 #endif
-  ret = __ssvfscanf_r (ptr, &f, fmt, ap);
+  ret = __svfscanf (&f, fmt, ap);
   va_end (ap);
   return ret;
 }

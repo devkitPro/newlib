@@ -16,31 +16,19 @@
  */
 
 /*
-FUNCTION
-<<fgets>>---get character string from a file or stream
 
+FUNCTION
+        <<fgets>>---get character string from a file or stream
 INDEX
 	fgets
-INDEX
-	_fgets_r
 
 ANSI_SYNOPSIS
         #include <stdio.h>
 	char *fgets(char *<[buf]>, int <[n]>, FILE *<[fp]>);
 
-        #include <stdio.h>
-	char *_fgets_r(struct _reent *<[ptr]>, char *<[buf]>, int <[n]>, FILE *<[fp]>);
-
 TRAD_SYNOPSIS
 	#include <stdio.h>
 	char *fgets(<[buf]>,<[n]>,<[fp]>)
-        char *<[buf]>;
-	int <[n]>;
-	FILE *<[fp]>;
-
-	#include <stdio.h>
-	char *_fgets_r(<[ptr]>, <[buf]>,<[n]>,<[fp]>)
-	struct _reent *<[ptr]>;
         char *<[buf]>;
 	int <[n]>;
 	FILE *<[fp]>;
@@ -50,9 +38,6 @@ DESCRIPTION
 	is found. The characters including to the newline are stored
 	in <[buf]>. The buffer is terminated with a 0.
 
-	The <<_fgets_r>> function is simply the reentrant version of
-	<<fgets>> and is passed an additional reentrancy structure
-	pointer: <[ptr]>.
 
 RETURNS
 	<<fgets>> returns the buffer passed to it, with the data
@@ -69,10 +54,10 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 <<lseek>>, <<read>>, <<sbrk>>, <<write>>.
 */
 
-#include <_ansi.h>
 #include <stdio.h>
 #include <string.h>
-#include "local.h"
+
+extern int __srefill ();
 
 /*
  * Read at most n-1 characters from the given file.
@@ -81,11 +66,10 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
  */
 
 char *
-_DEFUN(_fgets_r, (ptr, buf, n, fp),
-       struct _reent * ptr _AND
-       char *buf _AND
-       int n     _AND
-       FILE * fp)
+_DEFUN (fgets, (buf, n, fp),
+	char *buf _AND
+	int n _AND
+	FILE * fp)
 {
   size_t len;
   char *s;
@@ -95,32 +79,6 @@ _DEFUN(_fgets_r, (ptr, buf, n, fp),
     return 0;
 
   s = buf;
-
-  CHECK_INIT(ptr, fp);
-
-  _flockfile (fp);
-#ifdef __SCLE
-  if (fp->_flags & __SCLE)
-    {
-      int c;
-      /* Sorry, have to do it the slow way */
-      while (--n > 0 && (c = __sgetc_r (ptr, fp)) != EOF)
-	{
-	  *s++ = c;
-	  if (c == '\n')
-	    break;
-	}
-      if (c == EOF && s == buf)
-        {
-          _funlockfile (fp);
-          return NULL;
-        }
-      *s = 0;
-      _funlockfile (fp);
-      return buf;
-    }
-#endif
-
   n--;				/* leave space for NUL */
   do
     {
@@ -129,14 +87,11 @@ _DEFUN(_fgets_r, (ptr, buf, n, fp),
        */
       if ((len = fp->_r) <= 0)
 	{
-	  if (__srefill_r (ptr, fp))
+	  if (__srefill (fp))
 	    {
 	      /* EOF: stop with partial or no line */
 	      if (s == buf)
-                {
-                  _funlockfile (fp);
-                  return 0;
-                }
+		return 0;
 	      break;
 	    }
 	  len = fp->_r;
@@ -157,31 +112,16 @@ _DEFUN(_fgets_r, (ptr, buf, n, fp),
 	  len = ++t - p;
 	  fp->_r -= len;
 	  fp->_p = t;
-	  _CAST_VOID memcpy ((_PTR) s, (_PTR) p, len);
+	  (void) memcpy ((_PTR) s, (_PTR) p, len);
 	  s[len] = 0;
-          _funlockfile (fp);
 	  return (buf);
 	}
       fp->_r -= len;
       fp->_p += len;
-      _CAST_VOID memcpy ((_PTR) s, (_PTR) p, len);
+      (void) memcpy ((_PTR) s, (_PTR) p, len);
       s += len;
     }
   while ((n -= len) != 0);
   *s = 0;
-  _funlockfile (fp);
   return buf;
 }
-
-#ifndef _REENT_ONLY
-
-char *
-_DEFUN(fgets, (buf, n, fp),
-       char *buf _AND
-       int n     _AND
-       FILE * fp)
-{
-  return _fgets_r (_REENT, buf, n, fp);
-}
-
-#endif /* !_REENT_ONLY */

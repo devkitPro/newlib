@@ -1,6 +1,6 @@
 /*
  * ====================================================
- * Copyright (C) 1998, 2002 by Red Hat Inc. All rights reserved.
+ * Copyright (C) 1998 by Cygnus Solutions. All rights reserved.
  *
  * Permission to use, copy, modify, and distribute this
  * software is freely granted, provided that this notice
@@ -11,7 +11,6 @@
 	#include "i386mach.h"
 
 	.global SYM (memcmp)
-       SOTYPE_FUNCTION(memcmp)
 
 SYM (memcmp):
 

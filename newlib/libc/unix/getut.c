@@ -1,12 +1,7 @@
-#ifndef _NO_GETUT
-
-#include <stdlib.h>
-#include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <utmp.h>
 #include <_syslist.h>
-#include <_ansi.h>
 
 static int utmp_fd = -2;
 static char *utmp_file = UTMP_FILE;
@@ -18,21 +13,23 @@ setutent ()
 {
   if (utmp_fd == -2)
     {
-      utmp_fd = open (utmp_file, O_RDONLY);
+      utmp_fd = _open (utmp_file, O_RDONLY);
     }
-  lseek (utmp_fd, 0, SEEK_SET);
+  _lseek (utmp_fd, 0, SEEK_SET);
 }
 
 void
 endutent ()
 {
-  close (utmp_fd);
+  _close (utmp_fd);
   utmp_fd = -2;
 }
 
 void
-utmpname (_CONST char *file)
+utmpname (char *file)
 {
+  extern char *strdup (char *);
+
   utmp_file = strdup (file);
 }
 
@@ -41,7 +38,7 @@ getutent ()
 {
   if (utmp_fd == -2)
     setutent ();
-  if (read (utmp_fd, &utmp_data, sizeof (utmp_data)) < sizeof (utmp_data))
+  if (_read (utmp_fd, &utmp_data, sizeof (utmp_data)) < sizeof (utmp_data))
     return 0;
   return &utmp_data;
 }
@@ -49,7 +46,7 @@ getutent ()
 struct utmp *
 getutid (struct utmp *id)
 {
-  while (read (utmp_fd, &utmp_data, sizeof (utmp_data)) == sizeof (utmp_data))
+  while (_read (utmp_fd, &utmp_data, sizeof (utmp_data)) == sizeof (utmp_data))
     {
       switch (id->ut_type)
 	{
@@ -75,7 +72,7 @@ getutid (struct utmp *id)
 struct utmp *
 getutline (struct utmp *line)
 {
-  while (read (utmp_fd, &utmp_data, sizeof (utmp_data)) == sizeof (utmp_data))
+  while (_read (utmp_fd, &utmp_data, sizeof (utmp_data)) == sizeof (utmp_data))
     {
       if ((utmp_data.ut_type == LOGIN_PROCESS ||
 	   utmp_data.ut_type == USER_PROCESS) &&
@@ -86,5 +83,3 @@ getutline (struct utmp *line)
 
   return 0;
 }
-
-#endif /* !_NO_GETUT  */

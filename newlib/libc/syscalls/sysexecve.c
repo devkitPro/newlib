@@ -1,13 +1,16 @@
 /* connector for execve */
 
 #include <reent.h>
-#include <unistd.h>
 
 int
-_DEFUN (execve, (name, argv, env),
-     _CONST char *name _AND
-     char *_CONST argv[] _AND
-     char *_CONST env[])
+execve (name, argv, env)
+     char *name;
+     char **argv;
+     char **env;
 {
+#ifdef REENTRANT_SYSCALLS_PROVIDED
   return _execve_r (_REENT, name, argv, env);
+#else
+  return _execve (name, argv, env);
+#endif
 }

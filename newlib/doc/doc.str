@@ -22,6 +22,10 @@
 	quickref
 	;
 
+
+: ITEM 
+	"@item " catstr ;
+
 : EXAMPLE
 	skip_past_newline	
 
@@ -50,6 +54,7 @@
 	"@end example\n" catstr
 
 	;
+
 
 : ANSI_SYNOPSIS
 	skip_past_newline
@@ -132,6 +137,8 @@
 	bodytext
 	;
 
+
+	
 : DESCRIPTION 
 	"@strong{Description}@*\n" catstr subhead ;
 
@@ -141,29 +148,31 @@
 : ERRORS
 	"@strong{Errors}@*\n" catstr subhead ;
 
+
 : PORTABILITY
 	"@strong{Portability}@*\n" catstr subhead ;
 
-: BUGS
-	"@strong{Bugs}@*\n" catstr subhead ;
 
 : WARNINGS
 	"@strong{Warnings}@*\n" catstr subhead ;
 
-: SEEALSO
-	"@strong{See Also}@*\n" catstr subhead ;
+
 
 : INTERNAL_FUNCTION
 	func ;
 
+
 : INTERNAL_DEFINITION 
 	func ;
+
 
 : INTERNAL
 	func ;
 
 : TYPEDEF
 	FUNCTION ;
+
+
 
 : NEWPAGE
 	"@page\n" catstr subhead ;

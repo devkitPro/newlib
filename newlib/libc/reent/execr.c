@@ -3,7 +3,6 @@
 
 #include <reent.h>
 #include <unistd.h>
-#include <sys/wait.h>
 #include <_syslist.h>
 
 /* Some targets provides their own versions of these functions.  Those
@@ -35,16 +34,16 @@ INDEX
 
 ANSI_SYNOPSIS
 	#include <reent.h>
-	int _execve_r(struct _reent *<[ptr]>, const char *<[name]>,
-                      char *const <[argv]>[], char *const <[env]>[]);
+	int _execve_r(struct _reent *<[ptr]>, char *<[name]>,
+                      char **<[argv]>, char **<[env]>);
 
 TRAD_SYNOPSIS
 	#include <reent.h>
 	int _execve_r(<[ptr]>, <[name]>, <[argv]>, <[env]>)
 	struct _reent *<[ptr]>;
         char *<[name]>;
-        char *<[argv]>[];
-        char *<[env]>[];
+        char **<[argv]>;
+        char **<[env]>;
 
 DESCRIPTION
 	This is a reentrant version of <<execve>>.  It
@@ -53,11 +52,11 @@ DESCRIPTION
 */
 
 int
-_DEFUN (_execve_r, (ptr, name, argv, env),
-     struct _reent *ptr _AND
-     _CONST char *name _AND
-     char *_CONST argv[] _AND
-     char *_CONST env[])
+_execve_r (ptr, name, argv, env)
+     struct _reent *ptr;
+     char *name;
+     char **argv;
+     char **env;
 {
   int ret;
 
@@ -93,8 +92,8 @@ DESCRIPTION
 #ifndef NO_FORK
 
 int
-_DEFUN (_fork_r, (ptr),
-     struct _reent *ptr)
+_fork_r (ptr)
+     struct _reent *ptr;
 {
   int ret;
 
@@ -130,9 +129,9 @@ DESCRIPTION
 */
 
 int
-_DEFUN (_wait_r, (ptr, status),
-     struct _reent *ptr _AND
-     int *status)
+_wait_r (ptr, status)
+     struct _reent *ptr;
+     int *status;
 {
   int ret;
 

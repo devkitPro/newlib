@@ -29,8 +29,7 @@
 {
 	__int32_t ix;
 	GET_FLOAT_WORD(ix,x);
-	ix &= 0x7fffffff;
-	return (FLT_UWORD_IS_FINITE(ix));
+	return  (int)((__uint32_t)((ix&0x7fffffff)-0x7f800000)>>31);
 }
 
 #ifdef _DOUBLE_IS_32BITS

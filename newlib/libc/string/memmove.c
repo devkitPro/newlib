@@ -88,13 +88,14 @@ _DEFUN (memmove, (dst_void, src_void, length),
   _CONST char *src = src_void;
   long *aligned_dst;
   _CONST long *aligned_src;
+  int   len =  length;
 
-  if (src < dst && dst < src + length)
+  if (src < dst && dst < src + len)
     {
       /* Destructive overlap...have to copy backwards */
-      src += length;
-      dst += length;
-      while (length--)
+      src += len;
+      dst += len;
+      while (len--)
 	{
 	  *--dst = *--src;
 	}
@@ -104,26 +105,26 @@ _DEFUN (memmove, (dst_void, src_void, length),
       /* Use optimizing algorithm for a non-destructive copy to closely 
          match memcpy. If the size is small or either SRC or DST is unaligned,
          then punt into the byte copy loop.  This should be rare.  */
-      if (!TOO_SMALL(length) && !UNALIGNED (src, dst))
+      if (!TOO_SMALL(len) && !UNALIGNED (src, dst))
         {
           aligned_dst = (long*)dst;
           aligned_src = (long*)src;
 
           /* Copy 4X long words at a time if possible.  */
-          while (length >= BIGBLOCKSIZE)
+          while (len >= BIGBLOCKSIZE)
             {
               *aligned_dst++ = *aligned_src++;
               *aligned_dst++ = *aligned_src++;
               *aligned_dst++ = *aligned_src++;
               *aligned_dst++ = *aligned_src++;
-              length -= BIGBLOCKSIZE;
+              len -= BIGBLOCKSIZE;
             }
 
           /* Copy one long word at a time if possible.  */
-          while (length >= LITTLEBLOCKSIZE)
+          while (len >= LITTLEBLOCKSIZE)
             {
               *aligned_dst++ = *aligned_src++;
-              length -= LITTLEBLOCKSIZE;
+              len -= LITTLEBLOCKSIZE;
             }
 
           /* Pick up any residual with a byte copier.  */
@@ -131,7 +132,7 @@ _DEFUN (memmove, (dst_void, src_void, length),
           src = (char*)aligned_src;
         }
 
-      while (length--)
+      while (len--)
         {
           *dst++ = *src++;
         }

@@ -1,16 +1,16 @@
 /*
 FUNCTION
-	<<strncasecmp>>---case-insensitive character string compare
+	<<strncasecmp>>---case insensitive character string compare
 	
 INDEX
 	strncasecmp
 
 ANSI_SYNOPSIS
-	#include <strings.h>
+	#include <string.h>
 	int strncasecmp(const char *<[a]>, const char * <[b]>, size_t <[length]>);
 
 TRAD_SYNOPSIS
-	#include <strings.h>
+	#include <string.h>
 	int strncasecmp(<[a]>, <[b]>, <[length]>)
 	char *<[a]>;
 	char *<[b]>;
@@ -24,7 +24,7 @@ DESCRIPTION
 RETURNS
 
 	If <<*<[a]>>> sorts lexicographically after <<*<[b]>>> (after
-	both are converted to lowercase), <<strncasecmp>> returns a
+	both are converted to upper case), <<strncasecmp>> returns a
 	number greater than zero.  If the two strings are equivalent,
 	<<strncasecmp>> returns zero.  If <<*<[a]>>> sorts
 	lexicographically before <<*<[b]>>>, <<strncasecmp>> returns a
@@ -40,7 +40,7 @@ QUICKREF
 	strncasecmp
 */
 
-#include <strings.h>
+#include <string.h>
 #include <ctype.h>
 
 int 
@@ -49,15 +49,16 @@ _DEFUN (strncasecmp, (s1, s2, n),
 	_CONST char *s2 _AND
 	size_t n)
 {
-  _CONST unsigned char *ucs1 = (_CONST unsigned char *) s1;
-  _CONST unsigned char *ucs2 = (_CONST unsigned char *) s2;
-  int d = 0;
-  for ( ; n != 0; n--)
+  if (n == 0)
+    return 0;
+
+  while (n-- != 0 && tolower(*s1) == tolower(*s2))
     {
-      _CONST int c1 = tolower(*ucs1++);
-      _CONST int c2 = tolower(*ucs2++);
-      if (((d = c1 - c2) != 0) || (c2 == '\0'))
-        break;
+      if (n == 0 || *s1 == '\0' || *s2 == '\0')
+	break;
+      s1++;
+      s2++;
     }
-  return d;
+
+  return tolower(*(unsigned char *) s1) - tolower(*(unsigned char *) s2);
 }

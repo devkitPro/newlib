@@ -1,5 +1,6 @@
 /* This file may have been modified by DJ Delorie (Jan 1991).  If so,
-** these modifications are Copyright (C) 1991 DJ Delorie.
+** these modifications are Coyright (C) 1991 DJ Delorie, 24 Kirsten Ave,
+** Rochester NH, 03867-2954, USA.
 */
 
 /*-
@@ -33,7 +34,7 @@
 int
 _DEFUN (_putenv_r, (reent_ptr, str),
 	struct _reent *reent_ptr _AND
-	char   *str)
+	_CONST char   *str)
 {
   register char *p, *equal;
   int rval;
@@ -43,7 +44,7 @@ _DEFUN (_putenv_r, (reent_ptr, str),
   if (!p)
     return 1;
 
-  if (!(equal = strchr (p, '=')))
+  if (!(equal = index (p, '=')))
     {
       (void) _free_r (reent_ptr, p);
       return 1;

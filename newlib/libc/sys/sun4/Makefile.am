@@ -4,8 +4,6 @@ AUTOMAKE_OPTIONS = cygnus
 
 INCLUDES = $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 
-AM_CCASFLAGS = $(INCLUDES)
-
 noinst_LIBRARIES = lib.a
 
 COPYOFILES = \
@@ -77,8 +75,6 @@ COPYOMFILES = ieee_flags.o
 
 lib_a_SOURCES = _main.c ieee.c
 lib_a_LIBADD = $(COPYOFILES) $(COPYOMFILES) $(COPYRENAMEOFILES)
-lib_a_CCASFLAGS = $(AM_CCASFLAGS)
-lib_a_CFLAGS = $(AM_CFLAGS)
 
 $(COPYOFILES):
 	$(AR) x /lib/libc.a $(COPYOFILES) 
@@ -90,10 +86,10 @@ $(COPYRENAMEOFILES):
 $(COPYOMFILES):
 	$(AR) x /lib/libm.a $(COPYOMFILES) 
 
-all-local: crt0.o
+all: crt0.o
 
 crt0.o:
 	cp /lib/crt0.o crt0.o
 
-ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
+ACLOCAL_AMFLAGS = -I ../../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host

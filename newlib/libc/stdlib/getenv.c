@@ -18,7 +18,7 @@ TRAD_SYNOPSIS
 
 DESCRIPTION
 <<getenv>> searches the list of environment variable names and values
-(using the global pointer ``<<char **environ>>'') for a variable whose
+(using the global pointer `<<char **environ>>') for a variable whose
 name matches the string at <[name]>.  If a variable name matches,
 <<getenv>> returns a pointer to the associated value.
 
@@ -33,8 +33,13 @@ variables vary from one system to another.
 <<getenv>> requires a global pointer <<environ>>.
 */
 
+/* This file may have been modified by DJ Delorie (Jan 1991).  If so,
+** these modifications are Coyright (C) 1991 DJ Delorie, 24 Kirsten Ave,
+** Rochester NH, 03867-2954, USA.
+*/
+
 /*
- * Copyright (c) 1987, 2000 Regents of the University of California.
+ * Copyright (c) 1987 Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -57,6 +62,8 @@ variables vary from one system to another.
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
+
+extern char **environ;
 
 /*
  * _findenv --
@@ -86,6 +93,7 @@ _DEFUN (getenv, (name),
 	_CONST char *name)
 {
   int offset;
+  char *_findenv_r ();
 
   return _findenv_r (_REENT, name, &offset);
 }

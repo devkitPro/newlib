@@ -1,9 +1,7 @@
-#ifndef _NO_SIGSET
-
 #include <signal.h>
 #include <errno.h>
 
-#if defined(SIG_SETMASK) && NSIG <= 32	/* easier than trying to remove from Makefile */
+#ifdef SIG_SETMASK	/* easier than trying to remove from Makefile */
 
 #undef sigemptyset
 int
@@ -13,7 +11,6 @@ sigemptyset (sigset_t * set)
   return 0;
 }
 
-#undef sigfillset
 int
 sigfillset (sigset_t * set)
 {
@@ -34,7 +31,6 @@ sigaddset (sigset_t * set, int signo)
   return 0;
 }
 
-#undef sigdelset
 int
 sigdelset (sigset_t * set, int signo)
 {
@@ -47,7 +43,6 @@ sigdelset (sigset_t * set, int signo)
   return 0;
 }
 
-#undef sigismember
 int
 sigismember (const sigset_t * set, int signo)
 {
@@ -64,4 +59,3 @@ sigismember (const sigset_t * set, int signo)
 }
 
 #endif /* SIG_SETMASK */
-#endif /* _NO_SIGSET  */

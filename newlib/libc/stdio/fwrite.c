@@ -21,29 +21,15 @@ FUNCTION
 
 INDEX
 	fwrite
-INDEX
-	_fwrite_r
 
 ANSI_SYNOPSIS
 	#include <stdio.h>
 	size_t fwrite(const void *<[buf]>, size_t <[size]>,
 		      size_t <[count]>, FILE *<[fp]>);
 
-	#include <stdio.h>
-	size_t _fwrite_r(struct _reent *<[ptr]>, const void *<[buf]>, size_t <[size]>,
-		      size_t <[count]>, FILE *<[fp]>);
-
 TRAD_SYNOPSIS
 	#include <stdio.h>
 	size_t fwrite(<[buf]>, <[size]>, <[count]>, <[fp]>)
-	char *<[buf]>;
-	size_t <[size]>;
-	size_t <[count]>;
-	FILE *<[fp]>;
-
-	#include <stdio.h>
-	size_t _fwrite_r(<[ptr]>, <[buf]>, <[size]>, <[count]>, <[fp]>)
-	struct _reent *<[ptr]>;
 	char *<[buf]>;
 	size_t <[size]>;
 	size_t <[count]>;
@@ -57,9 +43,6 @@ stream identified by <[fp]>.  <<fwrite>> may copy fewer elements than
 
 <<fwrite>> also advances the file position indicator (if any) for
 <[fp]> by the number of @emph{characters} actually written.
-
-<<_fwrite_r>> is simply the reentrant version of <<fwrite>> that
-takes an additional reentrant structure argument: <[ptr]>.
 
 RETURNS
 If <<fwrite>> succeeds in writing all the elements you specify, the
@@ -78,7 +61,6 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 static char sccsid[] = "%W% (Berkeley) %G%";
 #endif /* LIBC_SCCS and not lint */
 
-#include <_ansi.h>
 #include <stdio.h>
 #include <string.h>
 #if 0
@@ -95,12 +77,11 @@ static char sccsid[] = "%W% (Berkeley) %G%";
  */
 
 size_t
-_DEFUN(_fwrite_r, (ptr, buf, size, count, fp),
-       struct _reent * ptr _AND
-       _CONST _PTR buf _AND
-       size_t size     _AND
-       size_t count    _AND
-       FILE * fp)
+_DEFUN (fwrite, (buf, size, count, fp),
+	_CONST _PTR buf _AND
+	size_t size _AND
+	size_t count _AND
+	FILE * fp)
 {
   size_t n;
   struct __suio uio;
@@ -112,32 +93,12 @@ _DEFUN(_fwrite_r, (ptr, buf, size, count, fp),
   uio.uio_iovcnt = 1;
 
   /*
-   * The usual case is success (__sfvwrite_r returns 0);
+   * The usual case is success (__sfvwrite returns 0);
    * skip the divide if this happens, since divides are
    * generally slow and since this occurs whenever size==0.
    */
 
-  CHECK_INIT(ptr, fp);
-
-  _flockfile (fp);
-  ORIENT (fp, -1);
-  if (__sfvwrite_r (ptr, fp, &uio) == 0)
-    {
-      _funlockfile (fp);
-      return count;
-    }
-  _funlockfile (fp);
+  if (__sfvwrite (fp, &uio) == 0)
+    return count;
   return (n - uio.uio_resid) / size;
 }
-
-#ifndef _REENT_ONLY
-size_t
-_DEFUN(fwrite, (buf, size, count, fp),
-       _CONST _PTR buf _AND
-       size_t size     _AND
-       size_t count    _AND
-       FILE * fp)
-{
-  return _fwrite_r (_REENT, buf, size, count, fp);
-}
-#endif

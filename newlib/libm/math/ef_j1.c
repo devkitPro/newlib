@@ -59,14 +59,14 @@ static float zero    = 0.0;
 
 	GET_FLOAT_WORD(hx,x);
 	ix = hx&0x7fffffff;
-	if(!FLT_UWORD_IS_FINITE(ix)) return one/x;
+	if(ix>=0x7f800000) return one/x;
 	y = fabsf(x);
 	if(ix >= 0x40000000) {	/* |x| >= 2.0 */
 		s = sinf(y);
 		c = cosf(y);
 		ss = -s-c;
 		cc = s-c;
-		if(ix<=FLT_UWORD_HALF_MAX) {  /* make sure y+y not overflow */
+		if(ix<0x7f000000) {  /* make sure y+y not overflow */
 		    z = cosf(y+y);
 		    if ((s*c)>zero) cc = z/ss;
 		    else 	    ss = z/cc;
@@ -129,15 +129,15 @@ static float V0[5] = {
 	GET_FLOAT_WORD(hx,x);
         ix = 0x7fffffff&hx;
     /* if Y1(NaN) is NaN, Y1(-inf) is NaN, Y1(inf) is 0 */
-	if(!FLT_UWORD_IS_FINITE(ix)) return one/(x+x*x); 
-        if(FLT_UWORD_IS_ZERO(ix)) return -one/zero;
+	if(ix>=0x7f800000) return  one/(x+x*x); 
+        if(ix==0) return -one/zero;
         if(hx<0) return zero/zero;
         if(ix >= 0x40000000) {  /* |x| >= 2.0 */
                 s = sinf(x);
                 c = cosf(x);
                 ss = -s-c;
                 cc = s-c;
-                if(ix<=FLT_UWORD_HALF_MAX) {  /* make sure x+x not overflow */
+                if(ix<0x7f000000) {  /* make sure x+x not overflow */
                     z = cosf(x+x);
                     if ((s*c)>zero) cc = z/ss;
                     else            ss = z/cc;
@@ -294,7 +294,7 @@ static float ps2[5] = {
         if(ix>=0x41000000)     {p = pr8; q= ps8;}
         else if(ix>=0x40f71c58){p = pr5; q= ps5;}
         else if(ix>=0x4036db68){p = pr3; q= ps3;}
-        else {p = pr2; q= ps2;}
+        else if(ix>=0x40000000){p = pr2; q= ps2;}
         z = one/(x*x);
         r = p[0]+z*(p[1]+z*(p[2]+z*(p[3]+z*(p[4]+z*p[5]))));
         s = one+z*(q[0]+z*(q[1]+z*(q[2]+z*(q[3]+z*q[4]))));
@@ -304,7 +304,7 @@ static float ps2[5] = {
 
 /* For x >= 8, the asymptotic expansions of qone is
  *	3/8 s - 105/1024 s^3 - ..., where s = 1/x.
- * We approximate qone by
+ * We approximate pone by
  * 	qone(x) = s*(0.375 + (R/S))
  * where  R = qr1*s^2 + qr2*s^4 + ... + qr5*s^10
  * 	  S = 1 + qs1*s^2 + ... + qs6*s^12
@@ -431,7 +431,7 @@ static float qs2[6] = {
 	if(ix>=0x40200000)     {p = qr8; q= qs8;}
 	else if(ix>=0x40f71c58){p = qr5; q= qs5;}
 	else if(ix>=0x4036db68){p = qr3; q= qs3;}
-      else {p = qr2; q= qs2;}
+	else if(ix>=0x40000000){p = qr2; q= qs2;}
 	z = one/(x*x);
 	r = p[0]+z*(p[1]+z*(p[2]+z*(p[3]+z*(p[4]+z*p[5]))));
 	s = one+z*(q[0]+z*(q[1]+z*(q[2]+z*(q[3]+z*(q[4]+z*q[5])))));

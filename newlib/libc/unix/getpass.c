@@ -1,4 +1,3 @@
-#ifndef _NO_GETPASS
 /*
  * Copyright (c) 1988 The Regents of the University of California.
  * All rights reserved.
@@ -11,6 +10,10 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	California, Berkeley and its contributors.
  * 4. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
@@ -38,14 +41,6 @@ static char sccsid[] = "@(#)getpass.c	5.9 (Berkeley) 5/6/91";
 #include <sys/termios.h>
 #include <sys/signal.h>
 #include <_syslist.h>
-
-#ifndef _PATH_PASSWD
-#define _PATH_PASSWD            "/etc/passwd"
-#endif
-
-#ifndef _PASSWORD_LEN
-#define _PASSWORD_LEN           128     /* max length, not counting NULL */
-#endif
 
 char *
 getpass (prompt)
@@ -75,8 +70,7 @@ getpass (prompt)
    */
   omask = sigblock (sigmask (SIGINT) | sigmask (SIGTSTP));
   (void) tcgetattr (fileno (fp), &term);
-  echo = (term.c_lflag & ECHO);
-  if (echo)
+  if (echo = (term.c_lflag & ECHO))
     {
       term.c_lflag &= ~ECHO;
       (void) tcsetattr (fileno (fp), TCSAFLUSH, &term);
@@ -87,7 +81,7 @@ getpass (prompt)
     if (p < buf + _PASSWORD_LEN)
       *p++ = ch;
   *p = '\0';
-  (void) write (fileno (outfp), "\n", 1);
+  (void) _write (fileno (outfp), "\n", 1);
   if (echo)
     {
       term.c_lflag |= ECHO;
@@ -98,4 +92,3 @@ getpass (prompt)
     (void) fclose (fp);
   return buf;
 }
-#endif /* !_NO_GETPASS  */

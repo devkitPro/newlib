@@ -22,9 +22,9 @@ static float
 #endif
 one =  1.0000000000e+00, /* 0x3F800000 */
 huge =  1.000e+30,
-pio2_hi = 1.57079637050628662109375f,
-pio2_lo = -4.37113900018624283e-8f,
-pio4_hi = 0.785398185253143310546875f,
+pio2_hi =  1.5707962513e+00, /* 0x3fc90fda */
+pio2_lo =  7.5497894159e-08, /* 0x33a22168 */
+pio4_hi =  7.8539818525e-01, /* 0x3f490fdb */
 	/* coefficient for R(x^2) */
 pS0 =  1.6666667163e-01, /* 0x3e2aaaab */
 pS1 = -3.2556581497e-01, /* 0xbea6b090 */
@@ -56,13 +56,12 @@ qS4 =  7.7038154006e-02; /* 0x3d9dc62e */
 	} else if (ix<0x3f000000) {	/* |x|<0.5 */
 	    if(ix<0x32000000) {		/* if |x| < 2**-27 */
 		if(huge+x>one) return x;/* return x with inexact if x!=0*/
-          } else {
+	    } else 
 		t = x*x;
 		p = t*(pS0+t*(pS1+t*(pS2+t*(pS3+t*(pS4+t*pS5)))));
 		q = one+t*(qS1+t*(qS2+t*(qS3+t*qS4)));
 		w = p/q;
 		return x+x*w;
-          }
 	}
 	/* 1> |x|>= 0.5 */
 	w = one-fabsf(x);

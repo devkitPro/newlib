@@ -51,8 +51,8 @@ number between <<0>> and <<RAND_MAX>> (inclusive).
 <<srand>> does not return a result.
 
 NOTES
-<<rand>> and <<srand>> are unsafe for multi-threaded applications.
-<<rand_r>> is thread-safe and should be used instead.
+<<rand>> and <<srand>> are unsafe for multi-thread applications.
+<<rand_r>> is MT-Safe and should be used instead.
 
 
 PORTABILITY
@@ -72,20 +72,15 @@ on two different systems.
 void
 _DEFUN (srand, (seed), unsigned int seed)
 {
-  _REENT_CHECK_RAND48(_REENT);
-  _REENT_RAND_NEXT(_REENT) = seed;
+        _REENT->_new._reent._rand_next = seed;
 }
 
 int
 _DEFUN_VOID (rand)
 {
-  /* This multiplier was obtained from Knuth, D.E., "The Art of
-     Computer Programming," Vol 2, Seminumerical Algorithms, Third
-     Edition, Addison-Wesley, 1998, p. 106 (line 26) & p. 108 */
-  _REENT_CHECK_RAND48(_REENT);
-  _REENT_RAND_NEXT(_REENT) = 
-     _REENT_RAND_NEXT(_REENT) * __extension__ 6364136223846793005LL + 1;
-  return (int)((_REENT_RAND_NEXT(_REENT) >> 32) & RAND_MAX);
+        return ((_REENT->_new._reent._rand_next = 
+                 _REENT->_new._reent._rand_next * 1103515245 + 12345 )
+                & RAND_MAX );
 }
 
 #endif /* _REENT_ONLY */

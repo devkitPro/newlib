@@ -6,11 +6,11 @@ INDEX
 	index
 
 ANSI_SYNOPSIS
-	#include <strings.h>
+	#include <string.h>
 	char * index(const char *<[string]>, int <[c]>);
 
 TRAD_SYNOPSIS
-	#include <strings.h>
+	#include <string.h>
 	char * index(<[string]>, <[c]>);
 	char *<[string]>;
 	int *<[c]>;
@@ -34,7 +34,6 @@ QUICKREF
 */
 
 #include <string.h>
-#include <strings.h>
 
 char *
 _DEFUN (index, (s, c),

@@ -3,7 +3,6 @@
  */
 
 #include <_ansi.h>
-#include "std.h"
 
 double
 _DEFUN (__exp10, (x),

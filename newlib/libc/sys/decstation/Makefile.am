@@ -4,8 +4,6 @@ AUTOMAKE_OPTIONS = cygnus
 
 INCLUDES = $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 
-AM_CCASFLAGS = $(INCLUDES)
-
 noinst_LIBRARIES = lib.a
 
 COPYOFILES = \
@@ -38,10 +36,10 @@ lib_a_LIBADD = $(COPYOFILES)
 $(COPYOFILES):
 	ar x /lib/libc.a $(COPYOFILES) 
 
-all-local: crt0.o
+all: crt0.o
 
 crt0.o:
 	cp /lib/crt0.o crt0.o
 
-ACLOCAL_AMFLAGS = -I ../../.. -I ../../../..
+ACLOCAL_AMFLAGS = -I ../../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host

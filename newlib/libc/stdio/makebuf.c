@@ -1,5 +1,7 @@
+/* No user fns here.  Pesch 15apr92. */
+
 /*
- * Copyright (c) 1990, 2007 The Regents of the University of California.
+ * Copyright (c) 1990 The Regents of the University of California.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms are permitted
@@ -14,17 +16,14 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
-/* No user fns here.  Pesch 15apr92. */
 
-#include <_ansi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/unistd.h>
-#include "local.h"
 
-#define _DEFAULT_ASPRINTF_BUFSIZE 64
+#include "local.h"
 
 /*
  * Allocate a file buffer, or switch to unbuffered I/O.
@@ -34,18 +33,13 @@
  * optimization) right after the _fstat() that finds the buffer size.
  */
 
-_VOID
-_DEFUN(__smakebuf_r, (ptr, fp),
-       struct _reent *ptr _AND
-       register FILE *fp)
+void
+__smakebuf (fp)
+     register FILE *fp;
 {
   register size_t size, couldbetty;
   register _PTR p;
-#ifdef __USE_INTERNAL_STAT64
-  struct stat64 st;
-#else
   struct stat st;
-#endif
 
   if (fp->_flags & __SNBF)
     {
@@ -53,18 +47,10 @@ _DEFUN(__smakebuf_r, (ptr, fp),
       fp->_bf._size = 1;
       return;
     }
-#ifdef __USE_INTERNAL_STAT64
-  if (fp->_file < 0 || _fstat64_r (ptr, fp->_file, &st) < 0)
-#else
-  if (fp->_file < 0 || _fstat_r (ptr, fp->_file, &st) < 0)
-#endif
+  if (fp->_file < 0 || _fstat_r (fp->_data, fp->_file, &st) < 0)
     {
       couldbetty = 0;
-      /* Check if we are be called by asprintf family for initial buffer.  */
-      if (fp->_flags & __SMBF)
-        size = _DEFAULT_ASPRINTF_BUFSIZE;
-      else
-        size = BUFSIZ;
+      size = BUFSIZ;
       /* do not try to optimise fseek() */
       fp->_flags |= __SNPT;
     }
@@ -92,22 +78,19 @@ _DEFUN(__smakebuf_r, (ptr, fp),
       else
 	fp->_flags |= __SNPT;
     }
-  if ((p = _malloc_r (ptr, size)) == NULL)
+  if ((p = _malloc_r (fp->_data, size)) == NULL)
     {
-      if (!(fp->_flags & __SSTR))
-	{
-	  fp->_flags |= __SNBF;
-	  fp->_bf._base = fp->_p = fp->_nbuf;
-	  fp->_bf._size = 1;
-	}
+      fp->_flags |= __SNBF;
+      fp->_bf._base = fp->_p = fp->_nbuf;
+      fp->_bf._size = 1;
     }
   else
     {
-      ptr->__cleanup = _cleanup_r;
+      fp->_data->__cleanup = _cleanup_r;
       fp->_flags |= __SMBF;
       fp->_bf._base = fp->_p = (unsigned char *) p;
       fp->_bf._size = size;
-      if (couldbetty && _isatty_r (ptr, fp->_file))
+      if (couldbetty && isatty (fp->_file))
 	fp->_flags |= __SLBF;
     }
 }

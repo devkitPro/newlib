@@ -1,3 +1,5 @@
+/* No user fns here. Pesch 15apr92. */
+
 /*
  * Copyright (c) 1990 The Regents of the University of California.
  * All rights reserved.
@@ -14,15 +16,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
-/* No user fns here. Pesch 15apr92. */
 
 #if defined(LIBC_SCCS) && !defined(lint)
 static char sccsid[] = "%W% (Berkeley) %G%";
 #endif /* LIBC_SCCS and not lint */
 
-#include <_ansi.h>
 #include <stdio.h>
-#include <errno.h>
 #include "local.h"
 
 /*
@@ -32,28 +31,13 @@ static char sccsid[] = "%W% (Berkeley) %G%";
  */
 
 int
-_DEFUN(__srget_r, (ptr, fp),
-       struct _reent *ptr _AND
-       register FILE *fp)
+__srget (fp)
+     register FILE *fp;
 {
-  /* Ensure that any fake std stream is resolved before
-     we call __srefill_r so we may access the true read buffer. */
-  CHECK_INIT(ptr, fp);
-
-  if (__srefill_r (ptr, fp) == 0)
+  if (__srefill (fp) == 0)
     {
       fp->_r--;
       return *fp->_p++;
     }
   return EOF;
-}
-
-/* This function isn't any longer declared in stdio.h, but it's
-   required for backward compatibility with applications built against
-   earlier dynamically built newlib libraries. */
-int
-_DEFUN(__srget, (fp),
-       register FILE *fp)
-{
-  return __srget_r (_REENT, fp);
 }

@@ -7,14 +7,12 @@
  *       to our implementation.  We also need to set the Run-Time Invariant
  *       and other related values.
  *
- *  $Id: limits.h,v 1.4 2011/08/23 05:51:04 corsepiu Exp $
+ *  $Id$
  */
 
 #ifndef _GCC_LIMITS_H_  /* if we have not seen gcc's limits.h yet */
 #include_next <limits.h>
 #endif
-
-#include <sys/syslimits.h>
 
 #ifndef __POSIX_LIMITS_h
 #define __POSIX_LIMITS_h
@@ -42,9 +40,6 @@
 #define _POSIX_OPEN_MAX         16
 #define _POSIX_PATH_MAX         255
 #define _POSIX_PIPE_BUF         512
-/* The maximum number of repeated occurrences of a regular expression
- *  *    permitted when using the interval notation `\{M,N\}'.  */
-#define _POSIX2_RE_DUP_MAX              255
 #define _POSIX_RTSIG_MAX        8
 #define _POSIX_SEM_NSEMS_MAX    256
 #define _POSIX_SEM_VALUE_MAX    32767
@@ -62,9 +57,12 @@
 #define AIO_LISTIO_MAX          2
 #define AIO_MAX                 1
 #define AIO_PRIO_DELTA_MAX      0
+#define ARG_MAX                 4096
+#define CHILD_MAX               6
 #define DELAYTIMER_MAX          32
 #define MQ_OPEN_MAX             8
 #define MQ_PRIO_MAX             32
+#define OPEN_MAX                16
 #define PAGESIZE                1
 #define RTSIG_MAX               8
 #define SEM_NSEMS_MAX           256
@@ -75,16 +73,21 @@
 #define TZNAME_MAX              3
 
 /*
+ *  Pathname Variables
+ */
+
+#define LINK_MAX                8
+#define MAX_CANON               255
+#define MAX_INPUT               255
+#define NAME_MAX                255
+#define PATH_MAX                255
+#define PIPE_BUF                512
+
+/*
  *  Invariant values
  */
 
-#ifdef __SIZE_MAX__
-#define SSIZE_MAX		(__SIZE_MAX__ >> 1)
-#elif defined(__SIZEOF_SIZE_T__) && defined(__CHAR_BIT__)
-#define SSIZE_MAX               ((1UL << (__SIZEOF_SIZE_T__ * __CHAR_BIT__ - 1)) - 1)
-#else /* historic fallback, wrong in most cases */
 #define SSIZE_MAX               32767
-#endif
 
 /*
  *  Maximum Values

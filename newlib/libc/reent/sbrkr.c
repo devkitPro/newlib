@@ -1,4 +1,5 @@
-/* Reentrant version of sbrk system call. */
+/* Reentrant versions of sbrk system call.  This implementation just
+   calls the stat system call.  */
 
 #include <reent.h>
 #include <unistd.h>
@@ -13,7 +14,9 @@
 #endif
 #endif
 
-#if defined (REENTRANT_SYSCALLS_PROVIDED)
+/* If MALLOC_PROVIDED is defined, we don't need this function.  */
+
+#if defined (REENTRANT_SYSCALLS_PROVIDED) || defined (MALLOC_PROVIDED)
 
 int _dummy_sbrk_syscalls = 1;
 
@@ -21,7 +24,7 @@ int _dummy_sbrk_syscalls = 1;
 
 /* We use the errno variable used by the system dependent layer.  */
 #undef errno
-extern int errno;
+int errno;
 
 /*
 FUNCTION
@@ -32,13 +35,13 @@ INDEX
 
 ANSI_SYNOPSIS
 	#include <reent.h>
-	void *_sbrk_r(struct _reent *<[ptr]>, ptrdiff_t <[incr]>);
+	void *_sbrk_r(struct _reent *<[ptr]>, size_t <[incr]>);
 
 TRAD_SYNOPSIS
 	#include <reent.h>
 	void *_sbrk_r(<[ptr]>, <[incr]>)
 	struct _reent *<[ptr]>;
-	ptrdiff_t <[incr]>;
+	size_t <[incr]>;
 
 DESCRIPTION
 	This is a reentrant version of <<sbrk>>.  It
@@ -47,12 +50,12 @@ DESCRIPTION
 */
 
 void *
-_DEFUN (_sbrk_r, (ptr, incr),
-     struct _reent *ptr _AND
-     ptrdiff_t incr)
+_sbrk_r (ptr, incr)
+     struct _reent *ptr;
+     size_t incr;
 {
   char *ret;
-  void *_sbrk(ptrdiff_t);
+  void *_sbrk(size_t);
 
   errno = 0;
   if ((ret = (char *)(_sbrk (incr))) == (void *) -1 && errno != 0)

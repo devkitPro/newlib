@@ -2,7 +2,6 @@
 
 #include <reent.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <_syslist.h>
 
 /* Some targets provides their own versions of this functions.  Those
@@ -47,11 +46,11 @@ DESCRIPTION
 */
 
 int
-_DEFUN (_open_r, (ptr, file, flags, mode),
-     struct _reent *ptr _AND
-     _CONST char *file _AND
-     int flags _AND
-     int mode)
+_open_r (ptr, file, flags, mode)
+     struct _reent *ptr;
+     _CONST char *file;
+     int flags;
+     int mode;
 {
   int ret;
 

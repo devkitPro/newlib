@@ -44,12 +44,12 @@ handling for these functions.
 RETURNS
 Normally, returns the calculated value.  When <[x]> is zero, the
 returned value is <<-HUGE_VAL>> and <<errno>> is set to <<ERANGE>>.
-When <[x]> is negative, the returned value is NaN (not a number) and
+When <[x]> is negative, the returned value is <<-HUGE_VAL>> and
 <<errno>> is set to <<EDOM>>.  You can control the error behavior via
 <<matherr>>.
 
 PORTABILITY
-<<log>> is ANSI. <<logf>> is an extension.
+<<log>> is ANSI, <<logf>> is an extension.
 */
 
 /*
@@ -95,7 +95,7 @@ PORTABILITY
 	    if (_LIB_VERSION == _POSIX_)
 	       errno = ERANGE;
 	    else if (!matherr(&exc)) {
-	       errno = ERANGE;
+	       errno = EDOM;
 	    }
 	} else { 
 	    /* log(x<0) */
@@ -105,7 +105,6 @@ PORTABILITY
 	    else if (!matherr(&exc)) {
 	       errno = EDOM;
 	    }
-            exc.retval = nan("");
         }
 	if (exc.err != 0)
            errno = exc.err;

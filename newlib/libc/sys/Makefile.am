@@ -8,30 +8,26 @@ if HAVE_SYS_DIR
 SYSLIB = lib.a
 endif
 
-noinst_DATA = $(CRT0)
-
-if USE_LIBTOOL
-else
 noinst_LIBRARIES = $(SYSLIB)
+noinst_DATA = $(CRT0)
 
 lib.a: $(sys_dir)/lib.a
 	rm -f $@
 	ln $(sys_dir)/lib.a $@ >/dev/null 2>/dev/null \
 	 || cp $(sys_dir)/lib.a $@
-endif # USE_LIBTOOL
 
-$(sys_dir)/libsys.$(aext): ; @true
+$(sys_dir)/lib.a: ; @true
 
-$(CRT0): $(sys_dir)/$(CRT0)
+crt0.o: $(sys_dir)/crt0.o
 	rm -f $@
-	ln $(sys_dir)/$(CRT0) $@ >/dev/null 2>/dev/null \
-	 || cp $(sys_dir)/$(CRT0) $@
+	ln $(sys_dir)/crt0.o $@ >/dev/null 2>/dev/null \
+	 || cp $(sys_dir)/crt0.o $@
 
-$(sys_dir)/$(CRT0): ; @true
+$(sys_dir)/crt0.o: ; @true
 
-CLEANFILES = $(CRT0)
+CLEANFILES = crt0.o
 
 doc:
 
-ACLOCAL_AMFLAGS = -I ../.. -I ../../..
+ACLOCAL_AMFLAGS = -I ../..
 CONFIG_STATUS_DEPENDENCIES = $(newlib_basedir)/configure.host

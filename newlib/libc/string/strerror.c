@@ -15,8 +15,6 @@ INDEX
 ANSI_SYNOPSIS
 	#include <string.h>
 	char *strerror(int <[errnum]>);
-	char *_strerror_r(struct _reent <[ptr]>, int <[errnum]>,
-			  int <[internal]>, int *<[error]>);
 
 TRAD_SYNOPSIS
 	#include <string.h>
@@ -33,29 +31,17 @@ This implementation of <<strerror>> prints out the following strings
 for each of the values defined in `<<errno.h>>':
 
 o+
-o 0
-Success
-
 o E2BIG
 Arg list too long
 
 o EACCES
 Permission denied
 
-o EADDRINUSE
-Address already in use
-
 o EADV
 Advertise error
 
-o EAFNOSUPPORT
-Address family not supported by protocol family
-
 o EAGAIN
 No more processes
-
-o EALREADY
-Socket already connected
 
 o EBADF
 Bad file number
@@ -72,17 +58,8 @@ No children
 o ECOMM
 Communication error
 
-o ECONNABORTED
-Software caused connection abort
-
-o ECONNREFUSED
-Connection refused
-
 o EDEADLK
 Deadlock
-
-o EDESTADDRREQ
-Destination address required
 
 o EEXIST
 File exists
@@ -96,17 +73,8 @@ Bad address
 o EFBIG
 File too large
 
-o EHOSTDOWN
-Host is down
-
-o EHOSTUNREACH
-Host is unreachable
-
 o EIDRM
 Identifier removed
-
-o EINPROGRESS
-Connection already in progress
 
 o EINTR
 Interrupted system call
@@ -116,9 +84,6 @@ Invalid argument
 
 o EIO
 I/O error
-
-o EISCONN
-Socket is already connected
 
 o EISDIR
 Is a directory
@@ -144,20 +109,11 @@ Too many open files
 o EMLINK
 Too many links
 
-o EMSGSIZE
-Message too long
-
 o EMULTIHOP
 Multihop attempted
 
 o ENAMETOOLONG
 File or path name too long
-
-o ENETDOWN
-Network interface not configured
-
-o ENETUNREACH
-Network is unreachable
 
 o ENFILE
 Too many open files in system
@@ -189,9 +145,6 @@ Machine is not on the network
 o ENOPKG
 No package
 
-o ENOPROTOOPT
-Protocol not available
-
 o ENOSPC
 No space left on device
 
@@ -207,20 +160,11 @@ Function not implemented
 o ENOTBLK
 Block device required
 
-o ENOTCONN
-Socket is not connected
-
 o ENOTDIR
 Not a directory
 
 o ENOTEMPTY
 Directory not empty
-
-o ENOTSOCK
-Socket operation on non-socket
-
-o ENOTSUP
-Not supported
 
 o ENOTTY
 Not a character device
@@ -237,12 +181,6 @@ Broken pipe
 o EPROTO
 Protocol error
 
-o EPROTOTYPE
-Protocol wrong type for socket
-
-o EPROTONOSUPPORT
-Unknown protocol
-
 o ERANGE
 Result too large
 
@@ -251,12 +189,6 @@ Resource is remote
 
 o EROFS
 Read-only file system
-
-o ESHUTDOWN
-Can't send after socket shutdown
-
-o ESOCKTNOSUPPORT
-Socket type not supported
 
 o ESPIPE
 Illegal seek
@@ -270,30 +202,13 @@ Srmount error
 o ETIME
 Stream ioctl timeout
 
-o ETIMEDOUT
-Connection timed out
-
 o ETXTBSY
 Text file busy
 
 o EXDEV
 Cross-device link
 
-o ECANCELED
-Operation canceled
-
-o ENOTRECOVERABLE
-State not recoverable
-
-o EOWNERDEAD
-Previous owner died
-
-o ESTRPIPE
-Strings pipe error
-
 o-
-
-<<_strerror_r>> is a reentrant version of the above.
 
 RETURNS
 This function returns a pointer to a string.  Your application must
@@ -303,45 +218,22 @@ PORTABILITY
 ANSI C requires <<strerror>>, but does not specify the strings used
 for each error number.
 
-Although this implementation of <<strerror>> is reentrant (depending
-on <<_user_strerror>>), ANSI C declares that subsequent calls to
-<<strerror>> may overwrite the result string; therefore portable
-code cannot depend on the reentrancy of this subroutine.
-
-Although this implementation of <<strerror>> guarantees a non-null
-result with a NUL-terminator, some implementations return <<NULL>>
-on failure.  Although POSIX allows <<strerror>> to set <<errno>>
-to EINVAL on failure, this implementation does not do so (unless
-you provide <<_user_strerror>>).
-
-POSIX recommends that unknown <[errnum]> result in a message
-including that value, however it is not a requirement and this
-implementation does not provide that information (unless you
-provide <<_user_strerror>>).
+Although this implementation of <<strerror>> is reentrant, ANSI C
+declares that subsequent calls to <<strerror>> may overwrite the
+result string; therefore portable code cannot depend on the reentrancy
+of this subroutine.
 
 This implementation of <<strerror>> provides for user-defined
 extensibility.  <<errno.h>> defines <[__ELASTERROR]>, which can be
 used as a base for user-defined error values.  If the user supplies a
 routine named <<_user_strerror>>, and <[errnum]> passed to
 <<strerror>> does not match any of the supported values,
-<<_user_strerror>> is called with three arguments.  The first is of
-type <[int]>, and is the <[errnum]> value unknown to <<strerror>>.
-The second is of type <[int]>, and matches the <[internal]> argument
-of <<_strerror_r>>; this should be zero if called from <<strerror>>
-and non-zero if called from any other function; <<_user_strerror>> can
-use this information to satisfy the POSIX rule that no other
-standardized function can overwrite a static buffer reused by
-<<strerror>>.  The third is of type <[int *]>, and matches the
-<[error]> argument of <<_strerror_r>>; if a non-zero value is stored
-into that location (usually <[EINVAL]>), then <<strerror>> will set
-<<errno>> to that value, and the XPG variant of <<strerror_r>> will
-return that value instead of zero or <[ERANGE]>.  <<_user_strerror>>
-returns a <[char *]> value; returning <[NULL]> implies that the user
-function did not choose to handle <[errnum]>.  The default
-<<_user_strerror>> returns <[NULL]> for all input values.  Note that
-<<_user_sterror>> must be thread-safe, and only denote errors via the
-third argument rather than modifying <<errno>>, if <<strerror>> and
-<<strerror_r>> are are to comply with POSIX.
+<<_user_strerror>> is called with <[errnum]> as its argument.
+
+<<_user_strerror>> takes one argument of type <[int]>, and returns a
+character pointer.  If <[errnum]> is unknown to <<_user_strerror>>,
+<<_user_strerror>> returns <[NULL]>.  The default <<_user_strerror>>
+returns <[NULL]> for all input values.
 
 <<strerror>> requires no supporting OS subroutines.
 
@@ -353,20 +245,14 @@ QUICKREF
 #include <string.h>
 
 char *
-_DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
-	struct _reent *ptr _AND
-	int errnum _AND
-	int internal _AND
-	int *errptr)
+_DEFUN (strerror, (errnum),
+	int errnum)
 {
   char *error;
-  extern char *_user_strerror _PARAMS ((int, int, int *));
+  extern char *_user_strerror _PARAMS ((int));
 
   switch (errnum)
     {
-    case 0:
-      error = "Success";
-      break;
 /* go32 defines EPERM as EACCES */
 #if defined (EPERM) && (!defined (EACCES) || (EPERM != EACCES))
     case EPERM:
@@ -409,11 +295,6 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
       error = "Exec format error";
       break;
 #endif
-#ifdef EALREADY
-    case EALREADY:
-      error = "Socket already connected";
-      break;
-#endif
 #ifdef EBADF
     case EBADF:
       error = "Bad file number";
@@ -422,11 +303,6 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
 #ifdef ECHILD
     case ECHILD:
       error = "No children";
-      break;
-#endif
-#ifdef EDESTADDRREQ
-    case EDESTADDRREQ:
-      error = "Destination address required";
       break;
 #endif
 #ifdef EAGAIN
@@ -479,16 +355,6 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
       error = "Not a directory";
       break;
 #endif
-#ifdef EHOSTDOWN
-    case EHOSTDOWN:
-      error = "Host is down";
-      break;
-#endif
-#ifdef EINPROGRESS
-    case EINPROGRESS:
-      error = "Connection already in progress";
-      break;
-#endif
 #ifdef EISDIR
     case EISDIR:
       error = "Is a directory";
@@ -497,11 +363,6 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
 #ifdef EINVAL
     case EINVAL:
       error = "Invalid argument";
-      break;
-#endif
-#ifdef ENETDOWN
-    case ENETDOWN:
-      error = "Network interface is not configured";
       break;
 #endif
 #ifdef ENFILE
@@ -529,19 +390,9 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
       error = "File too large";
       break;
 #endif
-#ifdef EHOSTUNREACH
-    case EHOSTUNREACH:
-      error = "Host is unreachable";
-      break;
-#endif
 #ifdef ENOSPC
     case ENOSPC:
       error = "No space left on device";
-      break;
-#endif
-#ifdef ENOTSUP
-    case ENOTSUP:
-      error = "Not supported";
       break;
 #endif
 #ifdef ESPIPE
@@ -587,11 +438,6 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
 #ifdef EDEADLK
     case EDEADLK:
       error = "Deadlock";
-      break;
-#endif
-#ifdef ENETUNREACH
-    case  ENETUNREACH:
-      error = "Network is unreachable";
       break;
 #endif
 #ifdef ENOLCK
@@ -652,11 +498,6 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
 #ifdef EPROTO
     case EPROTO:
       error = "Protocol error";
-      break;
-#endif
-#ifdef EPROTONOSUPPORT
-    case EPROTONOSUPPORT:
-      error = "Unknown protocol";
       break;
 #endif
 #ifdef EMULTIHOP
@@ -784,27 +625,7 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
         error = "Socket is already connected";
         break;
 #endif
-#ifdef ECANCELED
-    case ECANCELED:
-        error = "Operation canceled";
-        break;
-#endif
-#ifdef ENOTRECOVERABLE
-    case ENOTRECOVERABLE:
-        error = "State not recoverable";
-        break;
-#endif
-#ifdef EOWNERDEAD
-    case EOWNERDEAD:
-        error = "Previous owner died";
-        break;
-#endif
-#ifdef ESTRPIPE
-    case ESTRPIPE:
-	error = "Streams pipe error";
-	break;
-#endif
-#if defined(EOPNOTSUPP) && (!defined(ENOTSUP) || (ENOTSUP != EOPNOTSUPP))
+#ifdef EOPNOTSUPP
     case EOPNOTSUPP:
         error = "Operation not supported on socket";
         break;
@@ -820,19 +641,10 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
         break;
 #endif
     default:
-      if (!errptr)
-        errptr = &ptr->_errno;
-      if ((error = _user_strerror (errnum, internal, errptr)) == 0)
-        error = "";
+      if ((error = _user_strerror (errnum)) == 0)
+	error = "";
       break;
     }
 
   return error;
-}
-
-char *
-_DEFUN(strerror, (int),
-       int errnum)
-{
-  return _strerror_r (_REENT, errnum, 0, NULL);
 }

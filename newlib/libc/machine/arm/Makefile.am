@@ -11,7 +11,9 @@ noinst_LIBRARIES = lib.a
 lib_a_SOURCES = setjmp.S strcmp.S strcpy.c \
 		aeabi_memcpy.c aeabi_memcpy-armv7a.S \
 		aeabi_memmove.c aeabi_memmove-soft.S \
-		aeabi_memset.c aeabi_memset-soft.S aeabi_memclr.c
+		aeabi_memset.c aeabi_memset-soft.S aeabi_memclr.c \
+		sync_synchronize.c
+
 lib_a_SOURCES += memchr-stub.c
 lib_a_SOURCES += memchr.S
 lib_a_SOURCES += memcpy-stub.c

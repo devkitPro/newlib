@@ -233,7 +233,7 @@ int	fsetpos (FILE *, const _fpos_t *);
 #else
 int	fsetpos (FILE *, const fpos_t *);
 #endif
-long	ftell ( FILE *);
+long ftell ( FILE *);
 void	rewind (FILE *);
 void	clearerr (FILE *);
 int	feof (FILE *);

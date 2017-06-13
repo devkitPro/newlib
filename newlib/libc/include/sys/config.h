@@ -4,6 +4,9 @@
 #include <machine/ieeefp.h>  /* floating point macros */
 #include <sys/features.h>	/* POSIX defs */
 
+/* we want the reentrancy structure to be returned by a function */
+#define __DYNAMIC_REENT__
+
 #ifdef __aarch64__
 #define MALLOC_ALIGNMENT 16
 #endif

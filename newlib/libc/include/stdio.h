@@ -227,13 +227,13 @@ int	fgetpos (FILE *, _fpos_t *);
 #else
 int	fgetpos (FILE *__restrict, fpos_t *__restrict);
 #endif
-int	fseek (FILE *, long, int);
+int	fseek (FILE *, off_t, int);
 #ifdef _COMPILING_NEWLIB
 int	fsetpos (FILE *, const _fpos_t *);
 #else
 int	fsetpos (FILE *, const fpos_t *);
 #endif
-long	ftell ( FILE *);
+off_t ftell ( FILE *);
 void	rewind (FILE *);
 void	clearerr (FILE *);
 int	feof (FILE *);
@@ -438,9 +438,9 @@ size_t	_fread_r (struct _reent *, void *__restrict, size_t _size, size_t _n, FIL
 size_t	_fread_unlocked_r (struct _reent *, void *__restrict, size_t _size, size_t _n, FILE *__restrict);
 int	_fscanf_r (struct _reent *, FILE *__restrict, const char *__restrict, ...)
                _ATTRIBUTE ((__format__ (__scanf__, 3, 4)));
-int	_fseek_r (struct _reent *, FILE *, long, int);
+int	_fseek_r (struct _reent *, FILE *, off_t, int);
 int	_fseeko_r (struct _reent *, FILE *, _off_t, int);
-long	_ftell_r (struct _reent *, FILE *);
+off_t	_ftell_r (struct _reent *, FILE *);
 _off_t	_ftello_r (struct _reent *, FILE *);
 void	_rewind_r (struct _reent *, FILE *);
 size_t	_fwrite_r (struct _reent *, const void *__restrict, size_t _size, size_t _n, FILE *__restrict);

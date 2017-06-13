@@ -1,3 +1,4 @@
+#if 0
 /* default reentrant pointer when multithread enabled */
 
 #ifdef GETREENT_PROVIDED
@@ -19,4 +20,5 @@ __getreent (void)
   return _impure_ptr;
 }
 
+#endif
 #endif

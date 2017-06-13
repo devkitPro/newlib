@@ -83,7 +83,7 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 int
 _fseek_r (struct _reent *ptr,
        register FILE *fp,
-       long offset,
+       off_t offset,
        int whence)
 {
   return _fseeko_r (ptr, fp, offset, whence);
@@ -93,7 +93,7 @@ _fseek_r (struct _reent *ptr,
 
 int
 fseek (register FILE *fp,
-       long offset,
+       off_t offset,
        int whence)
 {
   return _fseek_r (_REENT, fp, offset, whence);

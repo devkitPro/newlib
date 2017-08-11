@@ -112,6 +112,8 @@ Supporting OS subroutines required: <<close>>, <<fstat>>, <<isatty>>,
 <<lseek>>, <<read>>, <<sbrk>>, <<write>>.
 */
 
+#pragma GCC optimize ("Os")
+
 #if defined(LIBC_SCCS) && !defined(lint)
 /*static char *sccsid = "from: @(#)vfprintf.c	5.50 (Berkeley) 12/16/92";*/
 static char *rcsid = "$Id$";
@@ -1438,7 +1440,7 @@ reswitch:	switch (ch) {
 string:
 #endif
 			sign = '\0';
-#ifndef __OPTIMIZE_SIZE__
+//#ifndef __OPTIMIZE_SIZE__
 			/* Behavior is undefined if the user passed a
 			   NULL string when precision is not 0.
 			   However, if we are not optimizing for size,
@@ -1448,7 +1450,7 @@ string:
 				size = ((unsigned) prec > 6U) ? 6 : prec;
 			}
 			else
-#endif /* __OPTIMIZE_SIZE__ */
+//#endif /* __OPTIMIZE_SIZE__ */
 #ifdef _MB_CAPABLE
 			if (ch == 'S' || (flags & LONGINT)) {
 				mbstate_t ps;

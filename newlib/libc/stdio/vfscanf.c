@@ -74,6 +74,8 @@ These are GNU extensions.
 Supporting OS subroutines required:
 */
 
+#pragma GCC optimize ("Os")
+
 #include <_ansi.h>
 #include <reent.h>
 #include <newlib.h>

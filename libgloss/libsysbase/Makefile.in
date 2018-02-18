@@ -68,7 +68,7 @@ OBJCOPY = `if [ -f ${objroot}/../binutils/objcopy ] ; \
 OBJS = abort.o iosupport.o close.o environ.o execve.o fork.o fstat.o getpid.o gettod.o \
 	isatty.o kill.o link.o lseek.o open.o read.o sbrk.o stat.o times.o \
 	unlink.o wait.o write.o _exit.o malloc_vars.o \
-	chdir.o mkdir.o rename.o build_argv.o statvfs.o \
+	chdir.o mkdir.o rename.o statvfs.o \
 	flock.o syscall_support.o handle_manager.o truncate.o ftruncate.o dirent.o fsync.o \
 	fchmod.o chmod.o getreent.o rmdir.o
 

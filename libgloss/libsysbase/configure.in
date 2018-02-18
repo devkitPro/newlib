@@ -43,6 +43,9 @@ case "${target}" in
 	;;
   a29k-amd-udi)
 	;;
+  aarch64-*-elf)
+  AC_DEFINE(REENTRANT_SYSCALLS_PROVIDED)
+  ;;
   arc-*-*)
 	;;
   arm-*-eabi)

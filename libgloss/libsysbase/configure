@@ -2027,11 +2027,13 @@ case "${target}" in
 	;;
   a29k-amd-udi)
 	;;
+  aarch64-*-elf)
+  $as_echo "#define REENTRANT_SYSCALLS_PROVIDED 1" >>confdefs.h
+  ;;
   arc-*-*)
 	;;
   arm-*-eabi)
 	$as_echo "#define REENTRANT_SYSCALLS_PROVIDED 1" >>confdefs.h
-
 	;;
   arm*-*-*)
 	;;

@@ -624,7 +624,11 @@ newlib_cflags="${newlib_cflags} -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DEXIT_PROVID
 	syscall_dir=syscalls
 	;;
   aarch64*-*-*)
+	default_newlib_io_c99_formats="yes"
 	default_newlib_io_long_long="yes"
+	default_newlib_io_pos_args="yes"
+	newlib_cflags="${newlib_cflags} -D__DYNAMIC_REENT__ -DREENTRANT_SYSCALLS_PROVIDED -D__DEFAULT_UTF8__"
+	newlib_cflags="${newlib_cflags} -ffunction-sections -fdata-sections"
 	syscall_dir=syscalls
 	;;
   arc*-*-*)

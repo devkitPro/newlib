@@ -10,6 +10,7 @@ extern "C" {
 #include <reent.h>
 #include <sys/stat.h>
 #include <sys/statvfs.h>
+#include <time.h>
 
 enum	{
 	STD_IN,
@@ -64,7 +65,7 @@ typedef struct {
 	int (*rmdir_r)(struct _reent *r, const char *name);
 
 } devoptab_t;
-	
+
 extern const devoptab_t *devoptab_list[];
 
 typedef struct {
@@ -77,10 +78,13 @@ typedef struct {
 	void (*malloc_unlock) (struct _reent *ptr);
 	void (*exit) ( int rc );
 	int (*gettod_r) (struct _reent *ptr, struct timeval *tp, struct timezone *tz);
-} __syscalls_t;	
-	
+	int (*clock_gettime)(clockid_t clock_id, struct timespec *tp);
+	int (*clock_settime)(clockid_t clock_id, const struct timespec *tp);
+	int (*clock_getres)(clockid_t clock_id, struct timespec *res);
+} __syscalls_t;
+
 extern __syscalls_t __syscalls;
-	
+
 int AddDevice( const devoptab_t* device);
 int FindDevice(const char* name);
 int RemoveDevice(const char* name);
@@ -91,7 +95,7 @@ void __release_handle(int fd);
 int  __alloc_handle(int device);
 __handle *__get_handle(int fd);
 
-	
+
 #ifdef __cplusplus
 }
 #endif

@@ -9,6 +9,7 @@ AM_CCASFLAGS = $(INCLUDES)
 noinst_LIBRARIES = lib.a
 
 lib_a_SOURCES =
+lib_a_SOURCES += access.c
 lib_a_SOURCES += memchr-stub.c
 lib_a_SOURCES += memchr.S
 lib_a_SOURCES += memcmp-stub.c

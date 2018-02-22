@@ -10,6 +10,7 @@ extern "C" {
 #include <reent.h>
 #include <sys/stat.h>
 #include <sys/statvfs.h>
+#include <time.h>
 
 enum	{
 	STD_IN,
@@ -82,6 +83,9 @@ typedef struct {
 	void (*lock_release_recursive) (_LOCK_RECURSIVE_T *lock);
 	void (*lock_close_recursive) (_LOCK_RECURSIVE_T *lock);
 	struct _reent *(*getreent) ();
+	int (*clock_gettime)(clockid_t clock_id, struct timespec *tp);
+	int (*clock_settime)(clockid_t clock_id, const struct timespec *tp);
+	int (*clock_getres)(clockid_t clock_id, struct timespec *res);
 } __syscalls_t;
 
 extern __syscalls_t __syscalls;

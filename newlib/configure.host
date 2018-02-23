@@ -797,7 +797,12 @@ newlib_cflags="${newlib_cflags} -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DEXIT_PROVID
 	default_newlib_io_long_long="yes"
 	newlib_cflags="${newlib_cflags} -DMISSING_SYSCALL_NAMES"
 	;;
-  powerpc*-*-eabi* | \
+  powerpc*-*-eabi*)
+	default_newlib_io_long_long="yes"
+	newlib_cflags="${newlib_cflags} -DREENTRANT_SYSCALLS_PROVIDED -D__DEFAULT_UTF8__"
+	newlib_cflags="${newlib_cflags} -ffunction-sections -fdata-sections"
+	syscall_dir=syscalls
+	;;
   powerpc*-*-elf* | \
   powerpc*-*-linux* | \
   powerpc*-*-rtem* | \

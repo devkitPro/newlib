@@ -2,6 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.59)
 AC_INIT([libgloss],[LIBGLOSS_VERSION])
 AC_CONFIG_SRCDIR([libnosys])
+AC_CONFIG_SRCDIR([libsysbase])
 
 if test "${enable_shared}" = "yes" ; then
     echo "Shared libraries not supported for cross compiling, ignored"
@@ -32,6 +33,9 @@ config_testsuite=true
 
 dnl indicates whether to run configure within the libnosys subdirectory
 config_libnosys=true
+
+dnl indicates whether to run configure within the libsysbase subdirectory
+config_libsysbase=true
 
 case "${target}" in
   aarch64*-*-*)
@@ -186,6 +190,10 @@ dnl fi
 
 if test "${config_libnosys}" = "true"; then
   AC_CONFIG_SUBDIRS([libnosys])
+fi
+
+if test "${config_libsysbase}" = "true"; then
+  AC_CONFIG_SUBDIRS([libsysbase])
 fi
 
 LIB_AC_PROG_CC

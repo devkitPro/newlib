@@ -507,6 +507,7 @@ GENERAL_SOURCES = \
 	rename.c			\
 	rewind.c			\
 	rget.c				\
+	rmdir.c				\
 	scanf.c			\
 	sccl.c				\
 	setbuf.c			\
@@ -1175,6 +1176,12 @@ lib_a-rget.o: rget.c
 
 lib_a-rget.obj: rget.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-rget.obj `if test -f 'rget.c'; then $(CYGPATH_W) 'rget.c'; else $(CYGPATH_W) '$(srcdir)/rget.c'; fi`
+
+lib_a-rmdir.o: rmdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-rmdir.o `test -f 'rmdir.c' || echo '$(srcdir)/'`rmdir.c
+
+lib_a-rmdir.obj: rmdir.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-rmdir.obj `if test -f 'rmdir.c'; then $(CYGPATH_W) 'rmdir.c'; else $(CYGPATH_W) '$(srcdir)/rmdir.c'; fi`
 
 lib_a-scanf.o: scanf.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-scanf.o `test -f 'scanf.c' || echo '$(srcdir)/'`scanf.c

@@ -129,6 +129,9 @@ XIL_OBJS	= open.o close.o lseek.o sbrk.o read.o write.o print.o
 XIL_TEST	= xil-test
 XIL_INSTALL	= install-xil
 
+OGC_CRTMAIN	= crtmain.o
+OGC_INSTALL = install-ogc
+
 # Host specific makefile fragment comes in here.
 @host_makefile_frag@
 
@@ -143,7 +146,7 @@ all: \
 	${LINUX_CRT0} ${LINUX_BSP} \
 	${YELLOWKNIFE_CRT0} ${YELLOWKNIFE_BSP} \
 	${ADS_CRT0} ${ADS_BSP} \
-	${MBX_CRT0} ${MBX_BSP} \
+	${MBX_CRT0} ${MBX_BSP} ${OGC_CRTMAIN} \
 	${XIL_CRT0} ${XIL_BSP}
 
 #
@@ -295,6 +298,8 @@ xil-test.srec:	xil-test.x
 
 crt0.o: crt0.S
 
+crtmain.o: crtmain.c
+
 simulator.o: simulator.S
 sim-getrusage.o: sim-getrusage.S
 sim-crt0.o: sim-crt0.S
@@ -352,7 +357,7 @@ distclean maintainer-clean realclean: clean
 	rm -f Makefile config.status *~
 
 .PHONY: install info install-info clean-info
-install: ${SIM_INSTALL} ${MVME_INSTALL} ${SOLARIS_INSTALL} ${LINUX_INSTALL} ${YELLOWKNIFE_INSTALL} ${ADS_INSTALL} ${MBX_INSTALL} ${XIL_INSTALL}
+install: ${SIM_INSTALL} ${MVME_INSTALL} ${SOLARIS_INSTALL} ${LINUX_INSTALL} ${YELLOWKNIFE_INSTALL} ${ADS_INSTALL} ${MBX_INSTALL} ${OGC_INSTALL} ${XIL_INSTALL}
 
 install-sim:
 	set -e; for x in ${SIM_CRT0} ${SIM_BSP} ${SIM_SCRIPTS}; do ${INSTALL_DATA} $$x $(DESTDIR)${tooldir}/lib${MULTISUBDIR}/$$x; done
@@ -381,6 +386,9 @@ install-mbx:
 install-xil:
 	set -e; for x in ${XIL_CRT0} ${XIL_BSP}; do ${INSTALL_DATA} $$x $(DESTDIR)${tooldir}/lib/$$x; done
 	set -e; for x in ${XIL_SCRIPTS} ${XIL_SPECS}; do ${INSTALL_DATA} $(srcdir)/$$x $(DESTDIR)${tooldir}/lib/$$x; done
+
+install-ogc:
+	set -e; for x in ${OGC_CRTMAIN}; do ${INSTALL_DATA} $$x $(DESTDIR)${tooldir}/lib${MULTISUBDIR}/$$x; done
 
 doc:
 info:

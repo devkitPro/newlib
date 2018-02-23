@@ -225,7 +225,31 @@ _fread_r (struct _reent * ptr,
 	  /* fp->_r = 0 ... done in __srefill */
 	  p += r;
 	  resid -= r;
-	  if (__srefill_r (ptr, fp))
+      int rc = 0;
+
+      if (resid>BUFSIZ)
+      {
+        /* save fp buffering state */
+        void *old_base = fp->_bf._base;
+        void * old_p = fp->_p;
+        int old_size = fp->_bf._size;
+        /* allow __refill to use user's buffer */
+        fp->_bf._base = (unsigned char *) p;
+        fp->_bf._size = resid;
+        fp->_p = (unsigned char *) p;
+        rc = __srefill_r (ptr, fp);
+        /* restore fp buffering back to original state */
+        fp->_bf._base = old_base;
+        fp->_bf._size = old_size;
+        fp->_p = old_p;
+        resid -= fp->_r;
+        p += fp->_r;
+        fp->_r = 0;
+
+      } else {
+        rc = __srefill_r (ptr, fp);
+      }
+    if (rc)
 	    {
 	      /* no more input: return partial result */
 #ifdef __SCLE

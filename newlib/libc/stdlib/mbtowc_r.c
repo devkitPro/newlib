@@ -7,6 +7,7 @@
 #include <errno.h>
 #include "local.h"
 
+
 int
 _mbtowc_r (struct _reent *r,
         wchar_t       *__restrict pwc,

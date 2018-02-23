@@ -421,6 +421,8 @@ struct _reent
   __FILE *__sf;			        /* file descriptors */
   struct _misc_reent *_misc;            /* strtok, multibyte states */
   char *_signal_buf;                    /* strsignal */
+
+  void *deviceData;
 };
 
 #ifdef _REENT_GLOBAL_STDIO_STREAMS
@@ -691,6 +693,7 @@ struct _reent
 # ifndef _REENT_GLOBAL_STDIO_STREAMS
   __FILE __sf[3];  		/* first three file descriptors */
 # endif
+  void *deviceData;
 };
 
 #ifdef _REENT_GLOBAL_STDIO_STREAMS

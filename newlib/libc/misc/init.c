@@ -44,4 +44,8 @@ __libc_init_array (void)
   for (i = 0; i < count; i++)
     __init_array_start[i] ();
 }
+#else
+
+#error why am I not defined
+
 #endif

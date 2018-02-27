@@ -330,6 +330,9 @@ extern "C" {
 #  define __SSP_FORTIFY_LEVEL 0
 #endif
 
+#define _POSIX_MONOTONIC_CLOCK		200112L
+#define _POSIX_TIMERS			1
+
 /* RTEMS adheres to POSIX -- 1003.1b with some features from annexes.  */
 
 #ifdef __rtems__

@@ -7,8 +7,7 @@
 
 #include <sys/iosupport.h>
 
-int _DEFUN (fsync,(fileDesc),
-			int   fileDesc ) {
+int fsync( int   fileDesc ) {
 	int ret = -1;
 	unsigned int dev = 0;
 	unsigned int fd = -1;

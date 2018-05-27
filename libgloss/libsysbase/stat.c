@@ -9,18 +9,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _DEFUN (_stat_r,(r,file, st),
-			struct _reent * r _AND
-			const char *file _AND
-			struct stat *st) {
+int _stat_r(struct _reent * r, const char *file, struct stat *st) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-int
-_DEFUN (_stat, (file, st),
-        const char  *file _AND
-        struct stat *st)
-{
+int _stat( const char  *file, struct stat *st) {
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
 #endif

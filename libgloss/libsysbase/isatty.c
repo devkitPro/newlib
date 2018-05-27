@@ -5,14 +5,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _DEFUN(_isatty_r,(ptr,file),
-		   struct _reent *ptr _AND
-           int file) {
+int _isatty_r( struct _reent *ptr, int file) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-int _DEFUN(_isatty,(file),
-           int file) {
+int _isatty(int file) {
 //---------------------------------------------------------------------------------
 	struct _reent *ptr = _REENT;
 #endif

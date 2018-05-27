@@ -10,18 +10,11 @@
 //---------------------------------------------------------------------------------
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-_off_t _DEFUN (_lseek_r, (r, fileDesc, pos, dir),
-           struct _reent * r _AND
-           int   fileDesc  _AND
-		   _off_t   pos   _AND
-           int   dir) {
+_off_t _lseek_r(struct _reent * r, int fileDesc, _off_t pos, int dir) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-_off_t _DEFUN (_lseek,(fileDesc, pos, dir),
-           int   fileDesc  _AND
-		   _off_t   pos   _AND
-           int   dir) {
+_off_t _lseek(int fileDesc, _off_t pos, int dir) {
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
 //---------------------------------------------------------------------------------

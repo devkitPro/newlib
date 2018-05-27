@@ -8,16 +8,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _DEFUN (_fstat_r,(r,fileDesc, st),
-			struct _reent * r _AND
-			int fileDesc _AND
-			struct stat *st) {
+int _fstat_r( struct _reent * r, int fileDesc, struct stat *st) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-int _DEFUN (_fstat,(fileDesc, st),
-			int fileDesc _AND
-			struct stat *st) {
+int _fstat(int fileDesc, struct stat *st) {
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
 #endif

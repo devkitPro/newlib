@@ -8,18 +8,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-_ssize_t _DEFUN(_read_r,(r, fileDesc, ptr, len),
-			struct _reent * r _AND
-			int   fileDesc  _AND
-			void *ptr   _AND
-			size_t   len) {
+_ssize_t _read_r( struct _reent * r, int fileDesc, void *ptr, size_t len) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-_ssize_t _DEFUN(_read,(fileDesc, ptr, len),
-           int   fileDesc  _AND
-           char *ptr   _AND
-           size_t   len) {
+_ssize_t _read(int fileDesc, char *ptr, size_t len) {
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
 #endif

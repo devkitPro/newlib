@@ -6,9 +6,7 @@
 #include <_syslist.h>
 #include <sys/iosupport.h>
 
-_VOID
-_DEFUN (_exit, (rc),
-	int rc)
+void _exit(int rc)
 {
 
 	if ( __syscalls.exit ) {

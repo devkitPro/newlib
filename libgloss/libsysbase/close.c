@@ -8,14 +8,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _DEFUN(_close_r,(ptr,fileDesc),
-		   struct _reent *ptr _AND
-           int fileDesc) {
+int _close_r( struct _reent *ptr, int fileDesc) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-int _DEFUN(_close,(fileDesc),
-           int fileDesc) {
+int _close( int fileDesc) {
 //---------------------------------------------------------------------------------
 	struct _reent *ptr = _REENT;
 #endif

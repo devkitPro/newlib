@@ -7,10 +7,7 @@
 
 #include <sys/iosupport.h>
 
-int _DEFUN (truncate, (file, len),
-			const char *file _AND
-			off_t len)
-{
+int truncate( const char *file, off_t len) {
 
 	__handle *handle;
 	int dev, fd, ret;

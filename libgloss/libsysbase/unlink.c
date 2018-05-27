@@ -7,14 +7,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _DEFUN (_unlink_r, (r, name),
-		struct _reent * r _AND
-		const char *name ) {
+int _unlink_r( struct _reent * r, const char *name ) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-int _DEFUN (_unlink, (name),
-        const char *name) {
+int _unlink(const char *name) {
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
 #endif

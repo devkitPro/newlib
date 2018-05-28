@@ -14,7 +14,7 @@ int clock_gettime(clockid_t clock_id, struct timespec *tp)
 
 int clock_settime(clockid_t clock_id, const struct timespec *tp)
 {
-   if ( __syscalls.clock_gettime ) {
+   if ( __syscalls.clock_settime ) {
       return __syscalls.clock_settime(clock_id, tp);
    } else {
       errno = ENOSYS;

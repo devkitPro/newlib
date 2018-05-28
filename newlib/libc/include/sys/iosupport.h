@@ -81,6 +81,7 @@ typedef struct {
 	int (*clock_gettime)(clockid_t clock_id, struct timespec *tp);
 	int (*clock_settime)(clockid_t clock_id, const struct timespec *tp);
 	int (*clock_getres)(clockid_t clock_id, struct timespec *res);
+	int (*nanosleep)(const struct timespec *req, struct timespec *rem);
 } __syscalls_t;
 
 extern __syscalls_t __syscalls;

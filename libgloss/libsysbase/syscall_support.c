@@ -17,6 +17,10 @@ __syscalls_t __syscalls = {
 	NULL,	// lock_release_recursive
 	NULL,	// lock_close_recursive
 	NULL,	// __getreent
+	NULL,	// clock_gettime
+	NULL,	// clock_settime
+	NULL,	// clock_getres
+	NULL,	// nanosleep
 };
 
 void __libc_lock_init(_LOCK_T *lock) {

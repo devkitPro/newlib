@@ -66,7 +66,7 @@ OBJCOPY = `if [ -f ${objroot}/../binutils/objcopy ] ; \
 
 # object files needed
 OBJS = abort.o iosupport.o clocks.o close.o environ.o execve.o fork.o fstat.o getpid.o gettod.o \
-	isatty.o kill.o link.o lseek.o open.o read.o sbrk.o stat.o times.o \
+	isatty.o kill.o link.o lseek.o nanosleep.o open.o read.o sbrk.o sleep.o stat.o usleep.o times.o \
 	unlink.o wait.o write.o _exit.o malloc_vars.o \
 	chdir.o mkdir.o rename.o build_argv.o statvfs.o \
 	flock.o syscall_support.o handle_manager.o truncate.o ftruncate.o dirent.o fsync.o \

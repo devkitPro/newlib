@@ -82,7 +82,7 @@ static char sccsid[] = "%W% (Berkeley) %G%";
 #include <errno.h>
 #include "local.h"
 
-off_t
+long
 _ftell_r (struct _reent *ptr,
        register FILE * fp)
 {
@@ -99,7 +99,7 @@ _ftell_r (struct _reent *ptr,
 
 #ifndef _REENT_ONLY
 
-off_t
+long
 ftell (register FILE * fp)
 {
   return _ftell_r (_REENT, fp);

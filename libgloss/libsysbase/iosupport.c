@@ -48,6 +48,8 @@ const devoptab_t dotab_stdnull = {
 	NULL,		// chmod_r
 	NULL,		// fchmod_r
 	NULL,		// rmdir_r
+	NULL,		// lstat_r
+	NULL,		// utimes_r
 };
 
 //---------------------------------------------------------------------------------

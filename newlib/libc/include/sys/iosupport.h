@@ -64,6 +64,7 @@ typedef struct {
 	int (*fchmod_r)(struct _reent *r, void *fd, mode_t mode);
 	int (*rmdir_r)(struct _reent *r, const char *name);
 	int (*lstat_r)(struct _reent *r, const char *file, struct stat *st);
+	int (*utimes_r)(struct _reent *r, const char *filename, const struct timeval times[2]);
 
 } devoptab_t;
 

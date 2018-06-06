@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2015 embedded brains GmbH
+ * Copyright (c) 2018 Dave Murphy
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,14 +25,15 @@
  */
 
 #include <stdlib.h>
+#include <malloc.h>
+#include <errno.h>
 
 void *
 aligned_alloc(size_t alignment, size_t size)
 {
-	void *p;
-	int error;
+	if ((alignment !=0) && !(alignment & (alignment - 1 )) && !(size & (alignment - 1)))
+		return memalign(alignment,size);
 
-	error = posix_memalign(&p, alignment, size);
-
-	return (error == 0 ? p : NULL);
+	errno = EINVAL;
+	return (void*)NULL;
 }

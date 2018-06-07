@@ -45,6 +45,12 @@ extern "C" {
 	void seekdir(DIR *dirp, long int loc);
 	long int telldir(DIR *dirp);
 
+	int scandir(const char *dirp, struct dirent ***namelist,
+		int (*filter)(const struct dirent *),
+		int (*compar)(const struct dirent **, const struct dirent **));
+
+	int alphasort(const struct dirent **a, const struct dirent **b);
+
 #ifdef __cplusplus
 }
 #endif

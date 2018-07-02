@@ -7,7 +7,6 @@
 #ifndef _dirent_h_
 #define _dirent_h_
 
-#include <sys/iosupport.h>
 #include <sys/types.h>
 #include <sys/syslimits.h>
 
@@ -35,7 +34,7 @@ extern "C" {
 
 	typedef struct {
 		long int        position;
-		DIR_ITER*       dirData;
+		void*           dirData;
 		struct dirent   fileData;
 	} DIR;
 

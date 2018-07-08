@@ -97,11 +97,10 @@ int _concatenate_path (struct _reent *r, char *path, const char *extra, int maxL
 		extra += extraSize;
 	} while (extraSize != 0);
 
-	if (pathEnd[-1] != DIRECTORY_SEPARATOR_CHAR) {
-		pathEnd[0] = DIRECTORY_SEPARATOR_CHAR;
-		pathEnd[1] = 0;
-		pathEnd += 1;
-	}
+        if (strlen(path) > 2 ) {
+                if (pathEnd[-1] == DIRECTORY_SEPARATOR_CHAR && pathEnd[-2] != ':')
+                        pathEnd[-1] = '\0';
+        }
 
 	return 0;
 }

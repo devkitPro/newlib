@@ -11,6 +11,7 @@ extern "C" {
 #include <sys/stat.h>
 #include <sys/statvfs.h>
 #include <time.h>
+#include <dirent.h>
 
 enum	{
 	STD_IN,
@@ -19,18 +20,11 @@ enum	{
 	STD_MAX = 16
 };
 
-
 typedef struct {
 	unsigned int device;
 	unsigned int refcount;
 	void *fileStruct;
 } __handle;
-
-/* Directory iterator for mantaining state between dir* calls */
-typedef struct {
-    int device;
-    void *dirStruct;
-} DIR_ITER;
 
 typedef struct {
 	const char *name;

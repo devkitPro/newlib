@@ -20,6 +20,8 @@
 #define	DT_SOCK		12
 #define	DT_WHT		14
 
+#define _DIRENT_HAVE_D_TYPE
+
 #ifdef __cplusplus
 extern "C" {
 #endif

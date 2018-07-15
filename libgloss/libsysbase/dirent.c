@@ -207,6 +207,7 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 
 	strncpy (entry->d_name, filename, sizeof(entry->d_name));
 	entry->d_ino = st.st_ino;
+	entry->d_type = S_ISDIR(st.st_mode)?DT_DIR:DT_REG;
 
 	*result = entry;
 	return 0;

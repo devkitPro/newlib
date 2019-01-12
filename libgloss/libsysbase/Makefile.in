@@ -70,7 +70,7 @@ OBJS = abort.o iosupport.o clocks.o close.o environ.o execve.o fork.o fstat.o ge
 	unlink.o wait.o write.o _exit.o malloc_vars.o \
 	chdir.o mkdir.o rename.o statvfs.o \
 	flock.o syscall_support.o handle_manager.o truncate.o ftruncate.o dirent.o fsync.o \
-	fchmod.o chmod.o getreent.o rmdir.o utime.o scandir.o
+	fchmod.o chmod.o getreent.o rmdir.o utime.o scandir.o fnmatch.o
 
 # Object files specific to particular targets.
 EVALOBJS = ${OBJS}

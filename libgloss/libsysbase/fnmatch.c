@@ -37,6 +37,8 @@
  * $Id: fnmatch.c,v 1.3 1997/08/19 02:34:30 jdp Exp $
  */
 
+#define _GNU_SOURCE
+
 #if defined(LIBC_SCCS) && !defined(lint)
 static char sccsid[] = "@(#)fnmatch.c	8.2 (Berkeley) 4/16/94";
 #endif /* LIBC_SCCS and not lint */

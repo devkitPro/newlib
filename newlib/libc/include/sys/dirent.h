@@ -9,6 +9,7 @@
 
 #include <sys/types.h>
 #include <sys/syslimits.h>
+#include <sys/iosupport.h>
 
 #define _DIRENT_HAVE_D_TYPE
 
@@ -34,7 +35,7 @@ extern "C" {
 
 	typedef struct {
 		long int        position;
-		void*           dirData;
+		DIR_ITER*           dirData;
 		struct dirent   fileData;
 	} DIR;
 

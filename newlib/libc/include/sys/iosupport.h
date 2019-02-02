@@ -10,7 +10,7 @@ extern "C" {
 #include <reent.h>
 #include <sys/stat.h>
 #include <sys/statvfs.h>
-#include <time.h>
+#include <sys/time.h>
 
 enum	{
 	STD_IN,

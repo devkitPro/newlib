@@ -14,6 +14,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/environ.c \
 	%D%/execve.c \
 	%D%/fchmod.c \
+	%D%/fnmatch.c \
 	%D%/fork.c \
 	%D%/fstat.c \
 	%D%/fsync.c \

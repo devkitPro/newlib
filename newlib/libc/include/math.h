@@ -445,7 +445,7 @@ extern float hypotf (float, float);
    simply call the double functions.  On Cygwin the long double functions
    are implemented independently from newlib to be able to use optimized
    assembler functions despite using the Microsoft x86_64 ABI. */
-#if defined (_LDBL_EQ_DBL) || defined (__CYGWIN__) || \
+#if defined (_LDBL_EQ_DBL) || defined (__CYGWIN__) || defined (__DEVKITA64__) || \
 	defined(__aarch64__) || defined(__i386__) || defined(__x86_64__) || \
 	defined(__riscv)
 /* Reentrant ANSI C functions.  */

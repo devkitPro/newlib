@@ -540,6 +540,8 @@ pthread_once (pthread_once_t *__once_control, void (*__init_routine)(void))
 int
 pthread_key_create (pthread_key_t *__key, void (*__destructor)(void *))
 {
+	if (!__key)
+		return EINVAL;
 	if (!__has_syscall(tls_create))
 		return ENOSYS;
 	return __syscall_tls_create(__key, __destructor);

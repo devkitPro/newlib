@@ -151,6 +151,8 @@ typedef struct {
 } pthread_mutexattr_t;
 
 #define _PTHREAD_MUTEX_INITIALIZER ((pthread_mutex_t){ PTHREAD_MUTEX_NORMAL, { .normal = __LOCK_INITIALIZER } })
+#define PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP ((pthread_mutex_t){ PTHREAD_MUTEX_RECURSIVE, { .recursive = __LOCK_INITIALIZER_RECURSIVE } })
+#define PTHREAD_RECURSIVE_MUTEX_INITIALIZER PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP
 
 /* Condition Variables */
 

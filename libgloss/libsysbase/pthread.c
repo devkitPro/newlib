@@ -603,14 +603,60 @@ pthread_testcancel (void)
 // Cleanup
 //-----------------------------------------------------------------------------
 
+static pthread_once_t __pthread_cleanup_once;
+static pthread_key_t __pthread_cleanup_key;
+
+static void
+__pthread_cleanup_dtor (void *arg)
+{
+	struct _pthread_cleanup_context *cur;
+	for (cur = (struct _pthread_cleanup_context *)arg; cur; cur = cur->_previous)
+		cur->_routine(cur->_arg);
+}
+
+static void
+__pthread_cleanup_setup (void)
+{
+	int err = pthread_key_create(&__pthread_cleanup_key, __pthread_cleanup_dtor);
+	if (err)
+		abort();
+}
+
 void
 _pthread_cleanup_push (struct _pthread_cleanup_context *_context, void (*_routine)(void *), void *_arg)
 {
-	// Unsupported
+	pthread_once(&__pthread_cleanup_once, __pthread_cleanup_setup);
+	_context->_routine = _routine;
+	_context->_arg = _arg;
+	_context->_previous = (struct _pthread_cleanup_context *)pthread_getspecific(__pthread_cleanup_key);
+	pthread_setspecific(__pthread_cleanup_key, _context);
 }
 
 void
 _pthread_cleanup_pop (struct _pthread_cleanup_context *_context, int _execute)
 {
-	// Unsupported
+	struct _pthread_cleanup_context *cur = (struct _pthread_cleanup_context *)pthread_getspecific(__pthread_cleanup_key);
+	if (cur) {
+		if (_execute)
+			cur->_routine(cur->_arg);
+		pthread_setspecific(__pthread_cleanup_key, cur->_previous);
+	}
+}
+
+//-----------------------------------------------------------------------------
+// sched.h
+//-----------------------------------------------------------------------------
+
+int __attribute__((weak))
+sched_yield (void)
+{
+	errno = ENOSYS;
+	return -1;
+}
+
+int __attribute__((weak))
+sched_getcpu (void)
+{
+	errno = ENOSYS;
+	return -1;
 }

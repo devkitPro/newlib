@@ -58,4 +58,6 @@
 #define	LINE_MAX		 2048	/* max bytes in an input line */
 #define	RE_DUP_MAX		  255	/* max RE's in interval notation */
 
+#define	PTHREAD_DESTRUCTOR_ITERATIONS	1	/* max attempts to destroy TLS values on thread exit */
+
 #endif

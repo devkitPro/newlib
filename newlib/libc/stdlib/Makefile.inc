@@ -68,6 +68,7 @@ libc_a_SOURCES += \
 	%D%/strtol.c \
 	%D%/strtoul.c \
 	%D%/strtoumax.c \
+	%D%/threads.c \
 	%D%/utoa.c \
 	%D%/wcstod.c \
 	%D%/wcstoimax.c \

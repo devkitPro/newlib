@@ -184,9 +184,14 @@ typedef struct {
 /* POSIX Barrier Types */
 
 #if defined(_POSIX_BARRIERS)
-typedef __uint32_t pthread_barrier_t;        /* POSIX Barrier Object */
 typedef struct {
-  int   is_initialized;  /* is this structure initialized? */
+  _LOCK_T  lock;
+  _COND_T  cond;
+  unsigned reload;
+  unsigned counter;
+  unsigned cycle;
+} pthread_barrier_t;        /* POSIX Barrier Object */
+typedef struct {
 #if defined(_POSIX_THREAD_PROCESS_SHARED)
   int   process_shared;       /* allow this to be shared amongst processes */
 #endif
@@ -202,12 +207,17 @@ typedef __uint32_t pthread_spinlock_t;        /* POSIX Spin Lock Object */
 /* POSIX Reader/Writer Lock Types */
 
 #if defined(_POSIX_READER_WRITER_LOCKS)
-typedef __uint32_t pthread_rwlock_t;         /* POSIX RWLock Object */
+typedef struct {
+  _LOCK_T  lock;
+  _COND_T  cond_r;
+  _COND_T  cond_w;
+  uint32_t cnt_r : 30;
+  uint32_t cnt_w : 2;
+} pthread_rwlock_t;         /* POSIX RWLock Object */
 
-#define _PTHREAD_RWLOCK_INITIALIZER ((pthread_rwlock_t) 0xFFFFFFFF)
+#define _PTHREAD_RWLOCK_INITIALIZER ((pthread_rwlock_t){ __LOCK_INITIALIZER, __COND_INITIALIZER, __COND_INITIALIZER, 0, 0 })
 
 typedef struct {
-  int   is_initialized;       /* is this structure initialized? */
 #if defined(_POSIX_THREAD_PROCESS_SHARED)
   int   process_shared;       /* allow this to be shared amongst processes */
 #endif

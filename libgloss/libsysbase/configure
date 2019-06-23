@@ -581,7 +581,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 PACKAGE_URL=
 
-ac_unique_file="close.c"
+ac_unique_file="abort.c"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
 host_makefile_frag_path

@@ -1,3 +1,6 @@
+#include "config.h"
+#include <_ansi.h>
+#include <_syslist.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -18,7 +21,7 @@ static __handle* handles[MAX_HANDLES] = {
 
 __LOCK_INIT(static, __hndl_lock);
 
-void __free_handle(__handle *handle) {
+static void __free_handle(__handle *handle) {
 
 	if ( NULL != handle
 	&& handle != &__stdin_handle
@@ -86,8 +89,11 @@ __handle *__get_handle(int fd) {
 
 	if ( fd < 0 || fd >= MAX_HANDLES ) return NULL;
 
-	return handles[fd];
+	__lock_acquire (__hndl_lock);
+	__handle *handle = handles[fd];
+	__lock_release (__hndl_lock);
 
+	return handle;
 }
 
 int dup(int oldfd) {
@@ -119,55 +125,105 @@ int dup(int oldfd) {
 
 int dup2(int oldfd, int newfd) {
 
-
-	__lock_acquire (__hndl_lock);
-
 	if ( newfd < 0 || newfd >= MAX_HANDLES ||
+		 oldfd < 0 || oldfd >= MAX_HANDLES) {
 
-		 oldfd < 0 || oldfd >= MAX_HANDLES ||
-		 handles[oldfd] == NULL ) {
-
-		__lock_release (__hndl_lock);
 		errno = EBADF;
 
 		return -1;
 	}
 
 	if ( newfd == oldfd ) {
-		__lock_release (__hndl_lock);
 		return newfd;
 	}
 
+	__lock_acquire (__hndl_lock);
+
+	if ( handles[oldfd] == NULL ) {
+		__lock_release (__hndl_lock);
+		errno = EBADF;
+
+		return -1;
+	}
 
 	__handle *handle = handles[newfd];
-
-	if ( NULL != handle ) {
-
-		handle->refcount--;
-
-	}
 
 	handles[newfd] = handles[oldfd];
 	handles[newfd]->refcount++;
 
-	__lock_release (__hndl_lock);
+	if ( handle ) {
 
-	if ( NULL != handle ) {
+		int ref = --handle->refcount;
+		__lock_release (__hndl_lock);
 
-		if (handle->refcount == 0 ) {
+		if ( ref == 0 ) {
 
-			if( devoptab_list[handle->device]->close_r != NULL) {
+			if ( devoptab_list[handle->device]->close_r ) {
 
+				_REENT->deviceData = devoptab_list[handle->device]->deviceData;
 				devoptab_list[handle->device]->close_r(_REENT,handle->fileStruct);
 
-			} else {
-
-				__free_handle(handle);
-
 			}
+
+			__free_handle(handle);
 		}
+
+	} else {
+
+		__lock_release (__hndl_lock);
+
 	}
 
 	return newfd;
+}
 
+#ifdef REENTRANT_SYSCALLS_PROVIDED
+//---------------------------------------------------------------------------------
+int _close_r(struct _reent *ptr, int fd) {
+//---------------------------------------------------------------------------------
+#else
+//---------------------------------------------------------------------------------
+int _close(int fd) {
+//---------------------------------------------------------------------------------
+	struct _reent *ptr = _REENT;
+#endif
+	int ret = 0;
+
+	if (fd < 0 || fd >= MAX_HANDLES) {
+
+		ptr->_errno = EBADF;
+		return -1;
+
+	}
+
+	__lock_acquire (__hndl_lock);
+
+	__handle *handle = handles[fd];
+
+	if ( !handle ) {
+
+		__lock_release (__hndl_lock);
+		ptr->_errno = EBADF;
+		return -1;
+
+	}
+
+	int ref = --handle->refcount;
+	handles[fd] = NULL;
+
+	__lock_release (__hndl_lock);
+
+	if ( ref == 0 ) {
+
+		if ( devoptab_list[handle->device]->close_r ) {
+
+			ptr->deviceData = devoptab_list[handle->device]->deviceData;
+			ret = devoptab_list[handle->device]->close_r(ptr,handle->fileStruct);
+
+		}
+
+		__free_handle(handle);
+	}
+
+	return ret;
 }

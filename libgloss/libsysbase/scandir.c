@@ -28,6 +28,8 @@ scandir (const char *dirname,
 	int (*filter) __P((const struct dirent *)),
 	int (*compar) __P((const struct dirent **, const struct dirent **)))
 {
+	errno = 0;
+
 	DIR *d = opendir(dirname);
 
 	if (!d) return -1;

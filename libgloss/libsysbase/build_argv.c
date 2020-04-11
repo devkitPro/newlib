@@ -24,8 +24,9 @@ void build_argv (struct __argv* argstruct ) {
 	} while (data < end);
 
 	*end = '\0';						// Force NULL terminator for last arg
+	argv[argCount] = 0;                                     // Force NULL terminator for argv
 
 	argstruct->argv = argv;
 	argstruct->argc = argCount;
-	argstruct->endARGV = &argv[argCount];
+	argstruct->endARGV = &argv[argCount + 1];
 }

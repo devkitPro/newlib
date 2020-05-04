@@ -187,7 +187,6 @@ _fread_r (struct _reent * ptr,
 	  int rc = 0;
 	  /* save fp buffering state */
 	  void *old_base = fp->_bf._base;
-	  void * old_p = fp->_p;
 	  int old_size = fp->_bf._size;
 	  /* allow __refill to use user's buffer */
 	  fp->_bf._base = (unsigned char *) p;
@@ -197,7 +196,7 @@ _fread_r (struct _reent * ptr,
 	  /* restore fp buffering back to original state */
 	  fp->_bf._base = old_base;
 	  fp->_bf._size = old_size;
-	  fp->_p = old_p;
+	  fp->_p = old_base;
 	  resid -= fp->_r;
 	  p += fp->_r;
 	  fp->_r = 0;
@@ -227,11 +226,10 @@ _fread_r (struct _reent * ptr,
 	  resid -= r;
       int rc = 0;
 
-      if (resid>BUFSIZ)
+      if (resid>fp->_bf._size)
       {
         /* save fp buffering state */
         void *old_base = fp->_bf._base;
-        void * old_p = fp->_p;
         int old_size = fp->_bf._size;
         /* allow __refill to use user's buffer */
         fp->_bf._base = (unsigned char *) p;
@@ -241,7 +239,7 @@ _fread_r (struct _reent * ptr,
         /* restore fp buffering back to original state */
         fp->_bf._base = old_base;
         fp->_bf._size = old_size;
-        fp->_p = old_p;
+        fp->_p = old_base;
         resid -= fp->_r;
         p += fp->_r;
         fp->_r = 0;

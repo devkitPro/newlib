@@ -4,8 +4,8 @@
 
 int nanosleep(const struct timespec *req, struct timespec *rem)
 {
-   if ( __syscalls.nanosleep ) {
-      return __syscalls.nanosleep(req, rem);
+   if ( __has_syscall(nanosleep) ) {
+      return __syscall_nanosleep(req, rem);
    } else {
       *rem = *req;
       errno = ENOSYS;

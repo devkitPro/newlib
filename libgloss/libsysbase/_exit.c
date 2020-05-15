@@ -9,8 +9,8 @@
 void _exit(int rc)
 {
 
-	if ( __syscalls.exit ) {
-		__syscalls.exit(rc);
+	if ( __has_syscall(exit) ) {
+		__syscall_exit(rc);
 	}
 
 	while(1);

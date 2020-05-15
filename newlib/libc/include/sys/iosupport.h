@@ -32,6 +32,7 @@ typedef struct {
     void *dirStruct;
 } DIR_ITER;
 
+
 typedef struct {
 	const char *name;
 	size_t structSize;
@@ -70,23 +71,31 @@ typedef struct {
 
 extern const devoptab_t *devoptab_list[];
 
-typedef struct {
-	void *(*sbrk_r) (struct _reent *ptr, ptrdiff_t incr);
-	int (*lock_init) (int *lock,int recursive);
-	int (*lock_close) (int *lock);
-	int (*lock_release) (int *lock);
-	int (*lock_acquire) (int *lock);
-	void (*malloc_lock) (struct _reent *ptr);
-	void (*malloc_unlock) (struct _reent *ptr);
-	void (*exit) ( int rc );
-	int (*gettod_r) (struct _reent *ptr, struct timeval *tp, struct timezone *tz);
-	int (*clock_gettime)(clockid_t clock_id, struct timespec *tp);
-	int (*clock_settime)(clockid_t clock_id, const struct timespec *tp);
-	int (*clock_getres)(clockid_t clock_id, struct timespec *res);
-	int (*nanosleep)(const struct timespec *req, struct timespec *rem);
-} __syscalls_t;
+#ifdef _BUILDING_LIBSYSBASE
+#define __SYSCALL(_name) __attribute__((weak)) __syscall_##_name
+#define __has_syscall(_name) (&__syscall_##_name)
+#else
+#define __SYSCALL(_name) __syscall_##_name
+#endif
 
-extern __syscalls_t __syscalls;
+void *__SYSCALL(sbrk_r) (struct _reent *ptr, ptrdiff_t incr);
+int  __SYSCALL(lock_init) (int *lock,int recursive);
+
+int  __SYSCALL(lock_close) (int *lock);
+int  __SYSCALL(lock_release) (int *lock);
+int  __SYSCALL(lock_acquire) (int *lock);
+void __SYSCALL(malloc_lock) (struct _reent *ptr);
+void __SYSCALL(malloc_unlock) (struct _reent *ptr);
+
+void __SYSCALL(exit)(int rc);
+
+int  __SYSCALL(gettod_r)(struct _reent *ptr, struct timeval *tp, struct timezone *tz);
+int __SYSCALL(clock_gettime)(clockid_t clock_id, struct timespec *tp);
+int __SYSCALL(clock_settime)(clockid_t clock_id, const struct timespec *tp);
+int __SYSCALL(clock_getres)(clockid_t clock_id, struct timespec *res);
+int __SYSCALL(nanosleep)(const struct timespec *req, struct timespec *rem);
+
+#undef __SYSCALL
 
 int AddDevice( const devoptab_t* device);
 int FindDevice(const char* name);

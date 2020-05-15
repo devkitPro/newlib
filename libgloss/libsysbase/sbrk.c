@@ -14,8 +14,8 @@ caddr_t _sbrk (int incr) {
 #endif
 
 
-	if ( __syscalls.sbrk_r ) {
-		return __syscalls.sbrk_r(ptr, incr);
+	if ( __has_syscall(sbrk_r) ) {
+		return __syscall_sbrk_r(ptr, incr);
 	} else {
 
 		ptr->_errno = ENOMEM;

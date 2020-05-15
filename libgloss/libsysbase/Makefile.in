@@ -69,8 +69,8 @@ OBJS = abort.o iosupport.o clocks.o close.o environ.o execve.o fork.o fstat.o ge
 	isatty.o kill.o link.o lseek.o lstat.o nanosleep.o open.o read.o sbrk.o sleep.o stat.o usleep.o times.o \
 	unlink.o wait.o write.o _exit.o malloc_vars.o \
 	chdir.o mkdir.o rename.o build_argv.o statvfs.o \
-	flock.o syscall_support.o handle_manager.o truncate.o ftruncate.o dirent.o fsync.o \
-	fchmod.o chmod.o rmdir.o utime.o scandir.o
+	flock.o handle_manager.o truncate.o ftruncate.o dirent.o fsync.o \
+	fchmod.o chmod.o rmdir.o utime.o scandir.o syscall_support.o
 
 # Object files specific to particular targets.
 EVALOBJS = ${OBJS}
@@ -91,10 +91,10 @@ LDFLAGS_FOR_TARGET = ${MULTILIB} ${NEWLIB_LDFLAGS}
 AR_FLAGS = qc
 
 .c.o:
-	$(CC) $(CFLAGS_FOR_TARGET) -O2 $(INCLUDES) -c $(CFLAGS) $<
+	$(CC) $(CFLAGS_FOR_TARGET) -D_BUILDING_LIBSYSBASE -O2 $(INCLUDES) -c $(CFLAGS) $<
 
 .C.o:
-	$(CC) $(CFLAGS_FOR_TARGET) -O2 $(INCLUDES) -c $(CFLAGS) $<
+	$(CC) $(CFLAGS_FOR_TARGET) -D_BUILDING_LIBSYSBASE -O2 $(INCLUDES) -c $(CFLAGS) $<
 .s.o:
 	$(AS) $(ASFLAGS_FOR_TARGET) $(INCLUDES) $(ASFLAGS) -o $*.o $<
 

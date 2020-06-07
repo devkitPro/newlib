@@ -234,7 +234,7 @@ _fread_r (struct _reent * ptr,
         int old_size = fp->_bf._size;
         /* allow __refill to use user's buffer */
         fp->_bf._base = (unsigned char *) p;
-        fp->_bf._size = resid;
+        fp->_bf._size = resid - old_size;
         fp->_p = (unsigned char *) p;
         rc = __srefill_r (ptr, fp);
         /* restore fp buffering back to original state */
@@ -243,11 +243,10 @@ _fread_r (struct _reent * ptr,
         fp->_p = old_base;
         resid -= fp->_r;
         p += fp->_r;
-        fp->_r = 0;
-
-      } else {
-        rc = __srefill_r (ptr, fp);
+        //fp->_r = 0;
       }
+        rc = __srefill_r (ptr, fp);
+
 	  if (rc)
 	    {
 	      /* no more input: return partial result */

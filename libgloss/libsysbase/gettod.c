@@ -24,7 +24,7 @@ int _gettimeofday(
 	struct _reent *ptr = _REENT;
 #endif
 
-	if ( __syscalls.gettod_r ) return __syscalls.gettod_r(ptr, ptimeval, ptimezone);
+	if ( __has_syscall(gettod_r) ) return __syscall_gettod_r(ptr, ptimeval, ptimezone);
 
 	ptr->_errno = ENOSYS;
 	return -1;

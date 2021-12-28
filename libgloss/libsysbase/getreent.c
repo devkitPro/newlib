@@ -10,8 +10,8 @@
 #endif
 
 struct _reent *__getreent() {
-	if ( __syscalls.getreent ) {
-		return __syscalls.getreent();
+	if ( __has_syscall(getreent) ) {
+		return __syscall_getreent();
 	} else {
 		return _impure_ptr;
 	}

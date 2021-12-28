@@ -70,28 +70,31 @@ typedef struct {
 
 extern const devoptab_t *devoptab_list[];
 
-typedef struct {
-	void *(*sbrk_r) (struct _reent *ptr, ptrdiff_t incr);
-	void (*exit) ( int rc );
-	int  (*gettod_r) (struct _reent *ptr, struct timeval *tp, struct timezone *tz);
-	void (*lock_init) (_LOCK_T *lock);
-	void (*lock_acquire) (_LOCK_T *lock);
-	int  (*lock_try_acquire) (_LOCK_T *lock);
-	void (*lock_release) (_LOCK_T *lock);
-	void (*lock_close) (_LOCK_T *lock);
-	void (*lock_init_recursive) (_LOCK_RECURSIVE_T *lock);
-	void (*lock_acquire_recursive) (_LOCK_RECURSIVE_T *lock);
-	int  (*lock_try_acquire_recursive) (_LOCK_RECURSIVE_T *lock);
-	void (*lock_release_recursive) (_LOCK_RECURSIVE_T *lock);
-	void (*lock_close_recursive) (_LOCK_RECURSIVE_T *lock);
-	struct _reent *(*getreent) ();
-	int (*clock_gettime)(clockid_t clock_id, struct timespec *tp);
-	int (*clock_settime)(clockid_t clock_id, const struct timespec *tp);
-	int (*clock_getres)(clockid_t clock_id, struct timespec *res);
-	int (*nanosleep)(const struct timespec *req, struct timespec *rem);
-} __syscalls_t;
+#ifdef _BUILDING_LIBSYSBASE
+#define __SYSCALL(_name) __attribute__((weak)) __syscall_##_name
+#define __has_syscall(_name) (&__syscall_##_name)
+#else
+#define __SYSCALL(_name) __syscall_##_name
+#endif
 
-extern __syscalls_t __syscalls;
+void *__SYSCALL(sbrk_r) (struct _reent *ptr, ptrdiff_t incr);
+void __SYSCALL(exit) ( int rc );
+int  __SYSCALL(gettod_r) (struct _reent *ptr, struct timeval *tp, struct timezone *tz);
+void __SYSCALL(lock_init) (_LOCK_T *lock);
+void __SYSCALL(lock_acquire) (_LOCK_T *lock);
+int  __SYSCALL(lock_try_acquire) (_LOCK_T *lock);
+void __SYSCALL(lock_release) (_LOCK_T *lock);
+void __SYSCALL(lock_close) (_LOCK_T *lock);
+void __SYSCALL(lock_init_recursive) (_LOCK_RECURSIVE_T *lock);
+void __SYSCALL(lock_acquire_recursive) (_LOCK_RECURSIVE_T *lock);
+int  __SYSCALL(lock_try_acquire_recursive) (_LOCK_RECURSIVE_T *lock);
+void __SYSCALL(lock_release_recursive) (_LOCK_RECURSIVE_T *lock);
+void __SYSCALL(lock_close_recursive) (_LOCK_RECURSIVE_T *lock);
+struct _reent * __SYSCALL(getreent) ();
+int __SYSCALL(clock_gettime) (clockid_t clock_id, struct timespec *tp);
+int __SYSCALL(clock_settime) (clockid_t clock_id, const struct timespec *tp);
+int __SYSCALL(clock_getres) (clockid_t clock_id, struct timespec *res);
+int __SYSCALL(nanosleep) (const struct timespec *req, struct timespec *rem);
 
 int AddDevice( const devoptab_t* device);
 int FindDevice(const char* name);

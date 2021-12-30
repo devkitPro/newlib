@@ -28,10 +28,10 @@ extern int __libc_lock_try_acquire(_LOCK_T *lock);
 extern int __libc_lock_try_acquire_recursive(_LOCK_RECURSIVE_T *lock);
 
 #define __LOCK_INIT(CLASS,NAME) \
-CLASS _LOCK_T NAME = 1;
+CLASS _LOCK_T NAME = 0;
 
 #define __LOCK_INIT_RECURSIVE(CLASS,NAME) \
-CLASS _LOCK_RECURSIVE_T NAME = {1,0,0};
+CLASS _LOCK_RECURSIVE_T NAME = {0,0,0};
 
 #define __lock_init(NAME) \
 	__libc_lock_init(&(NAME))

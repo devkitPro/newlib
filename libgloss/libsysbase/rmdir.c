@@ -5,21 +5,30 @@
 #include <errno.h>
 #include <sys/iosupport.h>
 
-int	rmdir (const char *name) {
-	struct _reent *r = _REENT;
+int	_rmdir_r (struct _reent *ptr, const char *name) {
 	int	dev,ret=-1;
 
 	dev	= FindDevice(name);
 	if(dev!=-1) {
 		if(devoptab_list[dev]->rmdir_r) {
-			r->deviceData = devoptab_list[dev]->deviceData;
-			ret = devoptab_list[dev]->rmdir_r(r,name);
+			ptr->deviceData = devoptab_list[dev]->deviceData;
+			ret = devoptab_list[dev]->rmdir_r(ptr,name);
 		} else {
-			r->_errno = ENOSYS;
+			ptr->_errno = ENOSYS;
 		}
 	} else {
-		r->_errno =	ENODEV;
+		ptr->_errno =	ENODEV;
 	}
 
 	return ret;
 }
+
+#ifndef _REENT_ONLY
+
+int
+rmdir (const char *filename)
+{
+  return _rmdir_r (_REENT, filename);
+}
+
+#endif

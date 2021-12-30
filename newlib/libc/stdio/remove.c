@@ -57,13 +57,17 @@ Supporting OS subroutine required: <<unlink>>.
 #include <_ansi.h>
 #include <reent.h>
 #include <stdio.h>
+#include <errno.h>
 
 int
 _remove_r (struct _reent *ptr,
        const char *filename)
 {
-  if (_unlink_r (ptr, filename) == -1)
-    return -1;
+  if (_unlink_r (ptr, filename) == -1) {
+    errno = 0;
+    if (_rmdir_r(ptr, filename) == -1)
+      return -1;
+  }
 
   return 0;
 }

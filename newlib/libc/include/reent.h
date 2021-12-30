@@ -150,6 +150,7 @@ extern int _mkdir_r (struct _reent *, const char *, int);
 extern int _open_r (struct _reent *, const char *, int, int);
 extern _ssize_t _read_r (struct _reent *, int, void *, size_t);
 extern int _rename_r (struct _reent *, const char *, const char *);
+extern int _rmdir_r (struct _reent *r, const char *name);
 extern void *_sbrk_r (struct _reent *, ptrdiff_t);
 extern int _stat_r (struct _reent *, const char *, struct stat *);
 extern _CLOCK_T_ _times_r (struct _reent *, struct tms *);

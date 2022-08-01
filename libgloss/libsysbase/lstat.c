@@ -14,6 +14,7 @@ int lstat (const char *__restrict __path, struct stat *__restrict __buf ) {
 	int dev,ret;
 
 	dev = FindDevice(__path);
+    ret = -1;
 
 	if(dev!=-1) {
 		if (devoptab_list[dev]->lstat_r) {
@@ -23,7 +24,6 @@ int lstat (const char *__restrict __path, struct stat *__restrict __buf ) {
 			r->_errno=ENOSYS;
 		}
 	} else {
-		ret = -1;
 		r->_errno = ENODEV;
 	}
 	return ret;

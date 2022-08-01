@@ -20,6 +20,7 @@ int _stat( const char  *file, struct stat *st) {
 	int dev,ret;
 
 	dev = FindDevice(file);
+    ret = -1;
 
 	if(dev!=-1) {
 		if (devoptab_list[dev]->stat_r) {
@@ -29,7 +30,6 @@ int _stat( const char  *file, struct stat *st) {
 			r->_errno=ENOSYS;
 		}
 	} else {
-		ret = -1;
 		r->_errno = ENODEV;
 	}
 	return ret;

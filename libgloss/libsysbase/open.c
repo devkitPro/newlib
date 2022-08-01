@@ -22,6 +22,7 @@ int _open( const char *file, int   flags, int   mode) {
 	int dev, fd, ret;
 
 	dev = FindDevice(file);
+    ret = -1;
 
 	fd = -1;
 	if(dev!=-1) {

@@ -12,6 +12,7 @@ int utimes(const char *filename, const struct timeval times[2])
         int dev,ret;
 
         dev = FindDevice(filename);
+        ret = -1;
 
         if(dev!=-1) {
                 if (devoptab_list[dev]->utimes_r) {
@@ -21,7 +22,6 @@ int utimes(const char *filename, const struct timeval times[2])
                         r->_errno=ENOSYS;
                 }
         } else {
-                ret = -1;
                 r->_errno = ENODEV;
         }
         return ret;

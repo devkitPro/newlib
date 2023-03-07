@@ -9,7 +9,7 @@
 int utimes(const char *filename, const struct timeval times[2])
 {
         struct _reent *r = _REENT;
-        int dev,ret;
+        int dev,ret=-1;
 
         dev = FindDevice(filename);
 
@@ -21,13 +21,9 @@ int utimes(const char *filename, const struct timeval times[2])
                         r->_errno=ENOSYS;
                 }
         } else {
-                ret = -1;
                 r->_errno = ENODEV;
         }
         return ret;
-
-
-
 }
 
 

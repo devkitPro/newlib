@@ -20,11 +20,11 @@ register char * stack_ptr asm ("sp");
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-void * _sbrk_r (struct _reent *ptr, ptrdiff_t incr) {
+void *_sbrk_r (struct _reent *ptr, ptrdiff_t incr) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-caddr_t _sbrk (int incr) {
+void *_sbrk (int incr) {
 //---------------------------------------------------------------------------------
 	struct _reent *ptr = _REENT;
 #endif

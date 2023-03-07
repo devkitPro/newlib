@@ -7,7 +7,7 @@
 #include <errno.h>
 
 int chmod(const char *path, mode_t mode) {
-	int	ret,dev;
+	int	ret=-1,dev;
 	struct _reent *r = _REENT;
 
 	/* Get device from path name */
@@ -15,7 +15,6 @@ int chmod(const char *path, mode_t mode) {
 
 	if (dev < 0) {
 		r->_errno = ENODEV;
-		ret = -1;
 	} else {
 		if (devoptab_list[dev]->chmod_r == NULL) {
 			r->_errno=ENOSYS;

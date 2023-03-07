@@ -8,18 +8,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _gettimeofday_r(
-			struct _reent *ptr,
-			struct timeval *ptimeval,
-			void *ptimezone)
-{
+int _gettimeofday_r( struct _reent *ptr, struct timeval *ptimeval, void *ptimezone) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-int _gettimeofday(
-        struct timeval  *ptimeval,
-        void *ptimezone)
-{
+int _gettimeofday(struct timeval *ptimeval, void *ptimezone) {
 //---------------------------------------------------------------------------------
 	struct _reent *ptr = _REENT;
 #endif

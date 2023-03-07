@@ -4,11 +4,9 @@
 #include <errno.h>
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
-int _rename_r(struct _reent *ptr, const char *existing, const char *newName)
-{
+int _rename_r( struct _reent *ptr, const char *existing, const char *newName) {
 #else
-int rename(const char *existing, const char *newName)
-{
+int rename( const char *existing, const char *newName) {
 	struct _reent *ptr = _REENT;
 #endif
 	struct _reent *r = _REENT;

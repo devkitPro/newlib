@@ -7,7 +7,7 @@
 
 #include <sys/iosupport.h>
 
-int ftruncate(int fileDesc, off_t   len) {
+int ftruncate(int fileDesc, off_t len) {
 	int ret = -1;
 	unsigned int dev = 0;
 	unsigned int fd = -1;

@@ -10,11 +10,11 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _open_r(struct _reent * r, const char *file, int flags, int mode) {
+int _open_r(struct _reent *r, const char *file, int flags, int mode) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
-int _open(struct _reent * r, const char *file, int flags, int mode) {
+int _open(const char *file, int flags, int mode) {
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
 #endif

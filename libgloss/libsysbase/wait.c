@@ -13,8 +13,7 @@
 int _wait_r(struct _reent *r, int  *status) {
 #else
 //---------------------------------------------------------------------------------
-int
-int _wait_r(int  *status) {
+int _wait(int  *status) {
 	struct _reent *r = _REENT;
 #endif
 //---------------------------------------------------------------------------------

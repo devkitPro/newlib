@@ -37,8 +37,6 @@ void __libc_lock_close(_LOCK_T *lock ) {
 	}
 }
 
-
-
 void __libc_lock_init_recursive(_LOCK_RECURSIVE_T *lock) {
 
 	if ( __has_syscall(lock_init_recursive) ) {

@@ -46,8 +46,8 @@ case "${target}" in
   arc-*-*)
 	;;
   arm-*-eabi)
-	AC_DEFINE(REENTRANT_SYSCALLS_PROVIDED)
-	;;
+  AC_DEFINE(REENTRANT_SYSCALLS_PROVIDED)
+  ;;
   arm*-*-*)
 	;;
   bfin-*-*)
@@ -68,6 +68,9 @@ case "${target}" in
 	;;
   mn10?00-*-*)
 	;;
+  powerpc-*-eabi)
+  AC_DEFINE(REENTRANT_SYSCALLS_PROVIDED)
+  ;;
   powerpcle-*-pe)
 	;;
   sh*-*-*)

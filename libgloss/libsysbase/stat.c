@@ -9,16 +9,15 @@
 
 #ifdef REENTRANT_SYSCALLS_PROVIDED
 //---------------------------------------------------------------------------------
-int _stat_r(struct _reent * r, const char *file, struct stat *st) {
+int _stat_r(struct _reent *r, const char *file, struct stat *st) {
 //---------------------------------------------------------------------------------
 #else
 //---------------------------------------------------------------------------------
 int _stat(const char *file, struct stat *st) {
-{
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
 #endif
-	int dev,ret;
+	int dev,ret=-1;
 
 	dev = FindDevice(file);
 
@@ -30,7 +29,6 @@ int _stat(const char *file, struct stat *st) {
 			r->_errno=ENOSYS;
 		}
 	} else {
-		ret = -1;
 		r->_errno = ENODEV;
 	}
 	return ret;

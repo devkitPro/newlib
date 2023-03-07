@@ -8,10 +8,10 @@
 
 
 //---------------------------------------------------------------------------------
-int lstat (const char *__restrict __path, struct stat *__restrict __buf ) {
+int lstat(const char *__restrict __path, struct stat *__restrict __buf ) {
 //---------------------------------------------------------------------------------
 	struct _reent *r = _REENT;
-	int dev,ret;
+	int dev,ret=-1;
 
 	dev = FindDevice(__path);
 
@@ -23,7 +23,6 @@ int lstat (const char *__restrict __path, struct stat *__restrict __buf ) {
 			r->_errno=ENOSYS;
 		}
 	} else {
-		ret = -1;
 		r->_errno = ENODEV;
 	}
 	return ret;

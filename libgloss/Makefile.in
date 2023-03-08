@@ -264,34 +264,36 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_IQ2000_TRUE@am__append_52 = iq2000/test
 @CONFIG_LIBNOSYS_TRUE@am__append_53 = libnosys/nosys.specs
 @CONFIG_LIBNOSYS_TRUE@am__append_54 = libnosys/libnosys.a
-@CONFIG_LM32_TRUE@am__append_55 = lm32/crt0.o lm32/sim.ld
-@CONFIG_LM32_TRUE@am__append_56 = lm32/libgloss.a
-@CONFIG_LM32_TRUE@am__append_57 = lm32/crt0.S
-@CONFIG_M32R_TRUE@@HAVE_MULTISUBDIR_FALSE@am__append_58 = \
+@CONFIG_LIBSYSBASE_TRUE@am__append_55 = libsysbase/sysbase.specs
+@CONFIG_LIBSYSBASE_TRUE@am__append_56 = libsysbase/libsysbase.a
+@CONFIG_LM32_TRUE@am__append_57 = lm32/crt0.o lm32/sim.ld
+@CONFIG_LM32_TRUE@am__append_58 = lm32/libgloss.a
+@CONFIG_LM32_TRUE@am__append_59 = lm32/crt0.S
+@CONFIG_M32R_TRUE@@HAVE_MULTISUBDIR_FALSE@am__append_60 = \
 @CONFIG_M32R_TRUE@@HAVE_MULTISUBDIR_FALSE@	m32r/eva.ld \
 @CONFIG_M32R_TRUE@@HAVE_MULTISUBDIR_FALSE@	m32r/eva-stub.ld \
 @CONFIG_M32R_TRUE@@HAVE_MULTISUBDIR_FALSE@	m32r/mon.specs
 
-@CONFIG_M32R_TRUE@am__append_59 = m32r/crt0.o m32r/m32r-lib.o \
+@CONFIG_M32R_TRUE@am__append_61 = m32r/crt0.o m32r/m32r-lib.o \
 @CONFIG_M32R_TRUE@	m32r/m32r-stub.o
-@CONFIG_M32R_TRUE@am__append_60 = m32r/crt0.S m32r/m32r-lib.c \
+@CONFIG_M32R_TRUE@am__append_62 = m32r/crt0.S m32r/m32r-lib.c \
 @CONFIG_M32R_TRUE@	m32r/m32r-stub.c
-@CONFIG_M32R_TRUE@am__append_61 = m32r/libgloss.a m32r/libmon.a
-@CONFIG_MCORE_TRUE@@MCORE_BUILD_ELF_TRUE@am__append_62 = \
+@CONFIG_M32R_TRUE@am__append_63 = m32r/libgloss.a m32r/libmon.a
+@CONFIG_MCORE_TRUE@@MCORE_BUILD_ELF_TRUE@am__append_64 = \
 @CONFIG_MCORE_TRUE@@MCORE_BUILD_ELF_TRUE@	mcore/cmb.ld \
 @CONFIG_MCORE_TRUE@@MCORE_BUILD_ELF_TRUE@	mcore/cmb.specs
 
-@CONFIG_MCORE_TRUE@@MCORE_BUILD_PE_TRUE@am__append_63 = \
+@CONFIG_MCORE_TRUE@@MCORE_BUILD_PE_TRUE@am__append_65 = \
 @CONFIG_MCORE_TRUE@@MCORE_BUILD_PE_TRUE@	mcore/cmb.ld \
 @CONFIG_MCORE_TRUE@@MCORE_BUILD_PE_TRUE@	mcore/cmb.specs
 
-@CONFIG_MCORE_TRUE@am__append_64 = mcore/crt0.o
-@CONFIG_MCORE_TRUE@am__append_65 = mcore/crt0.S
-@CONFIG_MCORE_TRUE@am__append_66 = mcore/libsim.a mcore/libcmb.a
-@CONFIG_MICROBLAZE_TRUE@@HAVE_MULTISUBDIR_FALSE@am__append_67 = \
+@CONFIG_MCORE_TRUE@am__append_66 = mcore/crt0.o
+@CONFIG_MCORE_TRUE@am__append_67 = mcore/crt0.S
+@CONFIG_MCORE_TRUE@am__append_68 = mcore/libsim.a mcore/libcmb.a
+@CONFIG_MICROBLAZE_TRUE@@HAVE_MULTISUBDIR_FALSE@am__append_69 = \
 @CONFIG_MICROBLAZE_TRUE@@HAVE_MULTISUBDIR_FALSE@	microblaze/xilinx.ld
 
-@CONFIG_MICROBLAZE_TRUE@am__append_68 =  \
+@CONFIG_MICROBLAZE_TRUE@am__append_70 =  \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/elf-gloss-linux.specs \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/crt0.o microblaze/crt1.o \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/crt2.o microblaze/crt3.o \
@@ -300,7 +302,7 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_MICROBLAZE_TRUE@	microblaze/sim-crtinit.o \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/sim-pgcrtinit.o \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/linux-crt0.o
-@CONFIG_MICROBLAZE_TRUE@am__append_69 = \
+@CONFIG_MICROBLAZE_TRUE@am__append_71 = \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/crt0.S \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/crt1.S \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/crt2.S \
@@ -312,77 +314,77 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_MICROBLAZE_TRUE@	microblaze/sim-pgcrtinit.S \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/linux-crt0.S
 
-@CONFIG_MICROBLAZE_TRUE@am__append_70 = microblaze/libgloss.a \
+@CONFIG_MICROBLAZE_TRUE@am__append_72 = microblaze/libgloss.a \
 @CONFIG_MICROBLAZE_TRUE@	microblaze/libgloss-linux.a
-@CONFIG_MN10200_TRUE@am__append_71 = mn10200/eval.ld mn10200/sim.ld \
+@CONFIG_MN10200_TRUE@am__append_73 = mn10200/eval.ld mn10200/sim.ld \
 @CONFIG_MN10200_TRUE@	mn10200/crt0.o
-@CONFIG_MN10200_TRUE@am__append_72 = mn10200/crt0.S
-@CONFIG_MN10200_TRUE@am__append_73 = mn10200/libeval.a
-@CONFIG_MN10200_TRUE@am__append_74 = mn10200/test
-@CONFIG_MN10300_TRUE@am__append_75 = \
+@CONFIG_MN10200_TRUE@am__append_74 = mn10200/crt0.S
+@CONFIG_MN10200_TRUE@am__append_75 = mn10200/libeval.a
+@CONFIG_MN10200_TRUE@am__append_76 = mn10200/test
+@CONFIG_MN10300_TRUE@am__append_77 = \
 @CONFIG_MN10300_TRUE@	mn10300/eval.ld \
 @CONFIG_MN10300_TRUE@	mn10300/sim.ld
 
-@CONFIG_MN10300_TRUE@@MN10300_BUILD_LIBCYGMON_TRUE@am__append_76 = \
+@CONFIG_MN10300_TRUE@@MN10300_BUILD_LIBCYGMON_TRUE@am__append_78 = \
 @CONFIG_MN10300_TRUE@@MN10300_BUILD_LIBCYGMON_TRUE@	mn10300/asb2303.ld \
 @CONFIG_MN10300_TRUE@@MN10300_BUILD_LIBCYGMON_TRUE@	mn10300/asb2305.ld
 
-@CONFIG_MN10300_TRUE@am__append_77 = \
+@CONFIG_MN10300_TRUE@am__append_79 = \
 @CONFIG_MN10300_TRUE@	mn10300/crt0.o \
 @CONFIG_MN10300_TRUE@	mn10300/crt0_cygmon.o \
 @CONFIG_MN10300_TRUE@	mn10300/crt0_redboot.o
 
-@CONFIG_MN10300_TRUE@am__append_78 = \
+@CONFIG_MN10300_TRUE@am__append_80 = \
 @CONFIG_MN10300_TRUE@	mn10300/crt0.S \
 @CONFIG_MN10300_TRUE@	mn10300/crt0_cygmon.S \
 @CONFIG_MN10300_TRUE@	mn10300/crt0_redboot.S
 
-@CONFIG_MN10300_TRUE@am__append_79 = mn10300/libeval.a
-@CONFIG_MN10300_TRUE@@MN10300_BUILD_LIBCYGMON_TRUE@am__append_80 = mn10300/libcygmon.a
-@CONFIG_MN10300_TRUE@am__append_81 = mn10300/test
-@CONFIG_MOXIE_TRUE@@HAVE_MULTISUBDIR_FALSE@am__append_82 = \
+@CONFIG_MN10300_TRUE@am__append_81 = mn10300/libeval.a
+@CONFIG_MN10300_TRUE@@MN10300_BUILD_LIBCYGMON_TRUE@am__append_82 = mn10300/libcygmon.a
+@CONFIG_MN10300_TRUE@am__append_83 = mn10300/test
+@CONFIG_MOXIE_TRUE@@HAVE_MULTISUBDIR_FALSE@am__append_84 = \
 @CONFIG_MOXIE_TRUE@@HAVE_MULTISUBDIR_FALSE@	moxie/moxie-elf-common.ld \
 @CONFIG_MOXIE_TRUE@@HAVE_MULTISUBDIR_FALSE@	moxie/qemu.ld \
 @CONFIG_MOXIE_TRUE@@HAVE_MULTISUBDIR_FALSE@	moxie/sim.ld \
 @CONFIG_MOXIE_TRUE@@HAVE_MULTISUBDIR_FALSE@	moxie/moxiebox.ld
 
-@CONFIG_MOXIE_TRUE@@MOXIE_BUILD_CRT0_TRUE@am__append_83 = moxie/crt0.o
-@CONFIG_MOXIE_TRUE@am__append_84 = \
+@CONFIG_MOXIE_TRUE@@MOXIE_BUILD_CRT0_TRUE@am__append_85 = moxie/crt0.o
+@CONFIG_MOXIE_TRUE@am__append_86 = \
 @CONFIG_MOXIE_TRUE@	moxie/crt0.S
 
-@CONFIG_MOXIE_TRUE@am__append_85 = moxie/libsim.a moxie/libqemu.a
-@CONFIG_MSP430_TRUE@am__append_86 = msp430/msp430-sim.ld \
+@CONFIG_MOXIE_TRUE@am__append_87 = moxie/libsim.a moxie/libqemu.a
+@CONFIG_MSP430_TRUE@am__append_88 = msp430/msp430-sim.ld \
 @CONFIG_MSP430_TRUE@	msp430/msp430xl-sim.ld \
 @CONFIG_MSP430_TRUE@	msp430/intr_vectors.ld msp430/gcrt0.o \
 @CONFIG_MSP430_TRUE@	msp430/crt0.o
-@CONFIG_MSP430_TRUE@am__append_87 = \
+@CONFIG_MSP430_TRUE@am__append_89 = \
 @CONFIG_MSP430_TRUE@	msp430/gcrt0.S \
 @CONFIG_MSP430_TRUE@	msp430/crt0.S
 
-@CONFIG_MSP430_TRUE@am__append_88 = msp430/libsim.a msp430/libnosys.a \
+@CONFIG_MSP430_TRUE@am__append_90 = msp430/libsim.a msp430/libnosys.a \
 @CONFIG_MSP430_TRUE@	msp430/libcrt.a
-@CONFIG_NDS32_TRUE@am__append_89 = \
+@CONFIG_NDS32_TRUE@am__append_91 = \
 @CONFIG_NDS32_TRUE@	nds32/crt0.o \
 @CONFIG_NDS32_TRUE@	nds32/crt1.o
 
-@CONFIG_NDS32_TRUE@am__append_90 = \
+@CONFIG_NDS32_TRUE@am__append_92 = \
 @CONFIG_NDS32_TRUE@	nds32/crt0.S \
 @CONFIG_NDS32_TRUE@	nds32/crt1.S
 
-@CONFIG_NDS32_TRUE@am__append_91 = nds32/libgloss.a
-@CONFIG_NIOS2_TRUE@am__append_92 = \
+@CONFIG_NDS32_TRUE@am__append_93 = nds32/libgloss.a
+@CONFIG_NIOS2_TRUE@am__append_94 = \
 @CONFIG_NIOS2_TRUE@	nios2/qemu-hosted.ld
 
-@CONFIG_NIOS2_TRUE@am__append_93 = nios2/libnios2.a
-@CONFIG_OR1K_TRUE@am__append_94 = or1k/crt0.o
-@CONFIG_OR1K_TRUE@am__append_95 = or1k/crt0.S
-@CONFIG_OR1K_TRUE@am__append_96 = \
+@CONFIG_NIOS2_TRUE@am__append_95 = nios2/libnios2.a
+@CONFIG_OR1K_TRUE@am__append_96 = or1k/crt0.o
+@CONFIG_OR1K_TRUE@am__append_97 = or1k/crt0.S
+@CONFIG_OR1K_TRUE@am__append_98 = \
 @CONFIG_OR1K_TRUE@	or1k/include/or1k-asm.h \
 @CONFIG_OR1K_TRUE@	or1k/include/or1k-nop.h \
 @CONFIG_OR1K_TRUE@	or1k/include/or1k-sprs.h \
 @CONFIG_OR1K_TRUE@	or1k/include/or1k-support.h
 
-@CONFIG_OR1K_TRUE@am__append_97 = or1k/libor1k.a or1k/libboard-atlys.a \
+@CONFIG_OR1K_TRUE@am__append_99 = or1k/libor1k.a or1k/libboard-atlys.a \
 @CONFIG_OR1K_TRUE@	or1k/libboard-de0_nano.a \
 @CONFIG_OR1K_TRUE@	or1k/libboard-ml501.a \
 @CONFIG_OR1K_TRUE@	or1k/libboard-optimsoc.a \
@@ -391,49 +393,49 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_OR1K_TRUE@	or1k/libboard-ordb1a3pe1500.a \
 @CONFIG_OR1K_TRUE@	or1k/libboard-ordb2a.a \
 @CONFIG_OR1K_TRUE@	or1k/libboard-orpsocrefdesign.a
-@CONFIG_PRU_TRUE@am__append_98 = \
+@CONFIG_PRU_TRUE@am__append_100 = \
 @CONFIG_PRU_TRUE@	pru/crt0.o \
 @CONFIG_PRU_TRUE@	pru/crt0-minrt.o
 
-@CONFIG_PRU_TRUE@am__append_99 = \
+@CONFIG_PRU_TRUE@am__append_101 = \
 @CONFIG_PRU_TRUE@	pru/crt0.S \
 @CONFIG_PRU_TRUE@	pru/crt0-minrt.S
 
-@CONFIG_PRU_TRUE@am__append_100 = pru/libgloss.a
-@CONFIG_RISCV_TRUE@am__append_101 = \
+@CONFIG_PRU_TRUE@am__append_102 = pru/libgloss.a
+@CONFIG_RISCV_TRUE@am__append_103 = \
 @CONFIG_RISCV_TRUE@	riscv/nano.specs \
 @CONFIG_RISCV_TRUE@	riscv/sim.specs \
 @CONFIG_RISCV_TRUE@	riscv/semihost.specs \
 @CONFIG_RISCV_TRUE@	riscv/crt0.o
 
-@CONFIG_RISCV_TRUE@am__append_102 = riscv/libgloss.a riscv/libsim.a \
+@CONFIG_RISCV_TRUE@am__append_104 = riscv/libgloss.a riscv/libsim.a \
 @CONFIG_RISCV_TRUE@	riscv/libsemihost.a
-@CONFIG_RL78_TRUE@am__append_103 = rl78/rl78.ld rl78/rl78-sim.ld \
+@CONFIG_RL78_TRUE@am__append_105 = rl78/rl78.ld rl78/rl78-sim.ld \
 @CONFIG_RL78_TRUE@	rl78/gcrt0.o rl78/crt0.o rl78/crtn.o
-@CONFIG_RL78_TRUE@am__append_104 = \
+@CONFIG_RL78_TRUE@am__append_106 = \
 @CONFIG_RL78_TRUE@	rl78/gcrt0.S \
 @CONFIG_RL78_TRUE@	rl78/crt0.S \
 @CONFIG_RL78_TRUE@	rl78/crtn.S
 
-@CONFIG_RL78_TRUE@am__append_105 = rl78/libsim.a
-@CONFIG_RX_TRUE@am__append_106 = rx/rx.ld rx/rx-sim.ld rx/gcrt0.o \
+@CONFIG_RL78_TRUE@am__append_107 = rl78/libsim.a
+@CONFIG_RX_TRUE@am__append_108 = rx/rx.ld rx/rx-sim.ld rx/gcrt0.o \
 @CONFIG_RX_TRUE@	rx/crt0.o rx/crtn.o
-@CONFIG_RX_TRUE@am__append_107 = \
+@CONFIG_RX_TRUE@am__append_109 = \
 @CONFIG_RX_TRUE@	rx/gcrt0.S \
 @CONFIG_RX_TRUE@	rx/crt0.S \
 @CONFIG_RX_TRUE@	rx/crtn.S
 
-@CONFIG_RX_TRUE@am__append_108 = rx/libsim.a
-@CONFIG_SPARC_TRUE@am__append_109 = sparc/crt0.o sparc/erc32-crt0.o
-@CONFIG_SPARC_TRUE@am__append_110 = sparc/crt0.S sparc/erc32-crt0.S
-@CONFIG_SPARC_TRUE@am__append_111 = sparc/liberc32.a
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@am__append_112 =  \
+@CONFIG_RX_TRUE@am__append_110 = rx/libsim.a
+@CONFIG_SPARC_TRUE@am__append_111 = sparc/crt0.o sparc/erc32-crt0.o
+@CONFIG_SPARC_TRUE@am__append_112 = sparc/crt0.S sparc/erc32-crt0.S
+@CONFIG_SPARC_TRUE@am__append_113 = sparc/liberc32.a
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@am__append_114 =  \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@	sparc/cygmon.ld \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@	sparc/cygmon-crt0.o \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@	sparc/cygmon-salib.o
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@am__append_113 = sparc/cygmon-crt0.S
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@am__append_114 = sparc/libcygmon.a
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@am__append_115 = \
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@am__append_115 = sparc/cygmon-crt0.S
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_CYGMON_TRUE@am__append_116 = sparc/libcygmon.a
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@am__append_117 = \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/ex930.ld \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/ex931.ld \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/ex934.ld \
@@ -441,64 +443,64 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/elfsim.ld \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/traps.o
 
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@am__append_116 = \
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@am__append_118 = \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/libslite930.a \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/libslite931.a \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/libslite934.a \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SLITE_TRUE@	sparc/libslite86x.a
 
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@am__append_117 =  \
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@am__append_119 =  \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@	sparc/tsc701.ld \
 @CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@	sparc/crt0-701.S
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@am__append_118 = sparc/crt0-701.S
-@CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@am__append_119 = sparc/libsplet701.a
-@CONFIG_SPARC_TRUE@am__append_120 = sparc/erc32-test sparc/ex930-test \
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@am__append_120 = sparc/crt0-701.S
+@CONFIG_SPARC_TRUE@@SPARC_BUILD_SPLET_TRUE@am__append_121 = sparc/libsplet701.a
+@CONFIG_SPARC_TRUE@am__append_122 = sparc/erc32-test sparc/ex930-test \
 @CONFIG_SPARC_TRUE@	sparc/ex931-test sparc/ex934-test
-@CONFIG_SPARC_LEON_TRUE@am__append_121 = sparc_leon/libleonbare.a \
+@CONFIG_SPARC_LEON_TRUE@am__append_123 = sparc_leon/libleonbare.a \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/liblbthread.a \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/libsmall.a
-@CONFIG_SPARC_LEON_TRUE@am__append_122 = \
+@CONFIG_SPARC_LEON_TRUE@am__append_124 = \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/crt0.o \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/pnpinit.o \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/pnpinit_simple.o \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/locore_svt.o \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/locore_mvt.o
 
-@CONFIG_SPARC_LEON_TRUE@am__append_123 = \
+@CONFIG_SPARC_LEON_TRUE@am__append_125 = \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/crt0.S \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/pnpinit.c \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/pnpinit_simple.c \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/locore_svt.S \
 @CONFIG_SPARC_LEON_TRUE@	sparc_leon/locore_mvt.S
 
-@CONFIG_TIC6X_TRUE@am__append_124 = tic6x/crt0.o
-@CONFIG_TIC6X_TRUE@am__append_125 = tic6x/crt0.S
-@CONFIG_TIC6X_TRUE@am__append_126 = tic6x/libsim.a
-@CONFIG_V850_TRUE@am__append_127 = v850/crt0.o
-@CONFIG_V850_TRUE@am__append_128 = v850/crt0.S
-@CONFIG_V850_TRUE@am__append_129 = v850/libsim.a
-@CONFIG_VISIUM_TRUE@am__append_130 = visium/crt0.o
-@CONFIG_VISIUM_TRUE@am__append_131 = visium/crt0.S
-@CONFIG_VISIUM_TRUE@am__append_132 = visium/libserial.a \
+@CONFIG_TIC6X_TRUE@am__append_126 = tic6x/crt0.o
+@CONFIG_TIC6X_TRUE@am__append_127 = tic6x/crt0.S
+@CONFIG_TIC6X_TRUE@am__append_128 = tic6x/libsim.a
+@CONFIG_V850_TRUE@am__append_129 = v850/crt0.o
+@CONFIG_V850_TRUE@am__append_130 = v850/crt0.S
+@CONFIG_V850_TRUE@am__append_131 = v850/libsim.a
+@CONFIG_VISIUM_TRUE@am__append_132 = visium/crt0.o
+@CONFIG_VISIUM_TRUE@am__append_133 = visium/crt0.S
+@CONFIG_VISIUM_TRUE@am__append_134 = visium/libserial.a \
 @CONFIG_VISIUM_TRUE@	visium/libsim.a visium/libdebug.a
-@CONFIG_WINCE_TRUE@am__append_133 = $(gdbdir)
-@CONFIG_WINCE_TRUE@am__append_134 = wince/stub.exe
-@CONFIG_XSTORMY16_TRUE@am__append_135 = xstormy16/crt0.o \
+@CONFIG_WINCE_TRUE@am__append_135 = $(gdbdir)
+@CONFIG_WINCE_TRUE@am__append_136 = wince/stub.exe
+@CONFIG_XSTORMY16_TRUE@am__append_137 = xstormy16/crt0.o \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/crti.o xstormy16/crtn.o \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/sim_high.ld \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/sim_rom.ld \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/eva_app.ld \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/eva_stub.hex
-@CONFIG_XSTORMY16_TRUE@am__append_136 = \
+@CONFIG_XSTORMY16_TRUE@am__append_138 = \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/crt0.s \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/crti.s \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/crtn.s
 
-@CONFIG_XSTORMY16_TRUE@am__append_137 = xstormy16/libsim.a \
+@CONFIG_XSTORMY16_TRUE@am__append_139 = xstormy16/libsim.a \
 @CONFIG_XSTORMY16_TRUE@	xstormy16/libeva_app.a
-@CONFIG_XSTORMY16_TRUE@am__append_138 = xstormy16/eva_stub.elf
-@CONFIG_XSTORMY16_TRUE@am__append_139 = xstormy16/eva_stub.hex
-@CONFIG_XTENSA_TRUE@am__append_140 = \
+@CONFIG_XSTORMY16_TRUE@am__append_140 = xstormy16/eva_stub.elf
+@CONFIG_XSTORMY16_TRUE@am__append_141 = xstormy16/eva_stub.hex
+@CONFIG_XTENSA_TRUE@am__append_142 = \
 @CONFIG_XTENSA_TRUE@	xtensa/default.specs \
 @CONFIG_XTENSA_TRUE@	xtensa/nano.specs \
 @CONFIG_XTENSA_TRUE@	xtensa/sim.elf.specs \
@@ -507,29 +509,29 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_XTENSA_TRUE@	xtensa/sys.openocd.specs \
 @CONFIG_XTENSA_TRUE@	xtensa/crt0.o
 
-@CONFIG_XTENSA_TRUE@am__append_141 = \
+@CONFIG_XTENSA_TRUE@am__append_143 = \
 @CONFIG_XTENSA_TRUE@	xtensa/crt0.S \
 @CONFIG_XTENSA_TRUE@	xtensa/crt1-sim.S \
 @CONFIG_XTENSA_TRUE@	xtensa/crt1-boards.S
 
-@CONFIG_XTENSA_TRUE@am__append_142 = xtensa/libgloss.a
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_143 = \
+@CONFIG_XTENSA_TRUE@am__append_144 = xtensa/libgloss.a
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_145 = \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/app.elf.ld \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/crt1-sim.o \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/crt1-boards.o
 
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_144 = xtensa/libsys_qemu.a \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_146 = xtensa/libsys_qemu.a \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/libsys_openocd.a
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_145 = xtensa/boards/esp32/memory.elf.ld
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_146 = xtensa/boards/esp32/board.c
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_147 = -I$(srcdir)/xtensa/boards/esp32/include
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_148 = -I$(srcdir)/xtensa/boards/esp32/include
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_147 = xtensa/boards/esp32/memory.elf.ld
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_148 = xtensa/boards/esp32/board.c
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_149 = -I$(srcdir)/xtensa/boards/esp32/include
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_150 = xtensa/boards/esp32s3/memory.elf.ld
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_151 = xtensa/boards/esp32s3/board.c
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_152 = -I$(srcdir)/xtensa/boards/esp32s3/include
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_153 = -I$(srcdir)/xtensa/boards/esp32s3/include
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_150 = -I$(srcdir)/xtensa/boards/esp32/include
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_151 = -I$(srcdir)/xtensa/boards/esp32/include
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_152 = xtensa/boards/esp32s3/memory.elf.ld
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_153 = xtensa/boards/esp32s3/board.c
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_154 = -I$(srcdir)/xtensa/boards/esp32s3/include
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_155 = -I$(srcdir)/xtensa/boards/esp32s3/include
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__append_156 = -I$(srcdir)/xtensa/boards/esp32s3/include
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/../config/depstand.m4 \
@@ -539,6 +541,7 @@ am__aclocal_m4_deps = $(top_srcdir)/../config/depstand.m4 \
 	$(top_srcdir)/aarch64/acinclude.m4 \
 	$(top_srcdir)/arm/acinclude.m4 $(top_srcdir)/i386/acinclude.m4 \
 	$(top_srcdir)/libnosys/acinclude.m4 \
+	$(top_srcdir)/libsysbase/acinclude.m4 \
 	$(top_srcdir)/m68k/acinclude.m4 \
 	$(top_srcdir)/mcore/acinclude.m4 \
 	$(top_srcdir)/mips/acinclude.m4 \
@@ -1006,6 +1009,54 @@ am_libobjs_a_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	$(am__objects_32) $(am__objects_33) $(am__objects_34) \
 	$(am__objects_35) $(am__objects_36)
 libobjs_a_OBJECTS = $(am_libobjs_a_OBJECTS)
+libsysbase_libsysbase_a_AR = $(AR) $(ARFLAGS)
+libsysbase_libsysbase_a_LIBADD =
+@CONFIG_LIBSYSBASE_TRUE@am_libsysbase_libsysbase_a_OBJECTS = libsysbase/libsysbase_libsysbase_a-_exit.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-abort.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-build_argv.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-chdir.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-chmod.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-clocks.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-dirent.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-environ.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-execve.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fchmod.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fork.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fstat.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fsync.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-ftruncate.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-getpid.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-getreent.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-gettod.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-handle_manager.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-iosupport.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-isatty.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-kill.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-link.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-lseek.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-lstat.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-malloc_vars.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-mkdir.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-nanosleep.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-open.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-read.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-rename.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-rmdir.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-sbrk.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-scandir.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-sleep.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-stat.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-statvfs.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-syscall_support.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-times.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-truncate.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-unlink.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-usleep.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-utime.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-wait.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-write.$(OBJEXT)
+libsysbase_libsysbase_a_OBJECTS =  \
+	$(am_libsysbase_libsysbase_a_OBJECTS)
 lm32_libgloss_a_AR = $(AR) $(ARFLAGS)
 lm32_libgloss_a_LIBADD =
 @CONFIG_LM32_TRUE@am_lm32_libgloss_a_OBJECTS = lm32/isatty.$(OBJEXT) \
@@ -1673,7 +1724,8 @@ xtensa_libgloss_a_AR = $(AR) $(ARFLAGS)
 xtensa_libgloss_a_LIBADD =
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__objects_44 = xtensa/boards/esp32/xtensa_libgloss_a-board.$(OBJEXT)
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP32S3_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am__objects_45 = xtensa/boards/esp32s3/xtensa_libgloss_a-board.$(OBJEXT)
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am_xtensa_libgloss_a_OBJECTS = xtensa/xtensa_libgloss_a-sleep.$(OBJEXT) \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@am_xtensa_libgloss_a_OBJECTS = xtensa/xtensa_libgloss_a-clibrary_init.$(OBJEXT) \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/xtensa_libgloss_a-sleep.$(OBJEXT) \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/xtensa_libgloss_a-syscalls.$(OBJEXT) \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/xtensa_libgloss_a-window-vectors.$(OBJEXT) \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__objects_44) \
@@ -1798,9 +1850,9 @@ SOURCES = $(aarch64_librdimon_a_SOURCES) \
 	$(ft32_libsim_a_SOURCES) $(i386_libcygmon_a_SOURCES) \
 	$(i960_libmon960_a_SOURCES) $(iq2000_libeval_a_SOURCES) \
 	$(libnosys_libnosys_a_SOURCES) $(libobjs_a_SOURCES) \
-	$(lm32_libgloss_a_SOURCES) $(m32r_libgloss_a_SOURCES) \
-	$(m32r_libmon_a_SOURCES) $(mcore_libcmb_a_SOURCES) \
-	$(mcore_libsim_a_SOURCES) \
+	$(libsysbase_libsysbase_a_SOURCES) $(lm32_libgloss_a_SOURCES) \
+	$(m32r_libgloss_a_SOURCES) $(m32r_libmon_a_SOURCES) \
+	$(mcore_libcmb_a_SOURCES) $(mcore_libsim_a_SOURCES) \
 	$(microblaze_libgloss_linux_a_SOURCES) \
 	$(microblaze_libgloss_a_SOURCES) $(mn10200_libeval_a_SOURCES) \
 	$(mn10300_libcygmon_a_SOURCES) $(mn10300_libeval_a_SOURCES) \
@@ -1923,7 +1975,7 @@ ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
-VPATH = @srcdir@ $(am__append_133)
+VPATH = @srcdir@ $(am__append_135)
 AARCH64_OBJTYPE = @AARCH64_OBJTYPE@
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -2033,6 +2085,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -2049,7 +2102,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I . -I .. -I ../config
 info_TEXINFOS = $(am__append_1)
-CLEANFILES = $(am__append_4) $(am__append_14) $(am__append_139)
+CLEANFILES = $(am__append_4) $(am__append_14) $(am__append_141)
 PHONY = 
 SUBDIRS = @subdirs@ .
 srcroot = $(top_srcdir)/..
@@ -2061,35 +2114,36 @@ multilibtool_DATA = $(am__append_3) $(am__append_6) $(am__append_9) \
 	$(am__append_29) $(am__append_30) $(am__append_33) \
 	$(am__append_36) $(am__append_39) $(am__append_40) \
 	$(am__append_43) $(am__append_46) $(am__append_49) \
-	$(am__append_53) $(am__append_55) $(am__append_58) \
-	$(am__append_59) $(am__append_62) $(am__append_63) \
-	$(am__append_64) $(am__append_67) $(am__append_68) \
-	$(am__append_71) $(am__append_75) $(am__append_76) \
-	$(am__append_77) $(am__append_82) $(am__append_83) \
-	$(am__append_86) $(am__append_89) $(am__append_92) \
-	$(am__append_94) $(am__append_98) $(am__append_101) \
-	$(am__append_103) $(am__append_106) $(am__append_109) \
-	$(am__append_112) $(am__append_115) $(am__append_117) \
-	$(am__append_122) $(am__append_124) $(am__append_127) \
-	$(am__append_130) $(am__append_135) $(am__append_140) \
-	$(am__append_143) $(am__append_145) $(am__append_150)
+	$(am__append_53) $(am__append_55) $(am__append_57) \
+	$(am__append_60) $(am__append_61) $(am__append_64) \
+	$(am__append_65) $(am__append_66) $(am__append_69) \
+	$(am__append_70) $(am__append_73) $(am__append_77) \
+	$(am__append_78) $(am__append_79) $(am__append_84) \
+	$(am__append_85) $(am__append_88) $(am__append_91) \
+	$(am__append_94) $(am__append_96) $(am__append_100) \
+	$(am__append_103) $(am__append_105) $(am__append_108) \
+	$(am__append_111) $(am__append_114) $(am__append_117) \
+	$(am__append_119) $(am__append_124) $(am__append_126) \
+	$(am__append_129) $(am__append_132) $(am__append_137) \
+	$(am__append_142) $(am__append_145) $(am__append_147) \
+	$(am__append_152)
 multilibtool_LIBRARIES = $(am__append_2) $(am__append_5) \
 	$(am__append_8) $(am__append_13) $(am__append_15) \
 	$(am__append_24) $(am__append_27) $(am__append_28) \
 	$(am__append_32) $(am__append_35) $(am__append_38) \
 	$(am__append_42) $(am__append_45) $(am__append_48) \
 	$(am__append_50) $(am__append_54) $(am__append_56) \
-	$(am__append_61) $(am__append_66) $(am__append_70) \
-	$(am__append_73) $(am__append_79) $(am__append_80) \
-	$(am__append_85) $(am__append_88) $(am__append_91) \
-	$(am__append_93) $(am__append_97) $(am__append_100) \
-	$(am__append_102) $(am__append_105) $(am__append_108) \
-	$(am__append_111) $(am__append_114) $(am__append_116) \
-	$(am__append_119) $(am__append_121) $(am__append_126) \
-	$(am__append_129) $(am__append_132) $(am__append_137) \
-	$(am__append_142) $(am__append_144)
+	$(am__append_58) $(am__append_63) $(am__append_68) \
+	$(am__append_72) $(am__append_75) $(am__append_81) \
+	$(am__append_82) $(am__append_87) $(am__append_90) \
+	$(am__append_93) $(am__append_95) $(am__append_99) \
+	$(am__append_102) $(am__append_104) $(am__append_107) \
+	$(am__append_110) $(am__append_113) $(am__append_116) \
+	$(am__append_118) $(am__append_121) $(am__append_123) \
+	$(am__append_128) $(am__append_131) $(am__append_134) \
+	$(am__append_139) $(am__append_144) $(am__append_146)
 includetooldir = $(tooldir)/include
-includetool_DATA = $(am__append_20) $(am__append_96)
+includetool_DATA = $(am__append_20) $(am__append_98)
 includesystooldir = $(tooldir)/include/sys
 includesystool_DATA = $(am__append_21)
 
@@ -2107,14 +2161,14 @@ libobjs_a_SOURCES = $(am__append_7) $(am__append_10) $(am__append_18) \
 	$(am__append_23) $(am__append_26) $(am__append_31) \
 	$(am__append_34) $(am__append_37) $(am__append_41) \
 	$(am__append_44) $(am__append_47) $(am__append_51) \
-	$(am__append_57) $(am__append_60) $(am__append_65) \
-	$(am__append_69) $(am__append_72) $(am__append_78) \
-	$(am__append_84) $(am__append_87) $(am__append_90) \
-	$(am__append_95) $(am__append_99) $(am__append_104) \
-	$(am__append_107) $(am__append_110) $(am__append_113) \
-	$(am__append_118) $(am__append_123) $(am__append_125) \
-	$(am__append_128) $(am__append_131) $(am__append_136) \
-	$(am__append_141)
+	$(am__append_59) $(am__append_62) $(am__append_67) \
+	$(am__append_71) $(am__append_74) $(am__append_80) \
+	$(am__append_86) $(am__append_89) $(am__append_92) \
+	$(am__append_97) $(am__append_101) $(am__append_106) \
+	$(am__append_109) $(am__append_112) $(am__append_115) \
+	$(am__append_120) $(am__append_125) $(am__append_127) \
+	$(am__append_130) $(am__append_133) $(am__append_138) \
+	$(am__append_143)
 FLAGS_TO_PASS = \
 	"CC=$(CC)" \
 	"CFLAGS=$(CFLAGS)" \
@@ -2470,6 +2524,53 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBNOSYS_TRUE@	libnosys/write.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/getentropy.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/_exit.c
+
+@CONFIG_LIBSYSBASE_TRUE@libsysbase_libsysbase_a_CPPFLAGS = $(AM_CPPFLAGS) -D_BUILDING_LIBSYSBASE
+@CONFIG_LIBSYSBASE_TRUE@libsysbase_libsysbase_a_SOURCES = \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/_exit.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/abort.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/build_argv.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/chdir.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/chmod.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/clocks.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/dirent.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/environ.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/execve.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/fchmod.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/fork.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/fstat.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/fsync.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/ftruncate.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/getpid.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/getreent.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/gettod.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/handle_manager.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/iosupport.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/isatty.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/kill.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/link.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/lseek.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/lstat.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/malloc_vars.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/mkdir.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/nanosleep.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/open.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/read.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/rename.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/rmdir.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/sbrk.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/scandir.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/sleep.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/stat.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/statvfs.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/syscall_support.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/times.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/truncate.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/unlink.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/usleep.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/utime.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/wait.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/write.c
 
 @CONFIG_LM32_TRUE@lm32_libgloss_a_SOURCES = \
 @CONFIG_LM32_TRUE@	lm32/isatty.c \
@@ -3130,18 +3231,19 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_XSTORMY16_TRUE@	-nostartfiles -T$(srcdir)/xstormy16/eva_stub.ld
 
 @CONFIG_XTENSA_TRUE@AM_CPPFLAGS_xtensa = -D_LIBGLOSS -I$(srcdir)/xtensa/include
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libgloss_a_SOURCES = xtensa/sleep.S \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libgloss_a_SOURCES = xtensa/clibrary_init.c \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/sleep.S \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/syscalls.c \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/window-vectors.S \
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_146) \
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_151)
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libgloss_a_CPPFLAGS = $(AM_CPPFLAGS) \
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_147) \
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_152)
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libsys_qemu_a_CPPFLAGS = $(AM_CPPFLAGS) \
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	-DQEMU_SEMIHOSTING \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_148) \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_153)
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libgloss_a_CPPFLAGS = $(AM_CPPFLAGS) \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_149) \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_154)
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libsys_qemu_a_CPPFLAGS = $(AM_CPPFLAGS) \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	-DQEMU_SEMIHOSTING \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_150) \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_155)
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libsys_qemu_a_SOURCES = \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/sim-vectors.S \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/sim-call.S \
@@ -3149,8 +3251,8 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libsys_openocd_a_CPPFLAGS = $(AM_CPPFLAGS) \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	-DOPENOCD_SEMIHOSTING \
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_149) \
-@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_154)
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_151) \
+@CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	$(am__append_156)
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@xtensa_libsys_openocd_a_SOURCES = \
 @CONFIG_XTENSA_TRUE@@HAVE_XTENSA_BOARD_ESP_TRUE@	xtensa/syscalls.c
 
@@ -3161,7 +3263,7 @@ all: config.h
 .SUFFIXES: .S .c .dvi .o .obj .ps .s
 am--refresh: Makefile
 	@:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arc64/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/cr16/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/epiphany/Makefile.inc $(srcdir)/fr30/Makefile.inc $(srcdir)/frv/Makefile.inc $(srcdir)/ft32/Makefile.inc $(srcdir)/i386/Makefile.inc $(srcdir)/i960/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/m32r/Makefile.inc $(srcdir)/mcore/Makefile.inc $(srcdir)/microblaze/Makefile.inc $(srcdir)/mn10200/Makefile.inc $(srcdir)/mn10300/Makefile.inc $(srcdir)/moxie/Makefile.inc $(srcdir)/msp430/Makefile.inc $(srcdir)/nds32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/or1k/Makefile.inc $(srcdir)/pru/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/rl78/Makefile.inc $(srcdir)/rx/Makefile.inc $(srcdir)/sparc/Makefile.inc $(srcdir)/sparc_leon/Makefile.inc $(srcdir)/tic6x/Makefile.inc $(srcdir)/v850/Makefile.inc $(srcdir)/visium/Makefile.inc $(srcdir)/wince/Makefile.inc $(srcdir)/xstormy16/Makefile.inc $(srcdir)/xtensa/Makefile.inc $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arc64/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/cr16/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/epiphany/Makefile.inc $(srcdir)/fr30/Makefile.inc $(srcdir)/frv/Makefile.inc $(srcdir)/ft32/Makefile.inc $(srcdir)/i386/Makefile.inc $(srcdir)/i960/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/libsysbase/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/m32r/Makefile.inc $(srcdir)/mcore/Makefile.inc $(srcdir)/microblaze/Makefile.inc $(srcdir)/mn10200/Makefile.inc $(srcdir)/mn10300/Makefile.inc $(srcdir)/moxie/Makefile.inc $(srcdir)/msp430/Makefile.inc $(srcdir)/nds32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/or1k/Makefile.inc $(srcdir)/pru/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/rl78/Makefile.inc $(srcdir)/rx/Makefile.inc $(srcdir)/sparc/Makefile.inc $(srcdir)/sparc_leon/Makefile.inc $(srcdir)/tic6x/Makefile.inc $(srcdir)/v850/Makefile.inc $(srcdir)/visium/Makefile.inc $(srcdir)/wince/Makefile.inc $(srcdir)/xstormy16/Makefile.inc $(srcdir)/xtensa/Makefile.inc $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -3183,7 +3285,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe);; \
 	esac;
-$(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arc64/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/cr16/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/epiphany/Makefile.inc $(srcdir)/fr30/Makefile.inc $(srcdir)/frv/Makefile.inc $(srcdir)/ft32/Makefile.inc $(srcdir)/i386/Makefile.inc $(srcdir)/i960/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/m32r/Makefile.inc $(srcdir)/mcore/Makefile.inc $(srcdir)/microblaze/Makefile.inc $(srcdir)/mn10200/Makefile.inc $(srcdir)/mn10300/Makefile.inc $(srcdir)/moxie/Makefile.inc $(srcdir)/msp430/Makefile.inc $(srcdir)/nds32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/or1k/Makefile.inc $(srcdir)/pru/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/rl78/Makefile.inc $(srcdir)/rx/Makefile.inc $(srcdir)/sparc/Makefile.inc $(srcdir)/sparc_leon/Makefile.inc $(srcdir)/tic6x/Makefile.inc $(srcdir)/v850/Makefile.inc $(srcdir)/visium/Makefile.inc $(srcdir)/wince/Makefile.inc $(srcdir)/xstormy16/Makefile.inc $(srcdir)/xtensa/Makefile.inc $(am__empty):
+$(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arc64/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/cr16/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/epiphany/Makefile.inc $(srcdir)/fr30/Makefile.inc $(srcdir)/frv/Makefile.inc $(srcdir)/ft32/Makefile.inc $(srcdir)/i386/Makefile.inc $(srcdir)/i960/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/libsysbase/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/m32r/Makefile.inc $(srcdir)/mcore/Makefile.inc $(srcdir)/microblaze/Makefile.inc $(srcdir)/mn10200/Makefile.inc $(srcdir)/mn10300/Makefile.inc $(srcdir)/moxie/Makefile.inc $(srcdir)/msp430/Makefile.inc $(srcdir)/nds32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/or1k/Makefile.inc $(srcdir)/pru/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/rl78/Makefile.inc $(srcdir)/rx/Makefile.inc $(srcdir)/sparc/Makefile.inc $(srcdir)/sparc_leon/Makefile.inc $(srcdir)/tic6x/Makefile.inc $(srcdir)/v850/Makefile.inc $(srcdir)/visium/Makefile.inc $(srcdir)/wince/Makefile.inc $(srcdir)/xstormy16/Makefile.inc $(srcdir)/xtensa/Makefile.inc $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
@@ -4236,6 +4338,149 @@ libobjs.a: $(libobjs_a_OBJECTS) $(libobjs_a_DEPENDENCIES) $(EXTRA_libobjs_a_DEPE
 	$(AM_V_at)-rm -f libobjs.a
 	$(AM_V_AR)$(libobjs_a_AR) libobjs.a $(libobjs_a_OBJECTS) $(libobjs_a_LIBADD)
 	$(AM_V_at)$(RANLIB) libobjs.a
+libsysbase/$(am__dirstamp):
+	@$(MKDIR_P) libsysbase
+	@: > libsysbase/$(am__dirstamp)
+libsysbase/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) libsysbase/$(DEPDIR)
+	@: > libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-_exit.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-abort.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-build_argv.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-chdir.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-chmod.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-clocks.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-dirent.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-environ.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-execve.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-fchmod.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-fork.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-fstat.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-fsync.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-ftruncate.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-getpid.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-getreent.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-gettod.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-handle_manager.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-iosupport.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-isatty.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-kill.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-link.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-lseek.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-lstat.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-malloc_vars.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-mkdir.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-nanosleep.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-open.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-read.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-rename.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-rmdir.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-sbrk.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-scandir.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-sleep.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-stat.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-statvfs.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-syscall_support.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-times.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-truncate.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-unlink.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-usleep.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-utime.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-wait.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-write.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+
+libsysbase/libsysbase.a: $(libsysbase_libsysbase_a_OBJECTS) $(libsysbase_libsysbase_a_DEPENDENCIES) $(EXTRA_libsysbase_libsysbase_a_DEPENDENCIES) libsysbase/$(am__dirstamp)
+	$(AM_V_at)-rm -f libsysbase/libsysbase.a
+	$(AM_V_AR)$(libsysbase_libsysbase_a_AR) libsysbase/libsysbase.a $(libsysbase_libsysbase_a_OBJECTS) $(libsysbase_libsysbase_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libsysbase/libsysbase.a
 lm32/isatty.$(OBJEXT): lm32/$(am__dirstamp) \
 	lm32/$(DEPDIR)/$(am__dirstamp)
 lm32/scall.$(OBJEXT): lm32/$(am__dirstamp) \
@@ -5412,6 +5657,8 @@ xstormy16/libsim.a: $(xstormy16_libsim_a_OBJECTS) $(xstormy16_libsim_a_DEPENDENC
 	$(AM_V_at)-rm -f xstormy16/libsim.a
 	$(AM_V_AR)$(xstormy16_libsim_a_AR) xstormy16/libsim.a $(xstormy16_libsim_a_OBJECTS) $(xstormy16_libsim_a_LIBADD)
 	$(AM_V_at)$(RANLIB) xstormy16/libsim.a
+xtensa/xtensa_libgloss_a-clibrary_init.$(OBJEXT):  \
+	xtensa/$(am__dirstamp) xtensa/$(DEPDIR)/$(am__dirstamp)
 xtensa/xtensa_libgloss_a-sleep.$(OBJEXT): xtensa/$(am__dirstamp) \
 	xtensa/$(DEPDIR)/$(am__dirstamp)
 xtensa/xtensa_libgloss_a-syscalls.$(OBJEXT): xtensa/$(am__dirstamp) \
@@ -5623,6 +5870,7 @@ mostlyclean-compile:
 	-rm -f i960/*.$(OBJEXT)
 	-rm -f iq2000/*.$(OBJEXT)
 	-rm -f libnosys/*.$(OBJEXT)
+	-rm -f libsysbase/*.$(OBJEXT)
 	-rm -f lm32/*.$(OBJEXT)
 	-rm -f m32r/*.$(OBJEXT)
 	-rm -f mcore/*.$(OBJEXT)
@@ -5927,6 +6175,50 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/wait.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/write.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-ftruncate.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getpid.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getreent.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-gettod.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-handle_manager.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-iosupport.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-isatty.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-kill.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-link.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lseek.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lstat.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-malloc_vars.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-mkdir.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sbrk.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-scandir.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-unlink.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-usleep.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-utime.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-wait.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lm32/$(DEPDIR)/crt0.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lm32/$(DEPDIR)/isatty.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lm32/$(DEPDIR)/scall.Po@am__quote@
@@ -6445,6 +6737,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@xtensa/$(DEPDIR)/crt0.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@xtensa/$(DEPDIR)/crt1-boards.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@xtensa/$(DEPDIR)/crt1-sim.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@xtensa/$(DEPDIR)/xtensa_libgloss_a-clibrary_init.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@xtensa/$(DEPDIR)/xtensa_libgloss_a-sleep.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@xtensa/$(DEPDIR)/xtensa_libgloss_a-syscalls.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@xtensa/$(DEPDIR)/xtensa_libgloss_a-window-vectors.Po@am__quote@
@@ -7914,6 +8207,622 @@ i386/i386_libcygmon_a-cygmon-gmon.obj: i386/cygmon-gmon.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='i386/cygmon-gmon.c' object='i386/i386_libcygmon_a-cygmon-gmon.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(i386_libcygmon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o i386/i386_libcygmon_a-cygmon-gmon.obj `if test -f 'i386/cygmon-gmon.c'; then $(CYGPATH_W) 'i386/cygmon-gmon.c'; else $(CYGPATH_W) '$(srcdir)/i386/cygmon-gmon.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-_exit.o: libsysbase/_exit.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-_exit.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Tpo -c -o libsysbase/libsysbase_libsysbase_a-_exit.o `test -f 'libsysbase/_exit.c' || echo '$(srcdir)/'`libsysbase/_exit.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/_exit.c' object='libsysbase/libsysbase_libsysbase_a-_exit.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-_exit.o `test -f 'libsysbase/_exit.c' || echo '$(srcdir)/'`libsysbase/_exit.c
+
+libsysbase/libsysbase_libsysbase_a-_exit.obj: libsysbase/_exit.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-_exit.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Tpo -c -o libsysbase/libsysbase_libsysbase_a-_exit.obj `if test -f 'libsysbase/_exit.c'; then $(CYGPATH_W) 'libsysbase/_exit.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/_exit.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/_exit.c' object='libsysbase/libsysbase_libsysbase_a-_exit.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-_exit.obj `if test -f 'libsysbase/_exit.c'; then $(CYGPATH_W) 'libsysbase/_exit.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/_exit.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-abort.o: libsysbase/abort.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-abort.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Tpo -c -o libsysbase/libsysbase_libsysbase_a-abort.o `test -f 'libsysbase/abort.c' || echo '$(srcdir)/'`libsysbase/abort.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/abort.c' object='libsysbase/libsysbase_libsysbase_a-abort.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-abort.o `test -f 'libsysbase/abort.c' || echo '$(srcdir)/'`libsysbase/abort.c
+
+libsysbase/libsysbase_libsysbase_a-abort.obj: libsysbase/abort.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-abort.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Tpo -c -o libsysbase/libsysbase_libsysbase_a-abort.obj `if test -f 'libsysbase/abort.c'; then $(CYGPATH_W) 'libsysbase/abort.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/abort.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/abort.c' object='libsysbase/libsysbase_libsysbase_a-abort.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-abort.obj `if test -f 'libsysbase/abort.c'; then $(CYGPATH_W) 'libsysbase/abort.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/abort.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-build_argv.o: libsysbase/build_argv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-build_argv.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Tpo -c -o libsysbase/libsysbase_libsysbase_a-build_argv.o `test -f 'libsysbase/build_argv.c' || echo '$(srcdir)/'`libsysbase/build_argv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/build_argv.c' object='libsysbase/libsysbase_libsysbase_a-build_argv.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-build_argv.o `test -f 'libsysbase/build_argv.c' || echo '$(srcdir)/'`libsysbase/build_argv.c
+
+libsysbase/libsysbase_libsysbase_a-build_argv.obj: libsysbase/build_argv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-build_argv.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Tpo -c -o libsysbase/libsysbase_libsysbase_a-build_argv.obj `if test -f 'libsysbase/build_argv.c'; then $(CYGPATH_W) 'libsysbase/build_argv.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/build_argv.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/build_argv.c' object='libsysbase/libsysbase_libsysbase_a-build_argv.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-build_argv.obj `if test -f 'libsysbase/build_argv.c'; then $(CYGPATH_W) 'libsysbase/build_argv.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/build_argv.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-chdir.o: libsysbase/chdir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-chdir.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-chdir.o `test -f 'libsysbase/chdir.c' || echo '$(srcdir)/'`libsysbase/chdir.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/chdir.c' object='libsysbase/libsysbase_libsysbase_a-chdir.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-chdir.o `test -f 'libsysbase/chdir.c' || echo '$(srcdir)/'`libsysbase/chdir.c
+
+libsysbase/libsysbase_libsysbase_a-chdir.obj: libsysbase/chdir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-chdir.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-chdir.obj `if test -f 'libsysbase/chdir.c'; then $(CYGPATH_W) 'libsysbase/chdir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/chdir.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/chdir.c' object='libsysbase/libsysbase_libsysbase_a-chdir.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-chdir.obj `if test -f 'libsysbase/chdir.c'; then $(CYGPATH_W) 'libsysbase/chdir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/chdir.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-chmod.o: libsysbase/chmod.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-chmod.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Tpo -c -o libsysbase/libsysbase_libsysbase_a-chmod.o `test -f 'libsysbase/chmod.c' || echo '$(srcdir)/'`libsysbase/chmod.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/chmod.c' object='libsysbase/libsysbase_libsysbase_a-chmod.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-chmod.o `test -f 'libsysbase/chmod.c' || echo '$(srcdir)/'`libsysbase/chmod.c
+
+libsysbase/libsysbase_libsysbase_a-chmod.obj: libsysbase/chmod.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-chmod.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Tpo -c -o libsysbase/libsysbase_libsysbase_a-chmod.obj `if test -f 'libsysbase/chmod.c'; then $(CYGPATH_W) 'libsysbase/chmod.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/chmod.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/chmod.c' object='libsysbase/libsysbase_libsysbase_a-chmod.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-chmod.obj `if test -f 'libsysbase/chmod.c'; then $(CYGPATH_W) 'libsysbase/chmod.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/chmod.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-clocks.o: libsysbase/clocks.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-clocks.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Tpo -c -o libsysbase/libsysbase_libsysbase_a-clocks.o `test -f 'libsysbase/clocks.c' || echo '$(srcdir)/'`libsysbase/clocks.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/clocks.c' object='libsysbase/libsysbase_libsysbase_a-clocks.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-clocks.o `test -f 'libsysbase/clocks.c' || echo '$(srcdir)/'`libsysbase/clocks.c
+
+libsysbase/libsysbase_libsysbase_a-clocks.obj: libsysbase/clocks.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-clocks.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Tpo -c -o libsysbase/libsysbase_libsysbase_a-clocks.obj `if test -f 'libsysbase/clocks.c'; then $(CYGPATH_W) 'libsysbase/clocks.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/clocks.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/clocks.c' object='libsysbase/libsysbase_libsysbase_a-clocks.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-clocks.obj `if test -f 'libsysbase/clocks.c'; then $(CYGPATH_W) 'libsysbase/clocks.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/clocks.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-dirent.o: libsysbase/dirent.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-dirent.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Tpo -c -o libsysbase/libsysbase_libsysbase_a-dirent.o `test -f 'libsysbase/dirent.c' || echo '$(srcdir)/'`libsysbase/dirent.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/dirent.c' object='libsysbase/libsysbase_libsysbase_a-dirent.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-dirent.o `test -f 'libsysbase/dirent.c' || echo '$(srcdir)/'`libsysbase/dirent.c
+
+libsysbase/libsysbase_libsysbase_a-dirent.obj: libsysbase/dirent.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-dirent.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Tpo -c -o libsysbase/libsysbase_libsysbase_a-dirent.obj `if test -f 'libsysbase/dirent.c'; then $(CYGPATH_W) 'libsysbase/dirent.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/dirent.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/dirent.c' object='libsysbase/libsysbase_libsysbase_a-dirent.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-dirent.obj `if test -f 'libsysbase/dirent.c'; then $(CYGPATH_W) 'libsysbase/dirent.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/dirent.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-environ.o: libsysbase/environ.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-environ.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Tpo -c -o libsysbase/libsysbase_libsysbase_a-environ.o `test -f 'libsysbase/environ.c' || echo '$(srcdir)/'`libsysbase/environ.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/environ.c' object='libsysbase/libsysbase_libsysbase_a-environ.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-environ.o `test -f 'libsysbase/environ.c' || echo '$(srcdir)/'`libsysbase/environ.c
+
+libsysbase/libsysbase_libsysbase_a-environ.obj: libsysbase/environ.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-environ.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Tpo -c -o libsysbase/libsysbase_libsysbase_a-environ.obj `if test -f 'libsysbase/environ.c'; then $(CYGPATH_W) 'libsysbase/environ.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/environ.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/environ.c' object='libsysbase/libsysbase_libsysbase_a-environ.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-environ.obj `if test -f 'libsysbase/environ.c'; then $(CYGPATH_W) 'libsysbase/environ.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/environ.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-execve.o: libsysbase/execve.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-execve.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Tpo -c -o libsysbase/libsysbase_libsysbase_a-execve.o `test -f 'libsysbase/execve.c' || echo '$(srcdir)/'`libsysbase/execve.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/execve.c' object='libsysbase/libsysbase_libsysbase_a-execve.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-execve.o `test -f 'libsysbase/execve.c' || echo '$(srcdir)/'`libsysbase/execve.c
+
+libsysbase/libsysbase_libsysbase_a-execve.obj: libsysbase/execve.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-execve.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Tpo -c -o libsysbase/libsysbase_libsysbase_a-execve.obj `if test -f 'libsysbase/execve.c'; then $(CYGPATH_W) 'libsysbase/execve.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/execve.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/execve.c' object='libsysbase/libsysbase_libsysbase_a-execve.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-execve.obj `if test -f 'libsysbase/execve.c'; then $(CYGPATH_W) 'libsysbase/execve.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/execve.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-fchmod.o: libsysbase/fchmod.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fchmod.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fchmod.o `test -f 'libsysbase/fchmod.c' || echo '$(srcdir)/'`libsysbase/fchmod.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fchmod.c' object='libsysbase/libsysbase_libsysbase_a-fchmod.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fchmod.o `test -f 'libsysbase/fchmod.c' || echo '$(srcdir)/'`libsysbase/fchmod.c
+
+libsysbase/libsysbase_libsysbase_a-fchmod.obj: libsysbase/fchmod.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fchmod.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fchmod.obj `if test -f 'libsysbase/fchmod.c'; then $(CYGPATH_W) 'libsysbase/fchmod.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fchmod.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fchmod.c' object='libsysbase/libsysbase_libsysbase_a-fchmod.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fchmod.obj `if test -f 'libsysbase/fchmod.c'; then $(CYGPATH_W) 'libsysbase/fchmod.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fchmod.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-fork.o: libsysbase/fork.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fork.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fork.o `test -f 'libsysbase/fork.c' || echo '$(srcdir)/'`libsysbase/fork.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fork.c' object='libsysbase/libsysbase_libsysbase_a-fork.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fork.o `test -f 'libsysbase/fork.c' || echo '$(srcdir)/'`libsysbase/fork.c
+
+libsysbase/libsysbase_libsysbase_a-fork.obj: libsysbase/fork.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fork.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fork.obj `if test -f 'libsysbase/fork.c'; then $(CYGPATH_W) 'libsysbase/fork.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fork.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fork.c' object='libsysbase/libsysbase_libsysbase_a-fork.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fork.obj `if test -f 'libsysbase/fork.c'; then $(CYGPATH_W) 'libsysbase/fork.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fork.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-fstat.o: libsysbase/fstat.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fstat.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fstat.o `test -f 'libsysbase/fstat.c' || echo '$(srcdir)/'`libsysbase/fstat.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fstat.c' object='libsysbase/libsysbase_libsysbase_a-fstat.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fstat.o `test -f 'libsysbase/fstat.c' || echo '$(srcdir)/'`libsysbase/fstat.c
+
+libsysbase/libsysbase_libsysbase_a-fstat.obj: libsysbase/fstat.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fstat.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fstat.obj `if test -f 'libsysbase/fstat.c'; then $(CYGPATH_W) 'libsysbase/fstat.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fstat.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fstat.c' object='libsysbase/libsysbase_libsysbase_a-fstat.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fstat.obj `if test -f 'libsysbase/fstat.c'; then $(CYGPATH_W) 'libsysbase/fstat.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fstat.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-fsync.o: libsysbase/fsync.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fsync.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fsync.o `test -f 'libsysbase/fsync.c' || echo '$(srcdir)/'`libsysbase/fsync.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fsync.c' object='libsysbase/libsysbase_libsysbase_a-fsync.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fsync.o `test -f 'libsysbase/fsync.c' || echo '$(srcdir)/'`libsysbase/fsync.c
+
+libsysbase/libsysbase_libsysbase_a-fsync.obj: libsysbase/fsync.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fsync.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fsync.obj `if test -f 'libsysbase/fsync.c'; then $(CYGPATH_W) 'libsysbase/fsync.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fsync.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fsync.c' object='libsysbase/libsysbase_libsysbase_a-fsync.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fsync.obj `if test -f 'libsysbase/fsync.c'; then $(CYGPATH_W) 'libsysbase/fsync.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fsync.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-ftruncate.o: libsysbase/ftruncate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-ftruncate.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-ftruncate.Tpo -c -o libsysbase/libsysbase_libsysbase_a-ftruncate.o `test -f 'libsysbase/ftruncate.c' || echo '$(srcdir)/'`libsysbase/ftruncate.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-ftruncate.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-ftruncate.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/ftruncate.c' object='libsysbase/libsysbase_libsysbase_a-ftruncate.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-ftruncate.o `test -f 'libsysbase/ftruncate.c' || echo '$(srcdir)/'`libsysbase/ftruncate.c
+
+libsysbase/libsysbase_libsysbase_a-ftruncate.obj: libsysbase/ftruncate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-ftruncate.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-ftruncate.Tpo -c -o libsysbase/libsysbase_libsysbase_a-ftruncate.obj `if test -f 'libsysbase/ftruncate.c'; then $(CYGPATH_W) 'libsysbase/ftruncate.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/ftruncate.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-ftruncate.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-ftruncate.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/ftruncate.c' object='libsysbase/libsysbase_libsysbase_a-ftruncate.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-ftruncate.obj `if test -f 'libsysbase/ftruncate.c'; then $(CYGPATH_W) 'libsysbase/ftruncate.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/ftruncate.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-getpid.o: libsysbase/getpid.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-getpid.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getpid.Tpo -c -o libsysbase/libsysbase_libsysbase_a-getpid.o `test -f 'libsysbase/getpid.c' || echo '$(srcdir)/'`libsysbase/getpid.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getpid.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getpid.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/getpid.c' object='libsysbase/libsysbase_libsysbase_a-getpid.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-getpid.o `test -f 'libsysbase/getpid.c' || echo '$(srcdir)/'`libsysbase/getpid.c
+
+libsysbase/libsysbase_libsysbase_a-getpid.obj: libsysbase/getpid.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-getpid.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getpid.Tpo -c -o libsysbase/libsysbase_libsysbase_a-getpid.obj `if test -f 'libsysbase/getpid.c'; then $(CYGPATH_W) 'libsysbase/getpid.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/getpid.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getpid.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getpid.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/getpid.c' object='libsysbase/libsysbase_libsysbase_a-getpid.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-getpid.obj `if test -f 'libsysbase/getpid.c'; then $(CYGPATH_W) 'libsysbase/getpid.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/getpid.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-getreent.o: libsysbase/getreent.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-getreent.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getreent.Tpo -c -o libsysbase/libsysbase_libsysbase_a-getreent.o `test -f 'libsysbase/getreent.c' || echo '$(srcdir)/'`libsysbase/getreent.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getreent.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getreent.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/getreent.c' object='libsysbase/libsysbase_libsysbase_a-getreent.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-getreent.o `test -f 'libsysbase/getreent.c' || echo '$(srcdir)/'`libsysbase/getreent.c
+
+libsysbase/libsysbase_libsysbase_a-getreent.obj: libsysbase/getreent.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-getreent.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getreent.Tpo -c -o libsysbase/libsysbase_libsysbase_a-getreent.obj `if test -f 'libsysbase/getreent.c'; then $(CYGPATH_W) 'libsysbase/getreent.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/getreent.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getreent.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-getreent.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/getreent.c' object='libsysbase/libsysbase_libsysbase_a-getreent.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-getreent.obj `if test -f 'libsysbase/getreent.c'; then $(CYGPATH_W) 'libsysbase/getreent.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/getreent.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-gettod.o: libsysbase/gettod.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-gettod.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-gettod.Tpo -c -o libsysbase/libsysbase_libsysbase_a-gettod.o `test -f 'libsysbase/gettod.c' || echo '$(srcdir)/'`libsysbase/gettod.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-gettod.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-gettod.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/gettod.c' object='libsysbase/libsysbase_libsysbase_a-gettod.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-gettod.o `test -f 'libsysbase/gettod.c' || echo '$(srcdir)/'`libsysbase/gettod.c
+
+libsysbase/libsysbase_libsysbase_a-gettod.obj: libsysbase/gettod.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-gettod.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-gettod.Tpo -c -o libsysbase/libsysbase_libsysbase_a-gettod.obj `if test -f 'libsysbase/gettod.c'; then $(CYGPATH_W) 'libsysbase/gettod.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/gettod.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-gettod.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-gettod.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/gettod.c' object='libsysbase/libsysbase_libsysbase_a-gettod.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-gettod.obj `if test -f 'libsysbase/gettod.c'; then $(CYGPATH_W) 'libsysbase/gettod.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/gettod.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-handle_manager.o: libsysbase/handle_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-handle_manager.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-handle_manager.Tpo -c -o libsysbase/libsysbase_libsysbase_a-handle_manager.o `test -f 'libsysbase/handle_manager.c' || echo '$(srcdir)/'`libsysbase/handle_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-handle_manager.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-handle_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/handle_manager.c' object='libsysbase/libsysbase_libsysbase_a-handle_manager.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-handle_manager.o `test -f 'libsysbase/handle_manager.c' || echo '$(srcdir)/'`libsysbase/handle_manager.c
+
+libsysbase/libsysbase_libsysbase_a-handle_manager.obj: libsysbase/handle_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-handle_manager.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-handle_manager.Tpo -c -o libsysbase/libsysbase_libsysbase_a-handle_manager.obj `if test -f 'libsysbase/handle_manager.c'; then $(CYGPATH_W) 'libsysbase/handle_manager.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/handle_manager.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-handle_manager.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-handle_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/handle_manager.c' object='libsysbase/libsysbase_libsysbase_a-handle_manager.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-handle_manager.obj `if test -f 'libsysbase/handle_manager.c'; then $(CYGPATH_W) 'libsysbase/handle_manager.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/handle_manager.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-iosupport.o: libsysbase/iosupport.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-iosupport.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-iosupport.Tpo -c -o libsysbase/libsysbase_libsysbase_a-iosupport.o `test -f 'libsysbase/iosupport.c' || echo '$(srcdir)/'`libsysbase/iosupport.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-iosupport.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-iosupport.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/iosupport.c' object='libsysbase/libsysbase_libsysbase_a-iosupport.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-iosupport.o `test -f 'libsysbase/iosupport.c' || echo '$(srcdir)/'`libsysbase/iosupport.c
+
+libsysbase/libsysbase_libsysbase_a-iosupport.obj: libsysbase/iosupport.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-iosupport.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-iosupport.Tpo -c -o libsysbase/libsysbase_libsysbase_a-iosupport.obj `if test -f 'libsysbase/iosupport.c'; then $(CYGPATH_W) 'libsysbase/iosupport.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/iosupport.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-iosupport.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-iosupport.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/iosupport.c' object='libsysbase/libsysbase_libsysbase_a-iosupport.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-iosupport.obj `if test -f 'libsysbase/iosupport.c'; then $(CYGPATH_W) 'libsysbase/iosupport.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/iosupport.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-isatty.o: libsysbase/isatty.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-isatty.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-isatty.Tpo -c -o libsysbase/libsysbase_libsysbase_a-isatty.o `test -f 'libsysbase/isatty.c' || echo '$(srcdir)/'`libsysbase/isatty.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-isatty.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-isatty.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/isatty.c' object='libsysbase/libsysbase_libsysbase_a-isatty.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-isatty.o `test -f 'libsysbase/isatty.c' || echo '$(srcdir)/'`libsysbase/isatty.c
+
+libsysbase/libsysbase_libsysbase_a-isatty.obj: libsysbase/isatty.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-isatty.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-isatty.Tpo -c -o libsysbase/libsysbase_libsysbase_a-isatty.obj `if test -f 'libsysbase/isatty.c'; then $(CYGPATH_W) 'libsysbase/isatty.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/isatty.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-isatty.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-isatty.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/isatty.c' object='libsysbase/libsysbase_libsysbase_a-isatty.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-isatty.obj `if test -f 'libsysbase/isatty.c'; then $(CYGPATH_W) 'libsysbase/isatty.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/isatty.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-kill.o: libsysbase/kill.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-kill.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-kill.Tpo -c -o libsysbase/libsysbase_libsysbase_a-kill.o `test -f 'libsysbase/kill.c' || echo '$(srcdir)/'`libsysbase/kill.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-kill.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-kill.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/kill.c' object='libsysbase/libsysbase_libsysbase_a-kill.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-kill.o `test -f 'libsysbase/kill.c' || echo '$(srcdir)/'`libsysbase/kill.c
+
+libsysbase/libsysbase_libsysbase_a-kill.obj: libsysbase/kill.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-kill.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-kill.Tpo -c -o libsysbase/libsysbase_libsysbase_a-kill.obj `if test -f 'libsysbase/kill.c'; then $(CYGPATH_W) 'libsysbase/kill.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/kill.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-kill.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-kill.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/kill.c' object='libsysbase/libsysbase_libsysbase_a-kill.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-kill.obj `if test -f 'libsysbase/kill.c'; then $(CYGPATH_W) 'libsysbase/kill.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/kill.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-link.o: libsysbase/link.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-link.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-link.Tpo -c -o libsysbase/libsysbase_libsysbase_a-link.o `test -f 'libsysbase/link.c' || echo '$(srcdir)/'`libsysbase/link.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-link.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-link.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/link.c' object='libsysbase/libsysbase_libsysbase_a-link.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-link.o `test -f 'libsysbase/link.c' || echo '$(srcdir)/'`libsysbase/link.c
+
+libsysbase/libsysbase_libsysbase_a-link.obj: libsysbase/link.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-link.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-link.Tpo -c -o libsysbase/libsysbase_libsysbase_a-link.obj `if test -f 'libsysbase/link.c'; then $(CYGPATH_W) 'libsysbase/link.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/link.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-link.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-link.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/link.c' object='libsysbase/libsysbase_libsysbase_a-link.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-link.obj `if test -f 'libsysbase/link.c'; then $(CYGPATH_W) 'libsysbase/link.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/link.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-lseek.o: libsysbase/lseek.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-lseek.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lseek.Tpo -c -o libsysbase/libsysbase_libsysbase_a-lseek.o `test -f 'libsysbase/lseek.c' || echo '$(srcdir)/'`libsysbase/lseek.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lseek.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lseek.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/lseek.c' object='libsysbase/libsysbase_libsysbase_a-lseek.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-lseek.o `test -f 'libsysbase/lseek.c' || echo '$(srcdir)/'`libsysbase/lseek.c
+
+libsysbase/libsysbase_libsysbase_a-lseek.obj: libsysbase/lseek.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-lseek.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lseek.Tpo -c -o libsysbase/libsysbase_libsysbase_a-lseek.obj `if test -f 'libsysbase/lseek.c'; then $(CYGPATH_W) 'libsysbase/lseek.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/lseek.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lseek.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lseek.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/lseek.c' object='libsysbase/libsysbase_libsysbase_a-lseek.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-lseek.obj `if test -f 'libsysbase/lseek.c'; then $(CYGPATH_W) 'libsysbase/lseek.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/lseek.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-lstat.o: libsysbase/lstat.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-lstat.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lstat.Tpo -c -o libsysbase/libsysbase_libsysbase_a-lstat.o `test -f 'libsysbase/lstat.c' || echo '$(srcdir)/'`libsysbase/lstat.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lstat.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lstat.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/lstat.c' object='libsysbase/libsysbase_libsysbase_a-lstat.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-lstat.o `test -f 'libsysbase/lstat.c' || echo '$(srcdir)/'`libsysbase/lstat.c
+
+libsysbase/libsysbase_libsysbase_a-lstat.obj: libsysbase/lstat.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-lstat.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lstat.Tpo -c -o libsysbase/libsysbase_libsysbase_a-lstat.obj `if test -f 'libsysbase/lstat.c'; then $(CYGPATH_W) 'libsysbase/lstat.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/lstat.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lstat.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-lstat.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/lstat.c' object='libsysbase/libsysbase_libsysbase_a-lstat.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-lstat.obj `if test -f 'libsysbase/lstat.c'; then $(CYGPATH_W) 'libsysbase/lstat.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/lstat.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-malloc_vars.o: libsysbase/malloc_vars.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-malloc_vars.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-malloc_vars.Tpo -c -o libsysbase/libsysbase_libsysbase_a-malloc_vars.o `test -f 'libsysbase/malloc_vars.c' || echo '$(srcdir)/'`libsysbase/malloc_vars.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-malloc_vars.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-malloc_vars.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/malloc_vars.c' object='libsysbase/libsysbase_libsysbase_a-malloc_vars.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-malloc_vars.o `test -f 'libsysbase/malloc_vars.c' || echo '$(srcdir)/'`libsysbase/malloc_vars.c
+
+libsysbase/libsysbase_libsysbase_a-malloc_vars.obj: libsysbase/malloc_vars.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-malloc_vars.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-malloc_vars.Tpo -c -o libsysbase/libsysbase_libsysbase_a-malloc_vars.obj `if test -f 'libsysbase/malloc_vars.c'; then $(CYGPATH_W) 'libsysbase/malloc_vars.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/malloc_vars.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-malloc_vars.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-malloc_vars.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/malloc_vars.c' object='libsysbase/libsysbase_libsysbase_a-malloc_vars.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-malloc_vars.obj `if test -f 'libsysbase/malloc_vars.c'; then $(CYGPATH_W) 'libsysbase/malloc_vars.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/malloc_vars.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-mkdir.o: libsysbase/mkdir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-mkdir.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-mkdir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-mkdir.o `test -f 'libsysbase/mkdir.c' || echo '$(srcdir)/'`libsysbase/mkdir.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-mkdir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-mkdir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/mkdir.c' object='libsysbase/libsysbase_libsysbase_a-mkdir.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-mkdir.o `test -f 'libsysbase/mkdir.c' || echo '$(srcdir)/'`libsysbase/mkdir.c
+
+libsysbase/libsysbase_libsysbase_a-mkdir.obj: libsysbase/mkdir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-mkdir.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-mkdir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-mkdir.obj `if test -f 'libsysbase/mkdir.c'; then $(CYGPATH_W) 'libsysbase/mkdir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/mkdir.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-mkdir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-mkdir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/mkdir.c' object='libsysbase/libsysbase_libsysbase_a-mkdir.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-mkdir.obj `if test -f 'libsysbase/mkdir.c'; then $(CYGPATH_W) 'libsysbase/mkdir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/mkdir.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-nanosleep.o: libsysbase/nanosleep.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-nanosleep.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Tpo -c -o libsysbase/libsysbase_libsysbase_a-nanosleep.o `test -f 'libsysbase/nanosleep.c' || echo '$(srcdir)/'`libsysbase/nanosleep.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/nanosleep.c' object='libsysbase/libsysbase_libsysbase_a-nanosleep.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-nanosleep.o `test -f 'libsysbase/nanosleep.c' || echo '$(srcdir)/'`libsysbase/nanosleep.c
+
+libsysbase/libsysbase_libsysbase_a-nanosleep.obj: libsysbase/nanosleep.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-nanosleep.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Tpo -c -o libsysbase/libsysbase_libsysbase_a-nanosleep.obj `if test -f 'libsysbase/nanosleep.c'; then $(CYGPATH_W) 'libsysbase/nanosleep.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/nanosleep.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/nanosleep.c' object='libsysbase/libsysbase_libsysbase_a-nanosleep.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-nanosleep.obj `if test -f 'libsysbase/nanosleep.c'; then $(CYGPATH_W) 'libsysbase/nanosleep.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/nanosleep.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-open.o: libsysbase/open.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-open.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Tpo -c -o libsysbase/libsysbase_libsysbase_a-open.o `test -f 'libsysbase/open.c' || echo '$(srcdir)/'`libsysbase/open.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/open.c' object='libsysbase/libsysbase_libsysbase_a-open.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-open.o `test -f 'libsysbase/open.c' || echo '$(srcdir)/'`libsysbase/open.c
+
+libsysbase/libsysbase_libsysbase_a-open.obj: libsysbase/open.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-open.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Tpo -c -o libsysbase/libsysbase_libsysbase_a-open.obj `if test -f 'libsysbase/open.c'; then $(CYGPATH_W) 'libsysbase/open.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/open.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/open.c' object='libsysbase/libsysbase_libsysbase_a-open.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-open.obj `if test -f 'libsysbase/open.c'; then $(CYGPATH_W) 'libsysbase/open.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/open.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-read.o: libsysbase/read.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-read.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Tpo -c -o libsysbase/libsysbase_libsysbase_a-read.o `test -f 'libsysbase/read.c' || echo '$(srcdir)/'`libsysbase/read.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/read.c' object='libsysbase/libsysbase_libsysbase_a-read.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-read.o `test -f 'libsysbase/read.c' || echo '$(srcdir)/'`libsysbase/read.c
+
+libsysbase/libsysbase_libsysbase_a-read.obj: libsysbase/read.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-read.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Tpo -c -o libsysbase/libsysbase_libsysbase_a-read.obj `if test -f 'libsysbase/read.c'; then $(CYGPATH_W) 'libsysbase/read.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/read.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/read.c' object='libsysbase/libsysbase_libsysbase_a-read.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-read.obj `if test -f 'libsysbase/read.c'; then $(CYGPATH_W) 'libsysbase/read.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/read.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-rename.o: libsysbase/rename.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-rename.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Tpo -c -o libsysbase/libsysbase_libsysbase_a-rename.o `test -f 'libsysbase/rename.c' || echo '$(srcdir)/'`libsysbase/rename.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/rename.c' object='libsysbase/libsysbase_libsysbase_a-rename.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-rename.o `test -f 'libsysbase/rename.c' || echo '$(srcdir)/'`libsysbase/rename.c
+
+libsysbase/libsysbase_libsysbase_a-rename.obj: libsysbase/rename.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-rename.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Tpo -c -o libsysbase/libsysbase_libsysbase_a-rename.obj `if test -f 'libsysbase/rename.c'; then $(CYGPATH_W) 'libsysbase/rename.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/rename.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/rename.c' object='libsysbase/libsysbase_libsysbase_a-rename.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-rename.obj `if test -f 'libsysbase/rename.c'; then $(CYGPATH_W) 'libsysbase/rename.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/rename.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-rmdir.o: libsysbase/rmdir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-rmdir.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-rmdir.o `test -f 'libsysbase/rmdir.c' || echo '$(srcdir)/'`libsysbase/rmdir.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/rmdir.c' object='libsysbase/libsysbase_libsysbase_a-rmdir.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-rmdir.o `test -f 'libsysbase/rmdir.c' || echo '$(srcdir)/'`libsysbase/rmdir.c
+
+libsysbase/libsysbase_libsysbase_a-rmdir.obj: libsysbase/rmdir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-rmdir.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-rmdir.obj `if test -f 'libsysbase/rmdir.c'; then $(CYGPATH_W) 'libsysbase/rmdir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/rmdir.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/rmdir.c' object='libsysbase/libsysbase_libsysbase_a-rmdir.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-rmdir.obj `if test -f 'libsysbase/rmdir.c'; then $(CYGPATH_W) 'libsysbase/rmdir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/rmdir.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-sbrk.o: libsysbase/sbrk.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-sbrk.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sbrk.Tpo -c -o libsysbase/libsysbase_libsysbase_a-sbrk.o `test -f 'libsysbase/sbrk.c' || echo '$(srcdir)/'`libsysbase/sbrk.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sbrk.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sbrk.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/sbrk.c' object='libsysbase/libsysbase_libsysbase_a-sbrk.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-sbrk.o `test -f 'libsysbase/sbrk.c' || echo '$(srcdir)/'`libsysbase/sbrk.c
+
+libsysbase/libsysbase_libsysbase_a-sbrk.obj: libsysbase/sbrk.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-sbrk.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sbrk.Tpo -c -o libsysbase/libsysbase_libsysbase_a-sbrk.obj `if test -f 'libsysbase/sbrk.c'; then $(CYGPATH_W) 'libsysbase/sbrk.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/sbrk.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sbrk.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sbrk.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/sbrk.c' object='libsysbase/libsysbase_libsysbase_a-sbrk.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-sbrk.obj `if test -f 'libsysbase/sbrk.c'; then $(CYGPATH_W) 'libsysbase/sbrk.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/sbrk.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-scandir.o: libsysbase/scandir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-scandir.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-scandir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-scandir.o `test -f 'libsysbase/scandir.c' || echo '$(srcdir)/'`libsysbase/scandir.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-scandir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-scandir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/scandir.c' object='libsysbase/libsysbase_libsysbase_a-scandir.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-scandir.o `test -f 'libsysbase/scandir.c' || echo '$(srcdir)/'`libsysbase/scandir.c
+
+libsysbase/libsysbase_libsysbase_a-scandir.obj: libsysbase/scandir.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-scandir.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-scandir.Tpo -c -o libsysbase/libsysbase_libsysbase_a-scandir.obj `if test -f 'libsysbase/scandir.c'; then $(CYGPATH_W) 'libsysbase/scandir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/scandir.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-scandir.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-scandir.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/scandir.c' object='libsysbase/libsysbase_libsysbase_a-scandir.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-scandir.obj `if test -f 'libsysbase/scandir.c'; then $(CYGPATH_W) 'libsysbase/scandir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/scandir.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-sleep.o: libsysbase/sleep.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-sleep.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Tpo -c -o libsysbase/libsysbase_libsysbase_a-sleep.o `test -f 'libsysbase/sleep.c' || echo '$(srcdir)/'`libsysbase/sleep.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/sleep.c' object='libsysbase/libsysbase_libsysbase_a-sleep.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-sleep.o `test -f 'libsysbase/sleep.c' || echo '$(srcdir)/'`libsysbase/sleep.c
+
+libsysbase/libsysbase_libsysbase_a-sleep.obj: libsysbase/sleep.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-sleep.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Tpo -c -o libsysbase/libsysbase_libsysbase_a-sleep.obj `if test -f 'libsysbase/sleep.c'; then $(CYGPATH_W) 'libsysbase/sleep.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/sleep.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/sleep.c' object='libsysbase/libsysbase_libsysbase_a-sleep.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-sleep.obj `if test -f 'libsysbase/sleep.c'; then $(CYGPATH_W) 'libsysbase/sleep.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/sleep.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-stat.o: libsysbase/stat.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-stat.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Tpo -c -o libsysbase/libsysbase_libsysbase_a-stat.o `test -f 'libsysbase/stat.c' || echo '$(srcdir)/'`libsysbase/stat.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/stat.c' object='libsysbase/libsysbase_libsysbase_a-stat.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-stat.o `test -f 'libsysbase/stat.c' || echo '$(srcdir)/'`libsysbase/stat.c
+
+libsysbase/libsysbase_libsysbase_a-stat.obj: libsysbase/stat.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-stat.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Tpo -c -o libsysbase/libsysbase_libsysbase_a-stat.obj `if test -f 'libsysbase/stat.c'; then $(CYGPATH_W) 'libsysbase/stat.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/stat.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/stat.c' object='libsysbase/libsysbase_libsysbase_a-stat.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-stat.obj `if test -f 'libsysbase/stat.c'; then $(CYGPATH_W) 'libsysbase/stat.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/stat.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-statvfs.o: libsysbase/statvfs.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-statvfs.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Tpo -c -o libsysbase/libsysbase_libsysbase_a-statvfs.o `test -f 'libsysbase/statvfs.c' || echo '$(srcdir)/'`libsysbase/statvfs.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/statvfs.c' object='libsysbase/libsysbase_libsysbase_a-statvfs.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-statvfs.o `test -f 'libsysbase/statvfs.c' || echo '$(srcdir)/'`libsysbase/statvfs.c
+
+libsysbase/libsysbase_libsysbase_a-statvfs.obj: libsysbase/statvfs.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-statvfs.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Tpo -c -o libsysbase/libsysbase_libsysbase_a-statvfs.obj `if test -f 'libsysbase/statvfs.c'; then $(CYGPATH_W) 'libsysbase/statvfs.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/statvfs.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/statvfs.c' object='libsysbase/libsysbase_libsysbase_a-statvfs.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-statvfs.obj `if test -f 'libsysbase/statvfs.c'; then $(CYGPATH_W) 'libsysbase/statvfs.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/statvfs.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-syscall_support.o: libsysbase/syscall_support.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-syscall_support.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Tpo -c -o libsysbase/libsysbase_libsysbase_a-syscall_support.o `test -f 'libsysbase/syscall_support.c' || echo '$(srcdir)/'`libsysbase/syscall_support.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/syscall_support.c' object='libsysbase/libsysbase_libsysbase_a-syscall_support.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-syscall_support.o `test -f 'libsysbase/syscall_support.c' || echo '$(srcdir)/'`libsysbase/syscall_support.c
+
+libsysbase/libsysbase_libsysbase_a-syscall_support.obj: libsysbase/syscall_support.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-syscall_support.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Tpo -c -o libsysbase/libsysbase_libsysbase_a-syscall_support.obj `if test -f 'libsysbase/syscall_support.c'; then $(CYGPATH_W) 'libsysbase/syscall_support.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/syscall_support.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/syscall_support.c' object='libsysbase/libsysbase_libsysbase_a-syscall_support.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-syscall_support.obj `if test -f 'libsysbase/syscall_support.c'; then $(CYGPATH_W) 'libsysbase/syscall_support.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/syscall_support.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-times.o: libsysbase/times.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-times.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Tpo -c -o libsysbase/libsysbase_libsysbase_a-times.o `test -f 'libsysbase/times.c' || echo '$(srcdir)/'`libsysbase/times.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/times.c' object='libsysbase/libsysbase_libsysbase_a-times.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-times.o `test -f 'libsysbase/times.c' || echo '$(srcdir)/'`libsysbase/times.c
+
+libsysbase/libsysbase_libsysbase_a-times.obj: libsysbase/times.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-times.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Tpo -c -o libsysbase/libsysbase_libsysbase_a-times.obj `if test -f 'libsysbase/times.c'; then $(CYGPATH_W) 'libsysbase/times.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/times.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/times.c' object='libsysbase/libsysbase_libsysbase_a-times.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-times.obj `if test -f 'libsysbase/times.c'; then $(CYGPATH_W) 'libsysbase/times.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/times.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-truncate.o: libsysbase/truncate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-truncate.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Tpo -c -o libsysbase/libsysbase_libsysbase_a-truncate.o `test -f 'libsysbase/truncate.c' || echo '$(srcdir)/'`libsysbase/truncate.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/truncate.c' object='libsysbase/libsysbase_libsysbase_a-truncate.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-truncate.o `test -f 'libsysbase/truncate.c' || echo '$(srcdir)/'`libsysbase/truncate.c
+
+libsysbase/libsysbase_libsysbase_a-truncate.obj: libsysbase/truncate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-truncate.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Tpo -c -o libsysbase/libsysbase_libsysbase_a-truncate.obj `if test -f 'libsysbase/truncate.c'; then $(CYGPATH_W) 'libsysbase/truncate.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/truncate.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/truncate.c' object='libsysbase/libsysbase_libsysbase_a-truncate.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-truncate.obj `if test -f 'libsysbase/truncate.c'; then $(CYGPATH_W) 'libsysbase/truncate.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/truncate.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-unlink.o: libsysbase/unlink.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-unlink.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-unlink.Tpo -c -o libsysbase/libsysbase_libsysbase_a-unlink.o `test -f 'libsysbase/unlink.c' || echo '$(srcdir)/'`libsysbase/unlink.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-unlink.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-unlink.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/unlink.c' object='libsysbase/libsysbase_libsysbase_a-unlink.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-unlink.o `test -f 'libsysbase/unlink.c' || echo '$(srcdir)/'`libsysbase/unlink.c
+
+libsysbase/libsysbase_libsysbase_a-unlink.obj: libsysbase/unlink.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-unlink.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-unlink.Tpo -c -o libsysbase/libsysbase_libsysbase_a-unlink.obj `if test -f 'libsysbase/unlink.c'; then $(CYGPATH_W) 'libsysbase/unlink.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/unlink.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-unlink.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-unlink.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/unlink.c' object='libsysbase/libsysbase_libsysbase_a-unlink.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-unlink.obj `if test -f 'libsysbase/unlink.c'; then $(CYGPATH_W) 'libsysbase/unlink.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/unlink.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-usleep.o: libsysbase/usleep.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-usleep.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-usleep.Tpo -c -o libsysbase/libsysbase_libsysbase_a-usleep.o `test -f 'libsysbase/usleep.c' || echo '$(srcdir)/'`libsysbase/usleep.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-usleep.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-usleep.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/usleep.c' object='libsysbase/libsysbase_libsysbase_a-usleep.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-usleep.o `test -f 'libsysbase/usleep.c' || echo '$(srcdir)/'`libsysbase/usleep.c
+
+libsysbase/libsysbase_libsysbase_a-usleep.obj: libsysbase/usleep.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-usleep.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-usleep.Tpo -c -o libsysbase/libsysbase_libsysbase_a-usleep.obj `if test -f 'libsysbase/usleep.c'; then $(CYGPATH_W) 'libsysbase/usleep.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/usleep.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-usleep.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-usleep.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/usleep.c' object='libsysbase/libsysbase_libsysbase_a-usleep.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-usleep.obj `if test -f 'libsysbase/usleep.c'; then $(CYGPATH_W) 'libsysbase/usleep.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/usleep.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-utime.o: libsysbase/utime.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-utime.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-utime.Tpo -c -o libsysbase/libsysbase_libsysbase_a-utime.o `test -f 'libsysbase/utime.c' || echo '$(srcdir)/'`libsysbase/utime.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-utime.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-utime.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/utime.c' object='libsysbase/libsysbase_libsysbase_a-utime.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-utime.o `test -f 'libsysbase/utime.c' || echo '$(srcdir)/'`libsysbase/utime.c
+
+libsysbase/libsysbase_libsysbase_a-utime.obj: libsysbase/utime.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-utime.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-utime.Tpo -c -o libsysbase/libsysbase_libsysbase_a-utime.obj `if test -f 'libsysbase/utime.c'; then $(CYGPATH_W) 'libsysbase/utime.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/utime.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-utime.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-utime.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/utime.c' object='libsysbase/libsysbase_libsysbase_a-utime.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-utime.obj `if test -f 'libsysbase/utime.c'; then $(CYGPATH_W) 'libsysbase/utime.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/utime.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-wait.o: libsysbase/wait.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-wait.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-wait.Tpo -c -o libsysbase/libsysbase_libsysbase_a-wait.o `test -f 'libsysbase/wait.c' || echo '$(srcdir)/'`libsysbase/wait.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-wait.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-wait.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/wait.c' object='libsysbase/libsysbase_libsysbase_a-wait.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-wait.o `test -f 'libsysbase/wait.c' || echo '$(srcdir)/'`libsysbase/wait.c
+
+libsysbase/libsysbase_libsysbase_a-wait.obj: libsysbase/wait.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-wait.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-wait.Tpo -c -o libsysbase/libsysbase_libsysbase_a-wait.obj `if test -f 'libsysbase/wait.c'; then $(CYGPATH_W) 'libsysbase/wait.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/wait.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-wait.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-wait.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/wait.c' object='libsysbase/libsysbase_libsysbase_a-wait.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-wait.obj `if test -f 'libsysbase/wait.c'; then $(CYGPATH_W) 'libsysbase/wait.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/wait.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-write.o: libsysbase/write.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-write.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-write.Tpo -c -o libsysbase/libsysbase_libsysbase_a-write.o `test -f 'libsysbase/write.c' || echo '$(srcdir)/'`libsysbase/write.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-write.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-write.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/write.c' object='libsysbase/libsysbase_libsysbase_a-write.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-write.o `test -f 'libsysbase/write.c' || echo '$(srcdir)/'`libsysbase/write.c
+
+libsysbase/libsysbase_libsysbase_a-write.obj: libsysbase/write.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-write.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-write.Tpo -c -o libsysbase/libsysbase_libsysbase_a-write.obj `if test -f 'libsysbase/write.c'; then $(CYGPATH_W) 'libsysbase/write.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/write.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-write.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-write.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/write.c' object='libsysbase/libsysbase_libsysbase_a-write.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-write.obj `if test -f 'libsysbase/write.c'; then $(CYGPATH_W) 'libsysbase/write.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/write.c'; fi`
 
 nios2/nios2_libnios2_a-io-close.o: nios2/io-close.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(nios2_libnios2_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT nios2/nios2_libnios2_a-io-close.o -MD -MP -MF nios2/$(DEPDIR)/nios2_libnios2_a-io-close.Tpo -c -o nios2/nios2_libnios2_a-io-close.o `test -f 'nios2/io-close.c' || echo '$(srcdir)/'`nios2/io-close.c
@@ -9427,6 +10336,20 @@ riscv/riscv_libsim_a-sys_write.obj: riscv/sys_write.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(riscv_libsim_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o riscv/riscv_libsim_a-sys_write.obj `if test -f 'riscv/sys_write.c'; then $(CYGPATH_W) 'riscv/sys_write.c'; else $(CYGPATH_W) '$(srcdir)/riscv/sys_write.c'; fi`
 
+xtensa/xtensa_libgloss_a-clibrary_init.o: xtensa/clibrary_init.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(xtensa_libgloss_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT xtensa/xtensa_libgloss_a-clibrary_init.o -MD -MP -MF xtensa/$(DEPDIR)/xtensa_libgloss_a-clibrary_init.Tpo -c -o xtensa/xtensa_libgloss_a-clibrary_init.o `test -f 'xtensa/clibrary_init.c' || echo '$(srcdir)/'`xtensa/clibrary_init.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) xtensa/$(DEPDIR)/xtensa_libgloss_a-clibrary_init.Tpo xtensa/$(DEPDIR)/xtensa_libgloss_a-clibrary_init.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='xtensa/clibrary_init.c' object='xtensa/xtensa_libgloss_a-clibrary_init.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(xtensa_libgloss_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o xtensa/xtensa_libgloss_a-clibrary_init.o `test -f 'xtensa/clibrary_init.c' || echo '$(srcdir)/'`xtensa/clibrary_init.c
+
+xtensa/xtensa_libgloss_a-clibrary_init.obj: xtensa/clibrary_init.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(xtensa_libgloss_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT xtensa/xtensa_libgloss_a-clibrary_init.obj -MD -MP -MF xtensa/$(DEPDIR)/xtensa_libgloss_a-clibrary_init.Tpo -c -o xtensa/xtensa_libgloss_a-clibrary_init.obj `if test -f 'xtensa/clibrary_init.c'; then $(CYGPATH_W) 'xtensa/clibrary_init.c'; else $(CYGPATH_W) '$(srcdir)/xtensa/clibrary_init.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) xtensa/$(DEPDIR)/xtensa_libgloss_a-clibrary_init.Tpo xtensa/$(DEPDIR)/xtensa_libgloss_a-clibrary_init.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='xtensa/clibrary_init.c' object='xtensa/xtensa_libgloss_a-clibrary_init.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(xtensa_libgloss_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o xtensa/xtensa_libgloss_a-clibrary_init.obj `if test -f 'xtensa/clibrary_init.c'; then $(CYGPATH_W) 'xtensa/clibrary_init.c'; else $(CYGPATH_W) '$(srcdir)/xtensa/clibrary_init.c'; fi`
+
 xtensa/xtensa_libgloss_a-syscalls.o: xtensa/syscalls.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(xtensa_libgloss_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT xtensa/xtensa_libgloss_a-syscalls.o -MD -MP -MF xtensa/$(DEPDIR)/xtensa_libgloss_a-syscalls.Tpo -c -o xtensa/xtensa_libgloss_a-syscalls.o `test -f 'xtensa/syscalls.c' || echo '$(srcdir)/'`xtensa/syscalls.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) xtensa/$(DEPDIR)/xtensa_libgloss_a-syscalls.Tpo xtensa/$(DEPDIR)/xtensa_libgloss_a-syscalls.Po
@@ -10002,6 +10925,8 @@ distclean-generic:
 	-rm -f iq2000/$(am__dirstamp)
 	-rm -f libnosys/$(DEPDIR)/$(am__dirstamp)
 	-rm -f libnosys/$(am__dirstamp)
+	-rm -f libsysbase/$(DEPDIR)/$(am__dirstamp)
+	-rm -f libsysbase/$(am__dirstamp)
 	-rm -f lm32/$(DEPDIR)/$(am__dirstamp)
 	-rm -f lm32/$(am__dirstamp)
 	-rm -f m32r/$(DEPDIR)/$(am__dirstamp)
@@ -10067,7 +10992,7 @@ clean-am: clean-aminfo clean-binPROGRAMS clean-checkPROGRAMS \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arc/hl/$(DEPDIR) arc64/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) cr16/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) epiphany/$(DEPDIR) fr30/$(DEPDIR) frv/$(DEPDIR) ft32/$(DEPDIR) i386/$(DEPDIR) i960/$(DEPDIR) iq2000/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) m32r/$(DEPDIR) mcore/$(DEPDIR) microblaze/$(DEPDIR) mn10200/$(DEPDIR) mn10300/$(DEPDIR) moxie/$(DEPDIR) msp430/$(DEPDIR) nds32/$(DEPDIR) nios2/$(DEPDIR) or1k/$(DEPDIR) or1k/boards/$(DEPDIR) pru/$(DEPDIR) riscv/$(DEPDIR) rl78/$(DEPDIR) rx/$(DEPDIR) sparc/$(DEPDIR) sparc_leon/$(DEPDIR) tic6x/$(DEPDIR) v850/$(DEPDIR) visium/$(DEPDIR) xstormy16/$(DEPDIR) xtensa/$(DEPDIR) xtensa/boards/esp32/$(DEPDIR) xtensa/boards/esp32s3/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arc/hl/$(DEPDIR) arc64/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) cr16/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) epiphany/$(DEPDIR) fr30/$(DEPDIR) frv/$(DEPDIR) ft32/$(DEPDIR) i386/$(DEPDIR) i960/$(DEPDIR) iq2000/$(DEPDIR) libnosys/$(DEPDIR) libsysbase/$(DEPDIR) lm32/$(DEPDIR) m32r/$(DEPDIR) mcore/$(DEPDIR) microblaze/$(DEPDIR) mn10200/$(DEPDIR) mn10300/$(DEPDIR) moxie/$(DEPDIR) msp430/$(DEPDIR) nds32/$(DEPDIR) nios2/$(DEPDIR) or1k/$(DEPDIR) or1k/boards/$(DEPDIR) pru/$(DEPDIR) riscv/$(DEPDIR) rl78/$(DEPDIR) rx/$(DEPDIR) sparc/$(DEPDIR) sparc_leon/$(DEPDIR) tic6x/$(DEPDIR) v850/$(DEPDIR) visium/$(DEPDIR) xstormy16/$(DEPDIR) xtensa/$(DEPDIR) xtensa/boards/esp32/$(DEPDIR) xtensa/boards/esp32s3/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-local distclean-tags
@@ -10211,7 +11136,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arc/hl/$(DEPDIR) arc64/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) cr16/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) epiphany/$(DEPDIR) fr30/$(DEPDIR) frv/$(DEPDIR) ft32/$(DEPDIR) i386/$(DEPDIR) i960/$(DEPDIR) iq2000/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) m32r/$(DEPDIR) mcore/$(DEPDIR) microblaze/$(DEPDIR) mn10200/$(DEPDIR) mn10300/$(DEPDIR) moxie/$(DEPDIR) msp430/$(DEPDIR) nds32/$(DEPDIR) nios2/$(DEPDIR) or1k/$(DEPDIR) or1k/boards/$(DEPDIR) pru/$(DEPDIR) riscv/$(DEPDIR) rl78/$(DEPDIR) rx/$(DEPDIR) sparc/$(DEPDIR) sparc_leon/$(DEPDIR) tic6x/$(DEPDIR) v850/$(DEPDIR) visium/$(DEPDIR) xstormy16/$(DEPDIR) xtensa/$(DEPDIR) xtensa/boards/esp32/$(DEPDIR) xtensa/boards/esp32s3/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arc/hl/$(DEPDIR) arc64/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) cr16/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) epiphany/$(DEPDIR) fr30/$(DEPDIR) frv/$(DEPDIR) ft32/$(DEPDIR) i386/$(DEPDIR) i960/$(DEPDIR) iq2000/$(DEPDIR) libnosys/$(DEPDIR) libsysbase/$(DEPDIR) lm32/$(DEPDIR) m32r/$(DEPDIR) mcore/$(DEPDIR) microblaze/$(DEPDIR) mn10200/$(DEPDIR) mn10300/$(DEPDIR) moxie/$(DEPDIR) msp430/$(DEPDIR) nds32/$(DEPDIR) nios2/$(DEPDIR) or1k/$(DEPDIR) or1k/boards/$(DEPDIR) pru/$(DEPDIR) riscv/$(DEPDIR) rl78/$(DEPDIR) rx/$(DEPDIR) sparc/$(DEPDIR) sparc_leon/$(DEPDIR) tic6x/$(DEPDIR) v850/$(DEPDIR) visium/$(DEPDIR) xstormy16/$(DEPDIR) xtensa/$(DEPDIR) xtensa/boards/esp32/$(DEPDIR) xtensa/boards/esp32s3/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-aminfo \
 	maintainer-clean-generic maintainer-clean-local

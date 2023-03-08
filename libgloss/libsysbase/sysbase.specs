@@ -1,0 +1,11 @@
+%rename link_gcc_c_sequence                sysbase_link_gcc_c_sequence
+
+*sysbase_libgloss:
+-lsysbase
+
+*sysbase_libc:
+%{!specs=nano.specs:-lc} %{specs=nano.specs:-lc_nano}
+
+*link_gcc_c_sequence:
+%(sysbase_link_gcc_c_sequence) --start-group %G %(sysbase_libc) %(sysbase_libgloss) --end-group
+

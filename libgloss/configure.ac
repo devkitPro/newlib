@@ -43,6 +43,9 @@ config_testsuite=true
 dnl indicates whether to run configure within the libnosys subdirectory
 config_libnosys=true
 
+dnl indicates whether to run configure within the libsysbase subdirectory
+config_libsysbase=true
+
 host_makefile_frag=${srcdir}/config/default.mh
 target_makefile_frag=${srcdir}/config/default.mt
 
@@ -247,7 +250,7 @@ AC_SUBST(subdirs)
 dnl These subdirs have converted to non-recursive make.  Hopefully someday all
 dnl the ports above will too!
 m4_foreach_w([SUBDIR], [
-  aarch64 arc arm bfin csky d30v iq2000 libnosys lm32 nios2 riscv wince
+  aarch64 arc arm bfin csky d30v iq2000 libnosys libsysbase lm32 nios2 riscv wince
 ], [dnl
   AM_CONDITIONAL([CONFIG_]m4_toupper(SUBDIR), [test x$config_]SUBDIR = xtrue)
 ])
@@ -343,6 +346,7 @@ m4_include([aarch64/acinclude.m4])
 m4_include([arm/acinclude.m4])
 m4_include([i386/acinclude.m4])
 m4_include([libnosys/acinclude.m4])
+m4_include([libsysbase/acinclude.m4])
 m4_include([m68k/acinclude.m4])
 m4_include([mcore/acinclude.m4])
 m4_include([mips/acinclude.m4])

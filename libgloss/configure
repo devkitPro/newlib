@@ -638,6 +638,8 @@ CONFIG_NIOS2_FALSE
 CONFIG_NIOS2_TRUE
 CONFIG_LM32_FALSE
 CONFIG_LM32_TRUE
+CONFIG_LIBSYSBASE_FALSE
+CONFIG_LIBSYSBASE_TRUE
 CONFIG_LIBNOSYS_FALSE
 CONFIG_LIBNOSYS_TRUE
 CONFIG_IQ2000_FALSE
@@ -722,6 +724,7 @@ infodir
 docdir
 oldincludedir
 includedir
+runstatedir
 localstatedir
 sharedstatedir
 sysconfdir
@@ -800,6 +803,7 @@ datadir='${datarootdir}'
 sysconfdir='${prefix}/etc'
 sharedstatedir='${prefix}/com'
 localstatedir='${prefix}/var'
+runstatedir='${localstatedir}/run'
 includedir='${prefix}/include'
 oldincludedir='/usr/include'
 docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
@@ -1052,6 +1056,15 @@ do
   | -silent | --silent | --silen | --sile | --sil)
     silent=yes ;;
 
+  -runstatedir | --runstatedir | --runstatedi | --runstated \
+  | --runstate | --runstat | --runsta | --runst | --runs \
+  | --run | --ru | --r)
+    ac_prev=runstatedir ;;
+  -runstatedir=* | --runstatedir=* | --runstatedi=* | --runstated=* \
+  | --runstate=* | --runstat=* | --runsta=* | --runst=* | --runs=* \
+  | --run=* | --ru=* | --r=*)
+    runstatedir=$ac_optarg ;;
+
   -sbindir | --sbindir | --sbindi | --sbind | --sbin | --sbi | --sb)
     ac_prev=sbindir ;;
   -sbindir=* | --sbindir=* | --sbindi=* | --sbind=* | --sbin=* \
@@ -1189,7 +1202,7 @@ fi
 for ac_var in	exec_prefix prefix bindir sbindir libexecdir datarootdir \
 		datadir sysconfdir sharedstatedir localstatedir includedir \
 		oldincludedir docdir infodir htmldir dvidir pdfdir psdir \
-		libdir localedir mandir
+		libdir localedir mandir runstatedir
 do
   eval ac_val=\$$ac_var
   # Remove trailing slashes.
@@ -1342,6 +1355,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -2745,6 +2759,8 @@ config_testsuite=true
 
 config_libnosys=true
 
+config_libsysbase=true
+
 host_makefile_frag=${srcdir}/config/default.mh
 target_makefile_frag=${srcdir}/config/default.mt
 
@@ -3045,6 +3061,14 @@ fi
 else
   CONFIG_LIBNOSYS_TRUE='#'
   CONFIG_LIBNOSYS_FALSE=
+fi
+
+   if test x$config_libsysbase = xtrue; then
+  CONFIG_LIBSYSBASE_TRUE=
+  CONFIG_LIBSYSBASE_FALSE='#'
+else
+  CONFIG_LIBSYSBASE_TRUE='#'
+  CONFIG_LIBSYSBASE_FALSE=
 fi
 
    if test x$config_lm32 = xtrue; then
@@ -4953,6 +4977,35 @@ $as_echo "#define MISSING_SYSCALL_NAMES 1" >>confdefs.h
  ;;
 esac
 
+case "${target}" in
+  *-*-cygwin*) ;;
+  a29k-amd-udi) ;;
+  aarch64*-*-*) ;;
+  arc-*-*) ;;
+  arm*-*-*) ;;
+  bfin-*-*) ;;
+  cris-*-* | crisv32-*-*) ;;
+  d10v*) ;;
+  h8300*-*-*) ;;
+  h8500-*-*) ;;
+  i345686-*-sco*) ;;
+  lm32-*-*) ;;
+  m32r-*-*) ;;
+  mn10?00-*-*) ;;
+  riscv*-*-*) ;;
+  powerpcle-*-pe) ;;
+  sh*-*-*) ;;
+  sparc-sun-sunos*) ;;
+  sparc64-*-*) ;;
+  v850*-*-*) ;;
+  w65-*-*) ;;
+  xstormy16-*-*) ;;
+  z8k-*-*) ;;
+  *)
+$as_echo "#define MISSING_SYSCALL_NAMES 1" >>confdefs.h
+ ;;
+esac
+
 M68K_TARGET=m68k
 case "${target}" in
   fido-*-* | m68*-*-*)
@@ -5329,6 +5382,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CONFIG_LIBNOSYS_TRUE}" && test -z "${CONFIG_LIBNOSYS_FALSE}"; then
   as_fn_error $? "conditional \"CONFIG_LIBNOSYS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${CONFIG_LIBSYSBASE_TRUE}" && test -z "${CONFIG_LIBSYSBASE_FALSE}"; then
+  as_fn_error $? "conditional \"CONFIG_LIBSYSBASE\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CONFIG_LM32_TRUE}" && test -z "${CONFIG_LM32_FALSE}"; then

@@ -74,6 +74,9 @@ PORTABILITY
 C99, POSIX-1.2008
 */
 
+
+#pragma GCC optimize ("Os")
+
 #include <_ansi.h>
 #include <reent.h>
 #include <newlib.h>

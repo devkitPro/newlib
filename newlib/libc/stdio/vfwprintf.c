@@ -92,6 +92,9 @@ SEEALSO
  *
  * This code is large and complicated...
  */
+
+#pragma GCC optimize ("Os")
+
 #include <newlib.h>
 
 #ifdef INTEGER_ONLY

@@ -35,7 +35,7 @@
 #ifdef _MB_CAPABLE
 /* Under Cygwin, the incoming wide character is already given in UTF due
    to the requirements of the underlying OS. */
-#ifndef __CYGWIN__
+#if !defined(__CYGWIN__) && !defined(__DEFAULT_UTF8__)
 
 #include <_ansi.h>
 #include <string.h>

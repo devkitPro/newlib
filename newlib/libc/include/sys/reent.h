@@ -419,6 +419,8 @@ struct _reent
   __FILE *__sf;			        /* file descriptors */
   struct _misc_reent *_misc;            /* strtok, multibyte states */
   char *_signal_buf;                    /* strsignal */
+
+  void *deviceData;
 };
 
 # define _REENT_INIT(var) \
@@ -639,6 +641,8 @@ struct _reent
 
   /* signal info */
   void (**_sig_func)(int);
+
+  void *deviceData;
 };
 
 #define _REENT_INIT(var) \

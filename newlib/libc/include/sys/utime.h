@@ -15,6 +15,13 @@ struct utimbuf
   time_t modtime; 
 };
 
+/* Functions */
+
+int utime(
+  const char           *path,
+  const struct utimbuf *times
+);
+
 #ifdef __cplusplus
 };
 #endif

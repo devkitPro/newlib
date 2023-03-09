@@ -8,4 +8,5 @@ libc_a_SOURCES += \
 	%D%/memcpy-stub.c \
 	%D%/memcpy.S \
 	%D%/strlen-stub.c \
-	%D%/strlen.S
+	%D%/sync_synchronize.c
+

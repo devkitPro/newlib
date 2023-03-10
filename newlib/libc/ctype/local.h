@@ -32,7 +32,7 @@
    * for towupper and towlower, the result must be back-transformed
      into the respective locale encoding; currently NOT IMPLEMENTED
 */
-#ifdef __CYGWIN__
+#if defined(__CYGWIN__) || defined(__DEFAULT_UTF8__)
 /* Under Cygwin, wchar_t (or its extension wint_t) is Unicode */
 #define _jp2uc(c) (c)
 #define _jp2uc_l(c, l) (c)

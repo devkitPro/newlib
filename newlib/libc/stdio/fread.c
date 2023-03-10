@@ -135,7 +135,7 @@ crlf_r (struct _reent * ptr,
     }
 
   return count;
-  
+
 }
 
 #endif
@@ -187,7 +187,6 @@ _fread_r (struct _reent * ptr,
 	  int rc = 0;
 	  /* save fp buffering state */
 	  void *old_base = fp->_bf._base;
-	  void * old_p = fp->_p;
 	  int old_size = fp->_bf._size;
 	  /* allow __refill to use user's buffer */
 	  fp->_bf._base = (unsigned char *) p;
@@ -197,7 +196,7 @@ _fread_r (struct _reent * ptr,
 	  /* restore fp buffering back to original state */
 	  fp->_bf._base = old_base;
 	  fp->_bf._size = old_size;
-	  fp->_p = old_p;
+	  fp->_p = old_base;
 	  resid -= fp->_r;
 	  p += fp->_r;
 	  fp->_r = 0;
@@ -218,27 +217,63 @@ _fread_r (struct _reent * ptr,
   else
 #endif /* !PREFER_SIZE_OVER_SPEED && !__OPTIMIZE_SIZE__ */
     {
+
+      /* ensure buffer set up before read */
+      if (fp->_bf._base == NULL)
+        __smakebuf_r (ptr, fp);
+
+
       while (resid > (r = fp->_r))
-	{
-	  (void) memcpy ((void *) p, (void *) fp->_p, (size_t) r);
-	  fp->_p += r;
-	  /* fp->_r = 0 ... done in __srefill */
-	  p += r;
-	  resid -= r;
-	  if (__srefill_r (ptr, fp))
-	    {
-	      /* no more input: return partial result */
+  {
+    (void) memcpy ((void *) p, (void *) fp->_p, (size_t) r);
+    fp->_p += r;
+    /* fp->_r = 0 ... done in __srefill */
+    p += r;
+    resid -= r;
+
+    if (resid>fp->_bf._size)
+    {    int rc = 0;
+      /* save fp buffering state */
+      void *old_base = fp->_bf._base;
+      int old_size = fp->_bf._size;
+      /* allow __refill to use user's buffer */
+      fp->_bf._base = (unsigned char *) p;
+      fp->_bf._size = resid - old_size;
+      fp->_p = (unsigned char *) p;
+      rc = __srefill_r (ptr, fp);
+      /* restore fp buffering back to original state */
+      fp->_bf._base = old_base;
+      fp->_bf._size = old_size;
+      fp->_p = old_base;
+      resid -= fp->_r;
+      p += fp->_r;
+      if (rc)
+      {
 #ifdef __SCLE
-	      if (fp->_flags & __SCLE)
-		{
-		  _newlib_flockfile_exit (fp);
-		  return crlf_r (ptr, fp, buf, total-resid, 1) / size;
-		}
+        if (fp->_flags & __SCLE)
+        {
+          _newlib_flockfile_exit (fp);
+          return crlf_r (ptr, fp, buf, total-resid, 1) / size;
+        }
 #endif
-	      _newlib_flockfile_exit (fp);
-	      return (total - resid) / size;
-	    }
-	}
+        _newlib_flockfile_exit (fp);
+        return (total - resid) / size;
+      }
+    }
+    if (__srefill_r (ptr, fp))
+      {
+        /* no more input: return partial result */
+#ifdef __SCLE
+        if (fp->_flags & __SCLE)
+    {
+      _newlib_flockfile_exit (fp);
+      return crlf_r (ptr, fp, buf, total-resid, 1) / size;
+    }
+#endif
+        _newlib_flockfile_exit (fp);
+        return (total - resid) / size;
+      }
+  }
       (void) memcpy ((void *) p, (void *) fp->_p, resid);
       fp->_r -= resid;
       fp->_p += resid;

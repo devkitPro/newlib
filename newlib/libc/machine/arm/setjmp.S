@@ -2,6 +2,8 @@
 
    Nick Clifton, Cygnus Solutions, 13 June 1997.  */
 
+	.fpu vfpxd
+
 #include "arm-acle-compat.h"
 
 /* ANSI concatenation macros.  */

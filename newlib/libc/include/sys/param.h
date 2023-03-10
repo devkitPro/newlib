@@ -19,9 +19,6 @@
 #ifndef NOFILE
 # define NOFILE	(60)
 #endif
-#ifndef PATHSIZE
-# define PATHSIZE (1024)
-#endif
 
 #define MAXPATHLEN PATH_MAX
 

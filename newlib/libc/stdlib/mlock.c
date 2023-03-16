@@ -1,4 +1,5 @@
 #ifndef MALLOC_PROVIDED
+#ifndef CUSTOM_MALLOC_LOCK
 /*
 FUNCTION
 <<__malloc_lock>>, <<__malloc_unlock>>---lock malloc pool
@@ -54,4 +55,5 @@ __malloc_unlock (ptr)
 #endif
 }
 
+#endif
 #endif

@@ -1,6 +1,7 @@
 libc_a_CPPFLAGS_%C% = -I$(srcdir)/libc/stdio -I$(srcdir)/libc/stdlib
 
-libc_a_SOURCES += %D%/setjmp.S
+libc_a_SOURCES += %D%/setjmp.S \
+                  %D%/access.c
 
 if HAVE_POWERPC_ALTIVEC
 libc_a_SOURCES += \

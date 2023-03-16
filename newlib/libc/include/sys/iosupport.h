@@ -95,6 +95,9 @@ int __SYSCALL(clock_settime) (clockid_t clock_id, const struct timespec *tp);
 int __SYSCALL(clock_getres) (clockid_t clock_id, struct timespec *res);
 int __SYSCALL(nanosleep) (const struct timespec *req, struct timespec *rem);
 
+void __SYSCALL(malloc_lock) (struct _reent *ptr);
+void __SYSCALL(malloc_unlock) (struct _reent *ptr);
+
 int AddDevice( const devoptab_t* device);
 int FindDevice(const char* name);
 int RemoveDevice(const char* name);

@@ -75,3 +75,19 @@ void __libc_lock_close_recursive(_LOCK_RECURSIVE_T *lock ) {
 		__syscall_lock_close_recursive(lock);
 	}
 }
+
+#ifdef CUSTOM_MALLOC_LOCK
+
+void __malloc_lock( struct _reent *ptr ) {
+	if ( __has_syscall(malloc_lock) ){
+		__syscall_malloc_lock(ptr);
+ 	}
+ }
+
+void __malloc_unlock( struct _reent *ptr ) {
+	if ( __has_syscall(malloc_unlock)) {
+		__syscall_malloc_unlock(ptr);
+	}
+}
+
+#endif

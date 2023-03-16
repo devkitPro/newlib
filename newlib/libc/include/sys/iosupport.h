@@ -77,7 +77,6 @@ extern const devoptab_t *devoptab_list[];
 #define __SYSCALL(_name) __syscall_##_name
 #endif
 
-void *__SYSCALL(sbrk_r) (struct _reent *ptr, ptrdiff_t incr);
 void __SYSCALL(exit) ( int rc );
 int  __SYSCALL(gettod_r) (struct _reent *ptr, struct timeval *tp, struct timezone *tz);
 void __SYSCALL(lock_init) (_LOCK_T *lock);

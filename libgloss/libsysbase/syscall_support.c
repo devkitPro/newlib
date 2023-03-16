@@ -1,4 +1,5 @@
 #include <sys/iosupport.h>
+#include <errno.h>
 
 void __libc_lock_init(_LOCK_T *lock) {
 

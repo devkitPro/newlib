@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <reent.h>
 #include <unistd.h>
+#include <sys/iosupport.h>
 
 
 extern char *fake_heap_end;
@@ -19,7 +20,7 @@ extern char *fake_heap_start;
 register char * stack_ptr asm ("sp");
 
 //---------------------------------------------------------------------------------
-void *_sbrk_r (struct _reent *ptr, ptrdiff_t incr) {
+__attribute__((weak)) void * _sbrk_r (struct _reent *ptr, ptrdiff_t incr) {
 //---------------------------------------------------------------------------------
 	extern char   end asm ("__end__");	/* Defined by the linker.  */
 	static char * heap_start;
@@ -45,9 +46,9 @@ void *_sbrk_r (struct _reent *ptr, ptrdiff_t incr) {
 
 	if (heap_start + incr > heap_end) {
 		ptr->_errno = ENOMEM;
-		return (caddr_t) -1;
+		return (void *) -1;
 	}
 
 	heap_start += incr;
-	return (caddr_t) prev_heap_start;
+	return (void *) prev_heap_start;
 }

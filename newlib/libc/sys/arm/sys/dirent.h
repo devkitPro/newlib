@@ -1,6 +1,8 @@
 #ifndef _dirent_h_
 #define _dirent_h_
 
+#define _DIRENT_HAVE_D_TYPE
+
 #include <sys/iosupport.h>
 #include <sys/types.h>
 #include <sys/syslimits.h>

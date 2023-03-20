@@ -34,6 +34,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/mkdir.c \
 	%D%/nanosleep.c \
 	%D%/open.c \
+	%D%/pathconf.c \
 	%D%/read.c \
 	%D%/rename.c \
 	%D%/rmdir.c \

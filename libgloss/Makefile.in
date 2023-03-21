@@ -436,6 +436,7 @@ libsysbase_libsysbase_a_LIBADD =
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-environ.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-execve.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fchmod.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fnmatch.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fork.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fstat.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-fsync.$(OBJEXT) \
@@ -1057,6 +1058,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/environ.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/execve.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/fchmod.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/fnmatch.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/fork.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/fstat.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/fsync.c \
@@ -1721,6 +1723,9 @@ libsysbase/libsysbase_libsysbase_a-execve.$(OBJEXT):  \
 libsysbase/libsysbase_libsysbase_a-fchmod.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-fnmatch.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
 libsysbase/libsysbase_libsysbase_a-fork.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
@@ -2227,6 +2232,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fchmod.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fnmatch.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fstat.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fsync.Po@am__quote@
@@ -3144,6 +3150,20 @@ libsysbase/libsysbase_libsysbase_a-fchmod.obj: libsysbase/fchmod.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fchmod.c' object='libsysbase/libsysbase_libsysbase_a-fchmod.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fchmod.obj `if test -f 'libsysbase/fchmod.c'; then $(CYGPATH_W) 'libsysbase/fchmod.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fchmod.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-fnmatch.o: libsysbase/fnmatch.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fnmatch.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fnmatch.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fnmatch.o `test -f 'libsysbase/fnmatch.c' || echo '$(srcdir)/'`libsysbase/fnmatch.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fnmatch.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fnmatch.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fnmatch.c' object='libsysbase/libsysbase_libsysbase_a-fnmatch.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fnmatch.o `test -f 'libsysbase/fnmatch.c' || echo '$(srcdir)/'`libsysbase/fnmatch.c
+
+libsysbase/libsysbase_libsysbase_a-fnmatch.obj: libsysbase/fnmatch.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fnmatch.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fnmatch.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fnmatch.obj `if test -f 'libsysbase/fnmatch.c'; then $(CYGPATH_W) 'libsysbase/fnmatch.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fnmatch.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fnmatch.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fnmatch.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/fnmatch.c' object='libsysbase/libsysbase_libsysbase_a-fnmatch.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-fnmatch.obj `if test -f 'libsysbase/fnmatch.c'; then $(CYGPATH_W) 'libsysbase/fnmatch.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/fnmatch.c'; fi`
 
 libsysbase/libsysbase_libsysbase_a-fork.o: libsysbase/fork.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-fork.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-fork.Tpo -c -o libsysbase/libsysbase_libsysbase_a-fork.o `test -f 'libsysbase/fork.c' || echo '$(srcdir)/'`libsysbase/fork.c

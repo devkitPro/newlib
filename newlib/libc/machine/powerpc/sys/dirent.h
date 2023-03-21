@@ -21,31 +21,35 @@
 extern "C" {
 #endif
 
-	struct dirent {
-		ino_t	d_ino;
-		unsigned char  d_type;
-		char	d_name[NAME_MAX+1];
-	};
+struct dirent {
+	ino_t	d_ino;
+	unsigned char  d_type;
+	char	d_name[NAME_MAX+1];
+};
 
-	typedef struct {
-		long int        position;
-		DIR_ITER*       dirData;
-		struct dirent   fileData;
-	} DIR;
+typedef struct {
+	long int        position;
+	DIR_ITER*       dirData;
+	struct dirent   fileData;
+} DIR;
 
-	int closedir(DIR *dirp);
-	DIR *opendir(const char *dirname);
-	struct dirent *readdir(DIR *dirp);
-	int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result);
-	void rewinddir(DIR *dirp);
-	void seekdir(DIR *dirp, long int loc);
-	long int telldir(DIR *dirp);
+int closedir(DIR *dirp);
+DIR *opendir(const char *dirname);
+struct dirent *readdir(DIR *dirp);
+int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result);
+void rewinddir(DIR *dirp);
+void seekdir(DIR *dirp, long int loc);
+long int telldir(DIR *dirp);
 
-	int scandir(const char *dirp, struct dirent ***namelist,
-		int (*filter)(const struct dirent *),
-		int (*compar)(const struct dirent **, const struct dirent **));
+int scandir(const char *dirp, struct dirent ***namelist,
+int (*filter)(const struct dirent *),
+int (*compar)(const struct dirent **, const struct dirent **));
 
-	int alphasort(const struct dirent **a, const struct dirent **b);
+int alphasort(const struct dirent **a, const struct dirent **b);
+
+/* Convert between stat structure types and directory types.  */
+# define IFTODT(mode)		(((mode) & 0170000) >> 12)
+# define DTTOIF(dirtype)        (((dirtype) << 12)& 0170000)
 
 #ifdef __cplusplus
 }

@@ -273,6 +273,7 @@ SECTIONS
   _end = . ;
   end = .;
   __end = .;
+  __end__ = .;
   .boot  0xFFFFFFFC  : { *(.boot) }
   /* These are needed for ELF backends which have not yet been
      converted to the new style linker.  */

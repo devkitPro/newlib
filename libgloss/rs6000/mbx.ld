@@ -101,6 +101,7 @@ SECTIONS
   }
   _end = . ;
   PROVIDE (end = .);
+  PROVIDE (__end__ = .);
   /* These are needed for ELF backends which have not yet been
      converted to the new style linker.  */
   .stab 0 : { *(.stab) }

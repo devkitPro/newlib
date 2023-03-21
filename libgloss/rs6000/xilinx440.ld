@@ -264,6 +264,7 @@ SECTIONS
   _end = . ;
   end = .;
   __end = .;
+  __end__ = .;
 
   .boot0 0xFFFFFF00  : { *(.boot0)}
 

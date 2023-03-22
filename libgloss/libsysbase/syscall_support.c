@@ -76,6 +76,53 @@ void __libc_lock_close_recursive(_LOCK_RECURSIVE_T *lock ) {
 	}
 }
 
+int __libc_cond_init(_COND_T *cond) {
+
+	*cond = __COND_INITIALIZER;
+
+}
+
+int __libc_cond_signal(_COND_T *cond) {
+
+	if ( __has_syscall(cond_signal) ) {
+		return __syscall_cond_signal(cond);
+	}
+
+	return ENOSYS;
+
+}
+
+int __libc_cond_broadcast(_COND_T *cond) {
+
+	if ( __has_syscall(cond_broadcast) ) {
+		return __syscall_cond_broadcast(cond);
+	}
+
+	return ENOSYS;
+
+}
+
+int __libc_cond_wait(_COND_T *cond, _LOCK_T *lock, uint64_t timeout_ns) {
+
+	if ( __has_syscall(cond_wait) ) {
+		return __syscall_cond_wait(cond, lock, timeout_ns);
+	}
+
+	return ENOSYS;
+
+}
+
+int __libc_cond_wait_recursive(_COND_T *cond, _LOCK_RECURSIVE_T *lock, uint64_t timeout_ns) {
+
+	if ( __has_syscall(cond_wait_recursive) ) {
+		return __syscall_cond_wait_recursive(cond, lock, timeout_ns);
+	}
+
+	return ENOSYS;
+
+}
+
+
 #ifdef CUSTOM_MALLOC_LOCK
 
 void __malloc_lock( struct _reent *ptr ) {

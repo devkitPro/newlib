@@ -34,6 +34,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/lstat.c \
 	%D%/malloc_vars.c \
 	%D%/mkdir.c \
+	%D%/pthread.c \
 	%D%/nanosleep.c \
 	%D%/open.c \
 	%D%/pathconf.c \

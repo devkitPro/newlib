@@ -96,6 +96,21 @@ void __SYSCALL(lock_acquire_recursive) (_LOCK_RECURSIVE_T *lock);
 int  __SYSCALL(lock_try_acquire_recursive) (_LOCK_RECURSIVE_T *lock);
 void __SYSCALL(lock_release_recursive) (_LOCK_RECURSIVE_T *lock);
 void __SYSCALL(lock_close_recursive) (_LOCK_RECURSIVE_T *lock);
+
+int  __SYSCALL(cond_signal)(_COND_T *cond);
+int  __SYSCALL(cond_broadcast)(_COND_T *cond);
+int  __SYSCALL(cond_wait)(_COND_T *cond, _LOCK_T *lock, uint64_t timeout_ns);
+int  __SYSCALL(cond_wait_recursive)(_COND_T *cond, _LOCK_RECURSIVE_T *lock, uint64_t timeout_ns);
+int  __SYSCALL(thread_create)(struct __pthread_t **thread, void* (*func)(void*), void *arg, void *stack_addr, size_t stack_size);
+void*__SYSCALL(thread_join)(struct __pthread_t *thread);
+int  __SYSCALL(thread_detach)(struct __pthread_t *thread);
+void __SYSCALL(thread_exit)(void *value);
+struct __pthread_t *__SYSCALL(thread_self)(void);
+int  __SYSCALL(tls_create)(uint32_t *key, void (*destructor)(void*));
+int  __SYSCALL(tls_set)(uint32_t key, const void *value);
+void*__SYSCALL(tls_get)(uint32_t key);
+int  __SYSCALL(tls_delete)(uint32_t key);
+
 struct _reent * __SYSCALL(getreent) ();
 int __SYSCALL(clock_gettime) (clockid_t clock_id, struct timespec *tp);
 int __SYSCALL(clock_settime) (clockid_t clock_id, const struct timespec *tp);

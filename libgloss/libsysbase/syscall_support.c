@@ -1,6 +1,45 @@
 #include <sys/iosupport.h>
 #include <errno.h>
 
+static int
+timespec_subtract(struct timespec x, struct timespec y, struct timespec *__restrict result)
+{
+	// Perform the carry for the later subtraction by updating y
+	if (x.tv_nsec < y.tv_nsec) {
+		int seconds = (y.tv_nsec - x.tv_nsec) / 1000000000 + 1;
+		y.tv_nsec -= 1000000000 * seconds;
+		y.tv_sec += seconds;
+	}
+	if (x.tv_nsec - y.tv_nsec > 1000000000) {
+		int seconds = (x.tv_nsec - y.tv_nsec) / 1000000000;
+		y.tv_nsec += 1000000000 * seconds;
+		y.tv_sec -= seconds;
+	}
+
+	// Compute the time remaining to wait
+	result->tv_sec = x.tv_sec - y.tv_sec;
+	result->tv_nsec = x.tv_nsec - y.tv_nsec;
+
+	// Return true if result is negative
+	return x.tv_sec < y.tv_sec;
+}
+
+__uint64_t
+timespec2nsec(const struct timespec *__restrict ts)
+{
+	return (__uint64_t)ts->tv_sec * 1000000000 + ts->tv_nsec;
+}
+
+__uint64_t
+abstimespec2nsec(__clockid_t clock_id, const struct timespec *__restrict ts)
+{
+	struct timespec now, diff;
+	clock_gettime(clock_id, &now);
+	if (timespec_subtract(*ts, now, &diff))
+		return 0;
+	return timespec2nsec(&diff);
+}
+
 void __libc_lock_init(_LOCK_T *lock) {
 
 	if ( __has_syscall(lock_init) ) {

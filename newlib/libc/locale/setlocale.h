@@ -236,11 +236,11 @@ __get_locale_r (struct _reent *r)
 _ELIDABLE_INLINE struct __locale_t *
 __get_current_locale (void)
 {
-#ifdef __HAVE_LOCALE_INFO__
+//#ifdef __HAVE_LOCALE_INFO__
   return _REENT_LOCALE(_REENT) ?: __get_global_locale ();
-#else
-  return __get_global_locale();
-#endif
+//#else
+// return __get_global_locale();
+//#endif
 }
 
 /* Only access fixed "C" locale using this function.  Fake for !_MB_CAPABLE

@@ -1,5 +1,12 @@
 multilibtool_DATA += %D%/sysbase.specs
+
+multilibtool_LIBRARIES += %D%/libpthread.a
+
+%C%_libpthread_a_SOURCES = \
+	%D%/dummy.c
+
 multilibtool_LIBRARIES += %D%/libsysbase.a
+
 
 %C%_libsysbase_a_CPPFLAGS = $(AM_CPPFLAGS) -D_BUILDING_LIBSYSBASE
 

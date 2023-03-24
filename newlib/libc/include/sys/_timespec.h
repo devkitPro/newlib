@@ -49,4 +49,10 @@ struct timespec {
 	long	tv_nsec;	/* and nanoseconds */
 };
 
+__uint64_t
+timespec2nsec(const struct timespec *__restrict ts);
+
+__uint64_t
+abstimespec2nsec(__clockid_t clock_id, const struct timespec *__restrict ts);
+
 #endif /* !_SYS__TIMESPEC_H_ */

@@ -495,6 +495,7 @@ libsysbase_libsysbase_a_LIBADD =
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-lstat.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-malloc_vars.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-mkdir.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-pthread.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-nanosleep.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-open.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-pathconf.$(OBJEXT) \
@@ -1192,6 +1193,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/lstat.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/malloc_vars.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/mkdir.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/pthread.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/nanosleep.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/open.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/pathconf.c \
@@ -1946,6 +1948,9 @@ libsysbase/libsysbase_libsysbase_a-malloc_vars.$(OBJEXT):  \
 libsysbase/libsysbase_libsysbase_a-mkdir.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-pthread.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
 libsysbase/libsysbase_libsysbase_a-nanosleep.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
@@ -2560,6 +2565,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pathconf.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pthread.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-realpath.Po@am__quote@
@@ -3856,6 +3862,20 @@ libsysbase/libsysbase_libsysbase_a-mkdir.obj: libsysbase/mkdir.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/mkdir.c' object='libsysbase/libsysbase_libsysbase_a-mkdir.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-mkdir.obj `if test -f 'libsysbase/mkdir.c'; then $(CYGPATH_W) 'libsysbase/mkdir.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/mkdir.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-pthread.o: libsysbase/pthread.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-pthread.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pthread.Tpo -c -o libsysbase/libsysbase_libsysbase_a-pthread.o `test -f 'libsysbase/pthread.c' || echo '$(srcdir)/'`libsysbase/pthread.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pthread.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pthread.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/pthread.c' object='libsysbase/libsysbase_libsysbase_a-pthread.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-pthread.o `test -f 'libsysbase/pthread.c' || echo '$(srcdir)/'`libsysbase/pthread.c
+
+libsysbase/libsysbase_libsysbase_a-pthread.obj: libsysbase/pthread.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-pthread.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pthread.Tpo -c -o libsysbase/libsysbase_libsysbase_a-pthread.obj `if test -f 'libsysbase/pthread.c'; then $(CYGPATH_W) 'libsysbase/pthread.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/pthread.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pthread.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pthread.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/pthread.c' object='libsysbase/libsysbase_libsysbase_a-pthread.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-pthread.obj `if test -f 'libsysbase/pthread.c'; then $(CYGPATH_W) 'libsysbase/pthread.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/pthread.c'; fi`
 
 libsysbase/libsysbase_libsysbase_a-nanosleep.o: libsysbase/nanosleep.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-nanosleep.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-nanosleep.Tpo -c -o libsysbase/libsysbase_libsysbase_a-nanosleep.o `test -f 'libsysbase/nanosleep.c' || echo '$(srcdir)/'`libsysbase/nanosleep.c

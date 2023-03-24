@@ -265,7 +265,8 @@ multilibtool_PROGRAMS = $(am__EXEEXT_7)
 @CONFIG_LIBNOSYS_TRUE@am__append_53 = libnosys/nosys.specs
 @CONFIG_LIBNOSYS_TRUE@am__append_54 = libnosys/libnosys.a
 @CONFIG_LIBSYSBASE_TRUE@am__append_55 = libsysbase/sysbase.specs
-@CONFIG_LIBSYSBASE_TRUE@am__append_56 = libsysbase/libsysbase.a
+@CONFIG_LIBSYSBASE_TRUE@am__append_56 = libsysbase/libpthread.a \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase.a
 @CONFIG_LM32_TRUE@am__append_57 = lm32/crt0.o lm32/sim.ld
 @CONFIG_LM32_TRUE@am__append_58 = lm32/libgloss.a
 @CONFIG_LM32_TRUE@am__append_59 = lm32/crt0.S
@@ -1009,6 +1010,12 @@ am_libobjs_a_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	$(am__objects_32) $(am__objects_33) $(am__objects_34) \
 	$(am__objects_35) $(am__objects_36)
 libobjs_a_OBJECTS = $(am_libobjs_a_OBJECTS)
+libsysbase_libpthread_a_AR = $(AR) $(ARFLAGS)
+libsysbase_libpthread_a_LIBADD =
+@CONFIG_LIBSYSBASE_TRUE@am_libsysbase_libpthread_a_OBJECTS =  \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/dummy.$(OBJEXT)
+libsysbase_libpthread_a_OBJECTS =  \
+	$(am_libsysbase_libpthread_a_OBJECTS)
 libsysbase_libsysbase_a_AR = $(AR) $(ARFLAGS)
 libsysbase_libsysbase_a_LIBADD =
 @CONFIG_LIBSYSBASE_TRUE@am_libsysbase_libsysbase_a_OBJECTS = libsysbase/libsysbase_libsysbase_a-_exit.$(OBJEXT) \
@@ -1860,6 +1867,7 @@ SOURCES = $(aarch64_librdimon_a_SOURCES) \
 	$(ft32_libsim_a_SOURCES) $(i386_libcygmon_a_SOURCES) \
 	$(i960_libmon960_a_SOURCES) $(iq2000_libeval_a_SOURCES) \
 	$(libnosys_libnosys_a_SOURCES) $(libobjs_a_SOURCES) \
+	$(libsysbase_libpthread_a_SOURCES) \
 	$(libsysbase_libsysbase_a_SOURCES) $(lm32_libgloss_a_SOURCES) \
 	$(m32r_libgloss_a_SOURCES) $(m32r_libmon_a_SOURCES) \
 	$(mcore_libcmb_a_SOURCES) $(mcore_libsim_a_SOURCES) \
@@ -2534,6 +2542,9 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBNOSYS_TRUE@	libnosys/write.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/getentropy.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/_exit.c
+
+@CONFIG_LIBSYSBASE_TRUE@libsysbase_libpthread_a_SOURCES = \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/dummy.c
 
 @CONFIG_LIBSYSBASE_TRUE@libsysbase_libsysbase_a_CPPFLAGS = $(AM_CPPFLAGS) -D_BUILDING_LIBSYSBASE
 @CONFIG_LIBSYSBASE_TRUE@libsysbase_libsysbase_a_SOURCES = \
@@ -4364,6 +4375,13 @@ libsysbase/$(am__dirstamp):
 libsysbase/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) libsysbase/$(DEPDIR)
 	@: > libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/dummy.$(OBJEXT): libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+
+libsysbase/libpthread.a: $(libsysbase_libpthread_a_OBJECTS) $(libsysbase_libpthread_a_DEPENDENCIES) $(EXTRA_libsysbase_libpthread_a_DEPENDENCIES) libsysbase/$(am__dirstamp)
+	$(AM_V_at)-rm -f libsysbase/libpthread.a
+	$(AM_V_AR)$(libsysbase_libpthread_a_AR) libsysbase/libpthread.a $(libsysbase_libpthread_a_OBJECTS) $(libsysbase_libpthread_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libsysbase/libpthread.a
 libsysbase/libsysbase_libsysbase_a-_exit.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
@@ -6225,6 +6243,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/wait.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/write.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/dummy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Po@am__quote@

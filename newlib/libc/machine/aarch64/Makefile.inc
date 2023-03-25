@@ -1,4 +1,5 @@
 libc_a_SOURCES += \
+	%D%/access.c \
 	%D%/memchr-stub.c \
 	%D%/memchr.S \
 	%D%/memcmp-stub.c \

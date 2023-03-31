@@ -366,7 +366,7 @@ extern "C" {
 #  define __SSP_FORTIFY_LEVEL 0
 #endif
 
-#ifdef __DEVKITA64__
+//#ifdef __DEVKITA64__
 #define _POSIX_MONOTONIC_CLOCK		200112L
 #define _POSIX_TIMERS			1
 #define _POSIX_THREADS			1
@@ -374,7 +374,7 @@ extern "C" {
 #define _POSIX_BARRIERS                 200112L
 #define _POSIX_READER_WRITER_LOCKS      200112L
 #define _UNIX98_THREAD_MUTEX_ATTRIBUTES	1
-#endif
+//#endif
 
 
 /* RTEMS adheres to POSIX -- 1003.1b with some features from annexes.  */

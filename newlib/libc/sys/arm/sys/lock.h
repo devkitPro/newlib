@@ -14,6 +14,12 @@ struct __lock_t {
 
 typedef struct __lock_t _LOCK_RECURSIVE_T;
 
+typedef uint32_t _COND_T;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern void __libc_lock_init(_LOCK_T *lock);
 extern void __libc_lock_init_recursive(_LOCK_RECURSIVE_T *lock);
 extern void __libc_lock_close(_LOCK_T *lock);
@@ -27,11 +33,30 @@ extern void __libc_lock_release_recursive(_LOCK_RECURSIVE_T *lock);
 extern int __libc_lock_try_acquire(_LOCK_T *lock);
 extern int __libc_lock_try_acquire_recursive(_LOCK_RECURSIVE_T *lock);
 
+/* Returns errno */
+extern int __libc_cond_init(_COND_T *cond);
+extern int __libc_cond_signal(_COND_T *cond);
+extern int __libc_cond_broadcast(_COND_T *cond);
+extern int __libc_cond_wait(_COND_T *cond, _LOCK_T *lock, uint64_t timeout_ns);
+extern int __libc_cond_wait_recursive(_COND_T *cond, _LOCK_RECURSIVE_T *lock, uint64_t timeout_ns);
+
+#ifdef __cplusplus
+}
+#endif
+
+#define __LOCK_INITIALIZER ((_LOCK_T)0)
+#define __LOCK_INITIALIZER_RECURSIVE ((_LOCK_RECURSIVE_T){__LOCK_INITIALIZER,0,0})
+#define __COND_INITIALIZER ((_COND_T)0)
+
+
 #define __LOCK_INIT(CLASS,NAME) \
-CLASS _LOCK_T NAME = 0;
+CLASS _LOCK_T NAME = __LOCK_INITIALIZER;
 
 #define __LOCK_INIT_RECURSIVE(CLASS,NAME) \
-CLASS _LOCK_RECURSIVE_T NAME = {0,0,0};
+CLASS _LOCK_RECURSIVE_T NAME = __LOCK_INITIALIZER_RECURSIVE;
+
+#define __COND_INIT(CLASS,NAME) \
+CLASS _COND_T NAME = __COND_INITIALIZER;
 
 #define __lock_init(NAME) \
 	__libc_lock_init(&(NAME))
@@ -62,5 +87,21 @@ CLASS _LOCK_RECURSIVE_T NAME = {0,0,0};
 
 #define __lock_release_recursive(NAME) \
 	__libc_lock_release_recursive(&(NAME))
+
+#define __cond_init(NAME) \
+        __libc_cond_init(&(NAME))
+
+#define __cond_signal(NAME) \
+        __libc_cond_signal(&(NAME))
+
+#define __cond_broadcast(NAME) \
+        __libc_cond_broadcast(&(NAME))
+
+#define __cond_wait(NAME, LOCK, TIMEOUT) \
+        __libc_cond_wait(&(NAME), &(LOCK), (TIMEOUT))
+
+#define __cond_wait_recursive(NAME, LOCK, TIMEOUT) \
+        __libc_cond_wait_recursive(&(NAME), &(LOCK), (TIMEOUT))
+
 
 #endif // __SYS_LOCK_H__

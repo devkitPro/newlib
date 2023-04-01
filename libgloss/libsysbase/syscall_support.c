@@ -40,12 +40,6 @@ abstimespec2nsec(__clockid_t clock_id, const struct timespec *__restrict ts)
 	return timespec2nsec(&diff);
 }
 
-void __libc_lock_init(_LOCK_T *lock) {
-
-	*lock = __LOCK_INITIALIZER;
-
-}
-
 void __libc_lock_acquire(_LOCK_T *lock ) {
 
 	if ( __has_syscall(lock_acquire) ) {
@@ -69,16 +63,6 @@ void __libc_lock_release(_LOCK_T *lock ) {
 	}
 }
 
-void __libc_lock_close(_LOCK_T *lock ) {
-
-}
-
-void __libc_lock_init_recursive(_LOCK_RECURSIVE_T *lock) {
-
-	*lock = __LOCK_INITIALIZER_RECURSIVE;
-
-}
-
 void __libc_lock_acquire_recursive(_LOCK_RECURSIVE_T *lock ) {
 
 	if ( __has_syscall(lock_acquire_recursive) ) {
@@ -100,16 +84,6 @@ void __libc_lock_release_recursive(_LOCK_RECURSIVE_T *lock ) {
 	if ( __has_syscall(lock_release_recursive) ) {
 		__syscall_lock_release_recursive(lock);
 	}
-}
-
-void __libc_lock_close_recursive(_LOCK_RECURSIVE_T *lock ) {
-
-}
-
-int __libc_cond_init(_COND_T *cond) {
-
-	*cond = __COND_INITIALIZER;
-
 }
 
 int __libc_cond_signal(_COND_T *cond) {

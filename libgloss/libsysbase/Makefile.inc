@@ -17,6 +17,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/flock.c \
 	%D%/fnmatch.c \
 	%D%/fork.c \
+	%D%/fpathconf.c \
 	%D%/fstat.c \
 	%D%/fsync.c \
 	%D%/ftruncate.c \
@@ -36,6 +37,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/open.c \
 	%D%/pathconf.c \
 	%D%/read.c \
+	%D%/realpath.c \
 	%D%/rename.c \
 	%D%/rmdir.c \
 	%D%/sbrk.c \

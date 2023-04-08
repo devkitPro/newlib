@@ -46,6 +46,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/sleep.c \
 	%D%/stat.c \
 	%D%/statvfs.c \
+	%D%/symlink.c \
 	%D%/syscall_support.c \
 	%D%/times.c \
 	%D%/truncate.c \

@@ -11,6 +11,7 @@ extern "C" {
 #include <sys/stat.h>
 #include <sys/statvfs.h>
 #include <sys/time.h>
+#include <stdbool.h>
 
 enum	{
 	STD_IN,
@@ -66,10 +67,13 @@ typedef struct {
 	int (*lstat_r)(struct _reent *r, const char *file, struct stat *st);
 	int (*utimes_r)(struct _reent *r, const char *filename, const struct timeval times[2]);
 
+	bool hasSymLinks;
+
 	long (*fpathconf_r)(struct _reent *r, int fd, int name);
 	long (*pathconf_r)(struct _reent *r, const char *path, int name);
 
-	char *(*realpath_r)(struct _reent *r, const char *path, char *resolved_path);
+	int (*symlink_r)(struct _reent *r, const char *target, const char *linkpath);
+	ssize_t (*readlink_r)(struct _reent *r, const char *path, char *buf, size_t bufsiz);
 
 } devoptab_t;
 

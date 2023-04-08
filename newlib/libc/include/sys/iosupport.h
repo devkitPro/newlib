@@ -66,6 +66,11 @@ typedef struct {
 	int (*lstat_r)(struct _reent *r, const char *file, struct stat *st);
 	int (*utimes_r)(struct _reent *r, const char *filename, const struct timeval times[2]);
 
+	long (*fpathconf_r)(struct _reent *r, int fd, int name);
+	long (*pathconf_r)(struct _reent *r, const char *path, int name);
+
+	char *(*realpath_r)(struct _reent *r, const char *path, char *resolved_path);
+
 } devoptab_t;
 
 extern const devoptab_t *devoptab_list[];

@@ -470,6 +470,7 @@ libsysbase_libsysbase_a_LIBADD =
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-chdir.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-chmod.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-clocks.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-concatenate.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-dirent.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-environ.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-execve.$(OBJEXT) \
@@ -497,6 +498,7 @@ libsysbase_libsysbase_a_LIBADD =
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-open.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-pathconf.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-read.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-readlink.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-realpath.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-rename.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-rmdir.$(OBJEXT) \
@@ -505,6 +507,7 @@ libsysbase_libsysbase_a_LIBADD =
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-sleep.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-stat.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-statvfs.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-symlink.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-syscall_support.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-times.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-truncate.$(OBJEXT) \
@@ -1163,6 +1166,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/chdir.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/chmod.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/clocks.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/concatenate.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/dirent.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/environ.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/execve.c \
@@ -1190,6 +1194,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/open.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/pathconf.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/read.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/readlink.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/realpath.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/rename.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/rmdir.c \
@@ -1198,6 +1203,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/sleep.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/stat.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/statvfs.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/symlink.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/syscall_support.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/times.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/truncate.c \
@@ -1863,6 +1869,9 @@ libsysbase/libsysbase_libsysbase_a-chmod.$(OBJEXT):  \
 libsysbase/libsysbase_libsysbase_a-clocks.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-concatenate.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
 libsysbase/libsysbase_libsysbase_a-dirent.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
@@ -1944,6 +1953,9 @@ libsysbase/libsysbase_libsysbase_a-pathconf.$(OBJEXT):  \
 libsysbase/libsysbase_libsysbase_a-read.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-readlink.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
 libsysbase/libsysbase_libsysbase_a-realpath.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
@@ -1966,6 +1978,9 @@ libsysbase/libsysbase_libsysbase_a-stat.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
 libsysbase/libsysbase_libsysbase_a-statvfs.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-symlink.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
 libsysbase/libsysbase_libsysbase_a-syscall_support.$(OBJEXT):  \
@@ -2512,6 +2527,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-clocks.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-concatenate.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-environ.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-execve.Po@am__quote@
@@ -2539,6 +2555,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-open.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-pathconf.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-read.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-realpath.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rename.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-rmdir.Po@am__quote@
@@ -2547,6 +2564,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-sleep.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-stat.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-statvfs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-symlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-times.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-truncate.Po@am__quote@
@@ -3483,6 +3501,20 @@ libsysbase/libsysbase_libsysbase_a-clocks.obj: libsysbase/clocks.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-clocks.obj `if test -f 'libsysbase/clocks.c'; then $(CYGPATH_W) 'libsysbase/clocks.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/clocks.c'; fi`
 
+libsysbase/libsysbase_libsysbase_a-concatenate.o: libsysbase/concatenate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-concatenate.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-concatenate.Tpo -c -o libsysbase/libsysbase_libsysbase_a-concatenate.o `test -f 'libsysbase/concatenate.c' || echo '$(srcdir)/'`libsysbase/concatenate.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-concatenate.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-concatenate.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/concatenate.c' object='libsysbase/libsysbase_libsysbase_a-concatenate.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-concatenate.o `test -f 'libsysbase/concatenate.c' || echo '$(srcdir)/'`libsysbase/concatenate.c
+
+libsysbase/libsysbase_libsysbase_a-concatenate.obj: libsysbase/concatenate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-concatenate.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-concatenate.Tpo -c -o libsysbase/libsysbase_libsysbase_a-concatenate.obj `if test -f 'libsysbase/concatenate.c'; then $(CYGPATH_W) 'libsysbase/concatenate.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/concatenate.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-concatenate.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-concatenate.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/concatenate.c' object='libsysbase/libsysbase_libsysbase_a-concatenate.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-concatenate.obj `if test -f 'libsysbase/concatenate.c'; then $(CYGPATH_W) 'libsysbase/concatenate.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/concatenate.c'; fi`
+
 libsysbase/libsysbase_libsysbase_a-dirent.o: libsysbase/dirent.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-dirent.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Tpo -c -o libsysbase/libsysbase_libsysbase_a-dirent.o `test -f 'libsysbase/dirent.c' || echo '$(srcdir)/'`libsysbase/dirent.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-dirent.Po
@@ -3861,6 +3893,20 @@ libsysbase/libsysbase_libsysbase_a-read.obj: libsysbase/read.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-read.obj `if test -f 'libsysbase/read.c'; then $(CYGPATH_W) 'libsysbase/read.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/read.c'; fi`
 
+libsysbase/libsysbase_libsysbase_a-readlink.o: libsysbase/readlink.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-readlink.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Tpo -c -o libsysbase/libsysbase_libsysbase_a-readlink.o `test -f 'libsysbase/readlink.c' || echo '$(srcdir)/'`libsysbase/readlink.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/readlink.c' object='libsysbase/libsysbase_libsysbase_a-readlink.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-readlink.o `test -f 'libsysbase/readlink.c' || echo '$(srcdir)/'`libsysbase/readlink.c
+
+libsysbase/libsysbase_libsysbase_a-readlink.obj: libsysbase/readlink.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-readlink.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Tpo -c -o libsysbase/libsysbase_libsysbase_a-readlink.obj `if test -f 'libsysbase/readlink.c'; then $(CYGPATH_W) 'libsysbase/readlink.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/readlink.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-readlink.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/readlink.c' object='libsysbase/libsysbase_libsysbase_a-readlink.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-readlink.obj `if test -f 'libsysbase/readlink.c'; then $(CYGPATH_W) 'libsysbase/readlink.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/readlink.c'; fi`
+
 libsysbase/libsysbase_libsysbase_a-realpath.o: libsysbase/realpath.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-realpath.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-realpath.Tpo -c -o libsysbase/libsysbase_libsysbase_a-realpath.o `test -f 'libsysbase/realpath.c' || echo '$(srcdir)/'`libsysbase/realpath.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-realpath.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-realpath.Po
@@ -3972,6 +4018,20 @@ libsysbase/libsysbase_libsysbase_a-statvfs.obj: libsysbase/statvfs.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/statvfs.c' object='libsysbase/libsysbase_libsysbase_a-statvfs.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-statvfs.obj `if test -f 'libsysbase/statvfs.c'; then $(CYGPATH_W) 'libsysbase/statvfs.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/statvfs.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-symlink.o: libsysbase/symlink.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-symlink.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-symlink.Tpo -c -o libsysbase/libsysbase_libsysbase_a-symlink.o `test -f 'libsysbase/symlink.c' || echo '$(srcdir)/'`libsysbase/symlink.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-symlink.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-symlink.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/symlink.c' object='libsysbase/libsysbase_libsysbase_a-symlink.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-symlink.o `test -f 'libsysbase/symlink.c' || echo '$(srcdir)/'`libsysbase/symlink.c
+
+libsysbase/libsysbase_libsysbase_a-symlink.obj: libsysbase/symlink.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-symlink.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-symlink.Tpo -c -o libsysbase/libsysbase_libsysbase_a-symlink.obj `if test -f 'libsysbase/symlink.c'; then $(CYGPATH_W) 'libsysbase/symlink.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/symlink.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-symlink.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-symlink.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/symlink.c' object='libsysbase/libsysbase_libsysbase_a-symlink.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-symlink.obj `if test -f 'libsysbase/symlink.c'; then $(CYGPATH_W) 'libsysbase/symlink.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/symlink.c'; fi`
 
 libsysbase/libsysbase_libsysbase_a-syscall_support.o: libsysbase/syscall_support.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-syscall_support.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-syscall_support.Tpo -c -o libsysbase/libsysbase_libsysbase_a-syscall_support.o `test -f 'libsysbase/syscall_support.c' || echo '$(srcdir)/'`libsysbase/syscall_support.c

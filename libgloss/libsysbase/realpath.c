@@ -109,7 +109,7 @@ char *realpath(const char *__restrict path, char *__restrict resolved)
 	len = strnlen(path, PATH_MAX);
 	if (!len) {
 		r->_errno = ENOENT;
-		return NULL;	
+		return NULL;
 	}
 	if (len >= PATH_MAX) {
 		r->_errno = ENAMETOOLONG;
@@ -149,3 +149,4 @@ char *realpath(const char *__restrict path, char *__restrict resolved)
 
 	return strndup(stack, sizeof(stack));
 }
+

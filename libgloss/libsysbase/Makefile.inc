@@ -37,6 +37,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/open.c \
 	%D%/pathconf.c \
 	%D%/read.c \
+	%D%/readlink.c \
 	%D%/realpath.c \
 	%D%/rename.c \
 	%D%/rmdir.c \

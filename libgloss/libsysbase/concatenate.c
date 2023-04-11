@@ -1,21 +1,11 @@
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <limits.h>
-#include <errno.h>
-#include <sys/stat.h>
-#include <sys/iosupport.h>
-
 #include "concatenate.h"
 
-/* Based on chdir.c */
-static inline int _resolve_links(struct _reent *r, char *path, const char *extra, int maxLength) {
+
+int _concatenate_path (struct _reent *r, char *path, const char *extra, int maxLength) {
 	char *pathEnd;
 	int pathLength;
 	const char *extraEnd;
 	int extraSize;
-
-	int resolvedLinks = 0;
 
 	pathLength = strnlen (path, maxLength);
 
@@ -25,7 +15,7 @@ static inline int _resolve_links(struct _reent *r, char *path, const char *extra
 		return -1;
 	}
 	pathEnd = path + pathLength;
-	if (pathEnd[-1] != DIRECTORY_SEPARATOR_CHAR) {
+	if (pathLength != 0 && pathEnd[-1] != DIRECTORY_SEPARATOR_CHAR) {
 		pathEnd[0] = DIRECTORY_SEPARATOR_CHAR;
 		pathEnd += 1;
 	}
@@ -37,8 +27,6 @@ static inline int _resolve_links(struct _reent *r, char *path, const char *extra
 		pathEnd = strchr (path, DIRECTORY_SEPARATOR_CHAR) + 1;
 		pathEnd[0] = '\0';
 	}
-
-
 	do {
 		/* Advance past any separators in extra */
 		while (extra[0] == DIRECTORY_SEPARATOR_CHAR) {
@@ -92,97 +80,12 @@ static inline int _resolve_links(struct _reent *r, char *path, const char *extra
 		}
 		pathEnd[0] = '\0';
 		extra += extraSize;
-
-
-		struct stat st;
-		if (lstat(path,&st) < 0) return -1;
-		if (S_ISLNK(st.st_mode)) {
-			do {
-				if(resolvedLinks > 8 && extraSize > 0) {
-					r->_errno = ELOOP;
-					return -1;
-				}
-
-				char buf[PATH_MAX];
-				memset(buf,0,PATH_MAX);
-
-				if (readlink(path,buf,sizeof(buf)) == -1) return -1;
-
-				pathEnd = strrchr(path, DIRECTORY_SEPARATOR_CHAR) + 1;
-				if (pathEnd == NULL) pathEnd = path;
-				pathEnd[0] = '\0';
-
-				if (_concatenate_path(r, path, buf, PATH_MAX) == -1) {
-					return -1;
-				}
-
-				resolvedLinks++;
-				pathEnd = strchr(path,0);
-
-				if (lstat(path,&st) < 0) return -1;
-
-			} while(S_ISLNK(st.st_mode));
-		}
 	} while (extraSize != 0);
 
+        if (strlen(path) > 2 ) {
+                if (pathEnd[-1] == DIRECTORY_SEPARATOR_CHAR && pathEnd[-2] != ':')
+                        pathEnd[-1] = '\0';
+        }
 
 	return 0;
 }
-
-char *realpath(const char *__restrict path, char *__restrict resolved)
-{
-	struct _reent *r = _REENT;
-
-	char stack[PATH_MAX] = {0};
-	const char *pathPosition = NULL;
-	int len = 0;
-
-	if (!path) {
-		errno = ENOENT;
-		return NULL;
-	}
-
-	len = strnlen(path, PATH_MAX);
-	if (!len) {
-		r->_errno = ENOENT;
-		return NULL;
-	}
-	if (len >= PATH_MAX) {
-		r->_errno = ENAMETOOLONG;
-		return NULL;
-	}
-
-	if (strchr (path, ':') != NULL) {
-		strncpy(stack, path, PATH_MAX-1);
-		/* Move path past device name */
-		path = strchr(path, ':') + 1;
-	} else {
-		getcwd(stack, PATH_MAX);
-	}
-
-	pathPosition = strchr(stack, ':');
-
-	if (pathPosition == NULL) {
-		pathPosition = stack;
-	} else {
-		pathPosition++;
-	}
-
-	/* Make sure the path starts in the root directory */
-	if (pathPosition[0] != DIRECTORY_SEPARATOR_CHAR) {
-		r->_errno = ENOENT;
-		return NULL;
-	}
-
-	if (_resolve_links(r, stack, path, PATH_MAX) == -1) {
-			return NULL;
-	}
-
-	if (resolved) {
-		strncpy(resolved, stack, PATH_MAX);
-		return resolved;
-	}
-
-	return strndup(stack, sizeof(stack));
-}
-

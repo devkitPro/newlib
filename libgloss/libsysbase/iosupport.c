@@ -136,5 +136,3 @@ const devoptab_t* GetDeviceOpTab (const char *name) {
 		return NULL;
 	}
 }
-
-

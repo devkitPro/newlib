@@ -67,8 +67,6 @@ typedef struct {
 	int (*lstat_r)(struct _reent *r, const char *file, struct stat *st);
 	int (*utimes_r)(struct _reent *r, const char *filename, const struct timeval times[2]);
 
-	bool hasSymLinks;
-
 	long (*fpathconf_r)(struct _reent *r, int fd, int name);
 	long (*pathconf_r)(struct _reent *r, const char *path, int name);
 
@@ -111,6 +109,7 @@ int AddDevice( const devoptab_t* device);
 int FindDevice(const char* name);
 int RemoveDevice(const char* name);
 void setDefaultDevice( int device );
+
 const devoptab_t* GetDeviceOpTab (const char *name);
 
 void __release_handle(int fd);

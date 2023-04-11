@@ -10,6 +10,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/chdir.c \
 	%D%/chmod.c \
 	%D%/clocks.c \
+	%D%/concatenate.c \
 	%D%/dirent.c \
 	%D%/environ.c \
 	%D%/execve.c \

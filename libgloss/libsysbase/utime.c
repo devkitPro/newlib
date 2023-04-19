@@ -35,6 +35,10 @@ int utime(const char *filename, const struct utimbuf *times)
                 t[0].tv_usec = 0;
                 t[1].tv_sec  = times->modtime;
                 t[1].tv_usec = 0;
+        } else if (gettimeofday(&t[0], NULL) != -1) {
+                t[1] = t[0];
+        } else {
+                return -1;
         }
 
         return utimes(filename, t);

@@ -22,7 +22,7 @@ long fpathconf(int fd, int name)
 
         if(devoptab_list[dev]->fpathconf_r) {
                 r->deviceData = devoptab_list[dev]->deviceData;
-                ret = devoptab_list[dev]->fpathconf_r(r, fd, name);
+                ret = devoptab_list[dev]->fpathconf_r(r, handle->fileStruct, name);
         } else
                 r->_errno=ENOSYS;
 

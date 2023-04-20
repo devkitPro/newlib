@@ -139,7 +139,7 @@ int closedir (DIR *dirp) {
 
 struct dirent* readdir (DIR *dirp) {
 	struct stat st;
-	char filename[NAME_MAX];
+	char filename[NAME_MAX+1];
 	int res;
 	int olderrno = errno;
 
@@ -162,7 +162,7 @@ struct dirent* readdir (DIR *dirp) {
 	// We've moved forward in the directory
 	dirp->position += 1;
 
-	if (strnlen(filename, NAME_MAX) >= sizeof(dirp->fileData.d_name)) {
+	if (strnlen(filename, sizeof(filename)) >= sizeof(dirp->fileData.d_name)) {
 		errno = EOVERFLOW;
 		return NULL;
 	}
@@ -177,7 +177,7 @@ struct dirent* readdir (DIR *dirp) {
 
 int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 	struct stat st;
-	char filename[NAME_MAX];
+	char filename[NAME_MAX+1];
 	int res;
 
 	if (!dirp) {
@@ -200,7 +200,7 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 	// We've moved forward in the directory
 	dirp->position += 1;
 
-	if (strnlen(filename, NAME_MAX) >= sizeof(entry->d_name)) {
+	if (strnlen(filename, sizeof(filename)) >= sizeof(entry->d_name)) {
 		errno = EOVERFLOW;
 		return EOVERFLOW;
 	}
@@ -224,7 +224,7 @@ void rewinddir (DIR *dirp) {
 
 
 void seekdir(DIR *dirp, long int loc) {
-	char filename[NAME_MAX];
+	char filename[NAME_MAX+1];
 
 	if (!dirp || loc < 0) {
 		return;

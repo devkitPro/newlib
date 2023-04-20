@@ -117,6 +117,7 @@ DIR* opendir (const char *dirname) {
 
 	dirp->position = 0;	// 0th position means no file name has been returned yet
 	dirp->fileData.d_ino = -1;
+	dirp->fileData.d_type = DT_UNKNOWN;
 	dirp->fileData.d_name[0] = '\0';
 
 	return dirp;
@@ -207,6 +208,7 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 
 	strncpy (entry->d_name, filename, sizeof(entry->d_name));
 	entry->d_ino = st.st_ino;
+	entry->d_type = IFTODT(st.st_mode);
 
 	*result = entry;
 	return 0;

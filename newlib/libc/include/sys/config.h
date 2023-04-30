@@ -4,13 +4,19 @@
 #include <machine/ieeefp.h>  /* floating point macros */
 #include <sys/features.h>	/* POSIX defs */
 
-#ifdef __aarch64__
-#define MALLOC_ALIGNMENT 16
+#ifdef __DEVKITARM__
+#define __DYNAMIC_REENT__
 #endif
 
-#ifdef _ARCH_PPC
+#ifdef __DEVKITA64__
+#define MALLOC_ALIGNMENT 16
+#define __DYNAMIC_REENT__
+#endif
+
+#ifdef __DEVKITPPC__
 #define __BUFSIZ__ 32768
 #define MALLOC_ALIGNMENT 64
+#define __DYNAMIC_REENT__
 #endif
 
 #ifdef __AMDGCN__

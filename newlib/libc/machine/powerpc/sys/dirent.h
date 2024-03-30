@@ -2,9 +2,11 @@
 #define _dirent_h_
 
 #define _DIRENT_HAVE_D_TYPE
+#define _DIRENT_HAVE_D_STAT
 
 #include <sys/iosupport.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <sys/syslimits.h>
 
 #define	DT_UNKNOWN	 0
@@ -23,6 +25,7 @@ extern "C" {
 
 struct dirent {
 	ino_t	d_ino;
+	struct  stat d_stat;
 	unsigned char  d_type;
 	char	d_name[NAME_MAX+1];
 };

@@ -139,7 +139,13 @@ int closedir (DIR *dirp) {
 
 
 struct dirent* readdir (DIR *dirp) {
-	struct stat st;
+
+#ifdef _DIRENT_HAVE_D_STAT
+	struct stat *st = &dirp->fileData.d_stat;
+#else
+	struct stat tmpstat;
+	struct stat *st = &tmpstat;
+#endif
 	char filename[NAME_MAX+1];
 	int res;
 	int olderrno = errno;
@@ -149,7 +155,7 @@ struct dirent* readdir (DIR *dirp) {
 		return NULL;
 	}
 
-	res = __dirnext (dirp->dirData, filename, &st);
+	res = __dirnext (dirp->dirData, filename, st);
 
 	if (res < 0) {
 		if (errno == ENOENT) {
@@ -169,8 +175,8 @@ struct dirent* readdir (DIR *dirp) {
 	}
 
 	strncpy (dirp->fileData.d_name, filename, sizeof(dirp->fileData.d_name));
-	dirp->fileData.d_ino = st.st_ino;
-	dirp->fileData.d_type = IFTODT(st.st_mode);
+	dirp->fileData.d_ino = st->st_ino;
+	dirp->fileData.d_type = IFTODT(st->st_mode);
 
 	return &(dirp->fileData);
 }

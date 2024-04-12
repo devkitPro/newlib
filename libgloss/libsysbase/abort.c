@@ -1,8 +1,15 @@
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/iosupport.h>
 
 void abort(void) {
-  write (2, "Abort called.\n", sizeof("Abort called.\n")-1);
-  _exit (1);
+  do {
+
+    if ( __has_syscall(abort) ) {
+      __syscall_abort();
+    } else {
+     _exit (1);
+    }
+  } while(1);
 }
 

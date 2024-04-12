@@ -6,6 +6,7 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 %C%_libsysbase_a_SOURCES = \
 	%D%/_exit.c \
 	%D%/abort.c \
+	%D%/assert.c \
 	%D%/build_argv.c \
 	%D%/chdir.c \
 	%D%/chmod.c \

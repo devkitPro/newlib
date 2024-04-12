@@ -137,9 +137,7 @@ int closedir (DIR *dirp) {
 	return res;
 }
 
-
-struct dirent* readdir (DIR *dirp) {
-
+int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 #ifdef _DIRENT_HAVE_D_STAT
 	struct stat *st = &dirp->fileData.d_stat;
 #else
@@ -148,50 +146,16 @@ struct dirent* readdir (DIR *dirp) {
 #endif
 	char filename[NAME_MAX+1];
 	int res;
-	int olderrno = errno;
-
-	if (!dirp) {
-		errno = EBADF;
-		return NULL;
-	}
-
-	res = __dirnext (dirp->dirData, filename, st);
-
-	if (res < 0) {
-		if (errno == ENOENT) {
-			// errno == ENONENT set by dirnext means it's end of directory
-			// But readdir should not touch errno in case of dir end
-			errno = olderrno;
-		}
-		return NULL;
-	}
-
-	// We've moved forward in the directory
-	dirp->position += 1;
-
-	if (strnlen(filename, sizeof(filename)) >= sizeof(dirp->fileData.d_name)) {
-		errno = EOVERFLOW;
-		return NULL;
-	}
-
-	strncpy (dirp->fileData.d_name, filename, sizeof(dirp->fileData.d_name));
-	dirp->fileData.d_ino = st->st_ino;
-	dirp->fileData.d_type = IFTODT(st->st_mode);
-
-	return &(dirp->fileData);
-}
-
-
-int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
-	struct stat st;
-	char filename[NAME_MAX+1];
-	int res;
 
 	if (!dirp) {
 		return EBADF;
 	}
 
-	res = __dirnext (dirp->dirData, filename, &st);
+	if (!result) {
+		return EFAULT;
+	}
+
+	res = __dirnext (dirp->dirData, filename, st);
 
 	if (res < 0) {
 		res = errno;
@@ -213,13 +177,27 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 	}
 
 	strncpy (entry->d_name, filename, sizeof(entry->d_name));
-	entry->d_ino = st.st_ino;
-	entry->d_type = IFTODT(st.st_mode);
+	entry->d_ino = st->st_ino;
+	entry->d_type = IFTODT(st->st_mode);
 
 	*result = entry;
 	return 0;
 }
 
+struct dirent* readdir (DIR *dirp) {
+
+	struct dirent *result;
+	struct dirent *entry = &dirp->fileData;
+
+	int res = readdir_r(dirp, entry, &result);
+
+	if (res !=0) {
+		errno = res;
+		return NULL;
+	}
+
+	return entry;
+}
 
 void rewinddir (DIR *dirp) {
 	if (!dirp) {

@@ -466,6 +466,7 @@ libsysbase_libsysbase_a_AR = $(AR) $(ARFLAGS)
 libsysbase_libsysbase_a_LIBADD =
 @CONFIG_LIBSYSBASE_TRUE@am_libsysbase_libsysbase_a_OBJECTS = libsysbase/libsysbase_libsysbase_a-_exit.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-abort.$(OBJEXT) \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-assert.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-build_argv.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-chdir.$(OBJEXT) \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/libsysbase_libsysbase_a-chmod.$(OBJEXT) \
@@ -1162,6 +1163,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBSYSBASE_TRUE@libsysbase_libsysbase_a_SOURCES = \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/_exit.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/abort.c \
+@CONFIG_LIBSYSBASE_TRUE@	libsysbase/assert.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/build_argv.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/chdir.c \
 @CONFIG_LIBSYSBASE_TRUE@	libsysbase/chmod.c \
@@ -1857,6 +1859,9 @@ libsysbase/libsysbase_libsysbase_a-_exit.$(OBJEXT):  \
 libsysbase/libsysbase_libsysbase_a-abort.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
+libsysbase/libsysbase_libsysbase_a-assert.$(OBJEXT):  \
+	libsysbase/$(am__dirstamp) \
+	libsysbase/$(DEPDIR)/$(am__dirstamp)
 libsysbase/libsysbase_libsysbase_a-build_argv.$(OBJEXT):  \
 	libsysbase/$(am__dirstamp) \
 	libsysbase/$(DEPDIR)/$(am__dirstamp)
@@ -2523,6 +2528,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-abort.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chdir.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-chmod.Po@am__quote@
@@ -3444,6 +3450,20 @@ libsysbase/libsysbase_libsysbase_a-abort.obj: libsysbase/abort.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/abort.c' object='libsysbase/libsysbase_libsysbase_a-abort.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-abort.obj `if test -f 'libsysbase/abort.c'; then $(CYGPATH_W) 'libsysbase/abort.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/abort.c'; fi`
+
+libsysbase/libsysbase_libsysbase_a-assert.o: libsysbase/assert.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-assert.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Tpo -c -o libsysbase/libsysbase_libsysbase_a-assert.o `test -f 'libsysbase/assert.c' || echo '$(srcdir)/'`libsysbase/assert.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/assert.c' object='libsysbase/libsysbase_libsysbase_a-assert.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-assert.o `test -f 'libsysbase/assert.c' || echo '$(srcdir)/'`libsysbase/assert.c
+
+libsysbase/libsysbase_libsysbase_a-assert.obj: libsysbase/assert.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-assert.obj -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Tpo -c -o libsysbase/libsysbase_libsysbase_a-assert.obj `if test -f 'libsysbase/assert.c'; then $(CYGPATH_W) 'libsysbase/assert.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/assert.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Tpo libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-assert.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='libsysbase/assert.c' object='libsysbase/libsysbase_libsysbase_a-assert.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsysbase/libsysbase_libsysbase_a-assert.obj `if test -f 'libsysbase/assert.c'; then $(CYGPATH_W) 'libsysbase/assert.c'; else $(CYGPATH_W) '$(srcdir)/libsysbase/assert.c'; fi`
 
 libsysbase/libsysbase_libsysbase_a-build_argv.o: libsysbase/build_argv.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsysbase_libsysbase_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsysbase/libsysbase_libsysbase_a-build_argv.o -MD -MP -MF libsysbase/$(DEPDIR)/libsysbase_libsysbase_a-build_argv.Tpo -c -o libsysbase/libsysbase_libsysbase_a-build_argv.o `test -f 'libsysbase/build_argv.c' || echo '$(srcdir)/'`libsysbase/build_argv.c

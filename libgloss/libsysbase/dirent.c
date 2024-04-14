@@ -186,10 +186,9 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 
 struct dirent* readdir (DIR *dirp) {
 
-	struct dirent *result;
 	struct dirent *entry = &dirp->fileData;
 
-	int res = readdir_r(dirp, entry, &result);
+	int res = readdir_r(dirp, entry, &entry);
 
 	if (res !=0) {
 		errno = res;

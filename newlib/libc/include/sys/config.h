@@ -15,7 +15,6 @@
 
 #ifdef __DEVKITPPC__
 #define __BUFSIZ__ 32768
-#define MALLOC_ALIGNMENT 64
 #define __DYNAMIC_REENT__
 #endif
 

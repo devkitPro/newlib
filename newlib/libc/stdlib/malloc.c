@@ -161,7 +161,10 @@ Supporting OS subroutines required: <<sbrk>>.  */
 void *
 malloc (size_t nbytes)		/* get a block */
 {
-  return _malloc_r (_REENT, nbytes);
+  if (nbytes < 64)
+    return _malloc_r (_REENT, nbytes);
+  else
+    return _memalign_r (_REENT, 64, nbytes);
 }
 
 void

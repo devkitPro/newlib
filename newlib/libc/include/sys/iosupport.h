@@ -67,7 +67,7 @@ typedef struct {
 	int (*lstat_r)(struct _reent *r, const char *file, struct stat *st);
 	int (*utimes_r)(struct _reent *r, const char *filename, const struct timeval times[2]);
 
-	long (*fpathconf_r)(struct _reent *r, int fd, int name);
+	long (*fpathconf_r)(struct _reent *r, void *fd, int name);
 	long (*pathconf_r)(struct _reent *r, const char *path, int name);
 
 	int (*symlink_r)(struct _reent *r, const char *target, const char *linkpath);

@@ -164,6 +164,7 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
 			// errno == ENONENT set by dirnext means it's end of directory
 			// But readdir should not touch errno in case of dir end
 			res = 0;
+			errno = 0;
 		}
 		return res;
 	}

@@ -17,7 +17,10 @@ int _fstat_r(struct _reent * r, int fileDesc, struct stat *st) {
 	if(fileDesc!=-1) {
 		handle = __get_handle(fileDesc);
 
-		if ( NULL == handle ) return ret;
+		if ( NULL == handle ) {
+			errno = EBADF;
+			return ret;
+		}
 
 		dev = handle->device;
 

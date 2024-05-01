@@ -18,7 +18,7 @@ int fsync(int   fileDesc ) {
 	handle = __get_handle(fileDesc);
 
 	if ( NULL == handle ) {
-		errno = EINVAL;
+		errno = EBADF;
 		return ret;
 	}
 

@@ -18,7 +18,7 @@ int ftruncate(int fileDesc, off_t len) {
 	handle = __get_handle(fileDesc);
 
 	if ( NULL == handle ) {
-		r->_errno = EINVAL;
+		r->_errno=EBADF;
 		return ret;
 	}
 

@@ -19,7 +19,10 @@ _off_t _lseek_r(struct _reent * r, int fileDesc, _off_t pos, int dir) {
 
 		handle = __get_handle(fileDesc);
 
-		if ( NULL == handle ) return ret;
+		if ( NULL == handle ) {
+			r->_errno=EBADF;
+			return ret;
+		}
 
 		dev = handle->device;
 

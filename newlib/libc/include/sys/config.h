@@ -6,14 +6,17 @@
 
 #ifdef __DEVKITARM__
 #define __DYNAMIC_REENT__
+#define MALLOC_ALIGNMENT_THRESHOLD 32
 #endif
 
 #ifdef __DEVKITA64__
 #define MALLOC_ALIGNMENT 16
+#define MALLOC_ALIGNMENT_THRESHOLD 32
 #define __DYNAMIC_REENT__
 #endif
 
 #ifdef __DEVKITPPC__
+#define MALLOC_ALIGNMENT_THRESHOLD 64
 #define __BUFSIZ__ 32768
 #define __DYNAMIC_REENT__
 #endif

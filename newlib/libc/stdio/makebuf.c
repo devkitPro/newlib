@@ -51,7 +51,11 @@ __smakebuf_r (struct _reent *ptr,
       return;
     }
   flags = __swhatbuf_r (ptr, fp, &size, &couldbetty);
-  if ((p = _memalign_r (ptr, 64, size)) == NULL)
+#ifdef MALLOC_ALIGNMENT_THRESHOLD
+  if ((p = _memalign_r (ptr, MALLOC_ALIGNMENT_THRESHOLD, size)) == NULL)
+#else
+  if ((p = _malloc_r (ptr, size)) == NULL)
+#endif
     {
       if (!(fp->_flags & __SSTR))
 	{

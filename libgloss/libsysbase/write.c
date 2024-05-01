@@ -17,7 +17,10 @@ _ssize_t _write_r(struct _reent * r, int fileDesc, const void *ptr, size_t len) 
 	if(fileDesc!=-1) {
 		handle = __get_handle(fileDesc);
 
-		if ( NULL == handle ) return ret;
+		if ( NULL == handle ) {
+			r->_errno=EBADF;
+			return ret;
+		}
 
 		dev = handle->device;
 

@@ -14,7 +14,7 @@ long fpathconf(int fd, int name)
        struct _reent *r = _REENT;
 
         if ( NULL == handle ) {
-                errno = EINVAL;
+                errno = EBADF;
                 return ret;
         }
 

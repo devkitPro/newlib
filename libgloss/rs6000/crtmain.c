@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdlib.h>
 
 struct __argv {
 	int argvMagic;		//!< argv magic number, set to 0x5f617267 ('_arg') if valid 
@@ -11,6 +12,7 @@ struct __argv {
 extern struct __argv *__system_argv;
 void __init();
 void SYS_PreMain();
+int main(int argc, char **argv);
 
 void __crtmain() {
 	SYS_PreMain();

@@ -16,6 +16,8 @@
 /*
  * print -- do a raw print of a string
  */ 
+#include <unistd.h>
+
 void
 print (ptr)
      char *ptr;

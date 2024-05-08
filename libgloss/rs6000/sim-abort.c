@@ -14,6 +14,9 @@
  * they apply.
  */
 
+#include <unistd.h>
+#include <stdlib.h>
+
 void abort(void)
 {
   write (2, "Abort called.\n", sizeof("Abort called.\n")-1);

@@ -21,6 +21,11 @@
 #define __DYNAMIC_REENT__
 #endif
 
+#ifdef __DEVKITPRO__
+#define _READ_WRITE_RETURN_TYPE _ssize_t
+#define _READ_WRITE_BUFSIZE_TYPE size_t
+#endif
+
 #ifdef __AMDGCN__
 #define __DYNAMIC_REENT__
 #endif

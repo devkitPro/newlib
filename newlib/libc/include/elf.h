@@ -580,6 +580,11 @@ typedef struct {
 
 
 
+typedef Elf32_Word Elf32_Relr;
+typedef Elf64_Xword Elf64_Relr;
+
+
+
 #define ELF32_R_SYM(val)		((val) >> 8)
 #define ELF32_R_TYPE(val)		((val) & 0xff)
 #define ELF32_R_INFO(sym, type)		(((sym) << 8) + ((type) & 0xff))
@@ -747,7 +752,11 @@ typedef struct {
 #define DT_ENCODING	32
 #define DT_PREINIT_ARRAY 32
 #define DT_PREINIT_ARRAYSZ 33
-#define	DT_NUM		34
+#define DT_SYMTAB_SHNDX	34
+#define DT_RELRSZ	35
+#define DT_RELR		36
+#define DT_RELRENT	37
+#define	DT_NUM		38
 #define DT_LOOS		0x6000000d
 #define DT_HIOS		0x6ffff000
 #define DT_LOPROC	0x70000000

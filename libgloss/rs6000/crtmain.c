@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include <stdlib.h>
 
 struct __argv {
@@ -12,6 +11,7 @@ struct __argv {
 extern struct __argv *__system_argv;
 void __init();
 void SYS_PreMain();
+
 int main(int argc, char **argv);
 
 void __crtmain() {

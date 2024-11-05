@@ -16,6 +16,7 @@
 
 extern char _end[];
 static char *curbrk = _end;
+
 int brk(char *curbrk);
 
 char *

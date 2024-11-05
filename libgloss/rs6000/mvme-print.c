@@ -17,9 +17,9 @@
  * write -- write some bytes to the output device.
  */
 
-void __pcrlf(void);
-void __outln(char *ptr, char *q);
-void __outstr(char *ptr, char *q);
+void __outln( char *ptr, char *q);
+void __outstr( char *ptr, char *q);
+void __pcrlf();
 
 int
 write (fd, ptr, len)

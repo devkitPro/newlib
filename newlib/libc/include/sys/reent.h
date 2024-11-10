@@ -12,6 +12,7 @@ extern "C" {
 
 #include <_ansi.h>
 #include <stddef.h>
+#include <string.h>
 #include <sys/cdefs.h>
 #include <sys/_types.h>
 

@@ -64,4 +64,5 @@ multilibtool_LIBRARIES += %D%/libsysbase.a
 	%D%/usleep.c \
 	%D%/utime.c \
 	%D%/wait.c \
-	%D%/write.c
+	%D%/write.c \
+	%D%/getentropy.c

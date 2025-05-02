@@ -12,7 +12,6 @@ extern "C" {
 
 #include <_ansi.h>
 #include <stddef.h>
-#include <string.h>
 #include <sys/cdefs.h>
 #include <sys/_types.h>
 
@@ -488,7 +487,7 @@ struct _reent
 
 #define _REENT_CHECK_ASCTIME_BUF(var) \
   _REENT_CHECK(var, _asctime_buf, char *, _REENT_ASCTIME_SIZE, \
-    memset((var)->_asctime_buf, 0, _REENT_ASCTIME_SIZE))
+    __builtin_memset((var)->_asctime_buf, 0, _REENT_ASCTIME_SIZE))
 
 /* Handle the dynamically allocated rand48 structure. */
 #define _REENT_INIT_RAND48(var) do { \
@@ -786,7 +785,7 @@ struct _reent
 #define _REENT_STDERR(_ptr)	((_ptr)->_stderr)
 
 #define _REENT_INIT_PTR(var) \
-  { memset((var), 0, sizeof(*(var))); \
+  { __builtin_memset((var), 0, sizeof(*(var))); \
     _REENT_INIT_PTR_ZEROED(var); \
   }
 

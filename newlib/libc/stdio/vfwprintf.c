@@ -541,11 +541,18 @@ _VFWPRINTF_R (struct _reent *data,
 
 	/* Macros to support positional arguments */
 #ifndef _NO_POS_ARGS
+
+#if _ARCH_PPC
+#define __VALIST_PTR(arg) ((va_list *)(arg))
+#else
+#define __VALIST_PTR(arg) (&(arg))
+#endif
+
 # define GET_ARG(n, ap, type)						\
 	(is_pos_arg							\
 	 ? (n < numargs							\
 	    ? args[n].val_##type					\
-	    : get_arg (data, n, fmt_anchor, &ap, &numargs, args,	\
+	    : get_arg (data, n, fmt_anchor, __VALIST_PTR(ap), &numargs, args,	\
 		       arg_type, &saved_fmt)->val_##type)		\
 	 : (arg_index++ < numargs					\
 	    ? args[n].val_##type					\

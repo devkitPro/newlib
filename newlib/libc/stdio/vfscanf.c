@@ -574,12 +574,18 @@ __SVFSCANF_R (struct _reent *rptr,
     {10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
 
   /* Macro to support positional arguments */
+#if _ARCH_PPC
+#define __VALIST_PTR(arg) ((va_list *)(arg))
+#else
+#define __VALIST_PTR(arg) (&(arg))
+#endif
+
 #ifndef _NO_POS_ARGS
 # define GET_ARG(n, ap, type)					\
   ((type) (is_pos_arg						\
 	   ? (n < numargs					\
 	      ? args[n]						\
-	      : get_arg (n, &ap, &numargs, args))		\
+	      : get_arg (n, __VALIST_PTR(ap), &numargs, args))		\
 	   : (arg_index++ < numargs				\
 	      ? args[n]						\
 	      : (numargs < MAX_POS_ARGS				\

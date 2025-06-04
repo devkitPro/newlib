@@ -482,11 +482,18 @@ __SVFWSCANF_R (struct _reent *rptr,
 
   /* Macro to support positional arguments */
 #ifndef _NO_POS_ARGS
+
+#if _ARCH_PPC
+#define __VALIST_PTR(arg) ((va_list *)(arg))
+#else
+#define __VALIST_PTR(arg) (&(arg))
+#endif
+
 # define GET_ARG(n, ap, type)					\
   ((type) (is_pos_arg						\
 	   ? (n < numargs					\
 	      ? args[n]						\
-	      : get_arg (n, &ap, &numargs, args))		\
+	      : get_arg (n, __VALIST_PTR(ap), &numargs, args))		\
 	   : (arg_index++ < numargs				\
 	      ? args[n]						\
 	      : (numargs < MAX_POS_ARGS				\

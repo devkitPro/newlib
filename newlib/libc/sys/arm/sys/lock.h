@@ -24,13 +24,13 @@ typedef uint32_t _COND_T;
 extern "C" {
 #endif
 
-static inline void __libc_lock_init(_LOCK_T *lock) {
+static __inline void __libc_lock_init(_LOCK_T *lock) {
         *lock = __LOCK_INITIALIZER;
 }
 
-static inline void __libc_lock_close(_LOCK_T *lock ) {}
+static __inline void __libc_lock_close(_LOCK_T *lock ) {}
 
-static inline void __libc_lock_init_recursive(_LOCK_RECURSIVE_T *lock) {
+static __inline void __libc_lock_init_recursive(_LOCK_RECURSIVE_T *lock) {
         *lock = __LOCK_INITIALIZER_RECURSIVE;
 }
 
@@ -46,10 +46,10 @@ extern int __libc_lock_try_acquire(_LOCK_T *lock);
 extern int __libc_lock_try_acquire_recursive(_LOCK_RECURSIVE_T *lock);
 
 /* Returns errno */
-static inline int __libc_cond_init(_COND_T *cond) {
+static __inline int __libc_cond_init(_COND_T *cond) {
         *cond = __COND_INITIALIZER;
 }
-static inline void __libc_cond_close(_COND_T *cond ) {}
+static __inline void __libc_cond_close(_COND_T *cond ) {}
 
 extern int __libc_cond_signal(_COND_T *cond);
 extern int __libc_cond_broadcast(_COND_T *cond);

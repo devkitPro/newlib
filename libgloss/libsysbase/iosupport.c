@@ -22,34 +22,10 @@ static ssize_t null_write(struct _reent *r,void *fd,const char *ptr, size_t len)
 //---------------------------------------------------------------------------------
 const devoptab_t dotab_stdnull = {
 //---------------------------------------------------------------------------------
-	"stdnull",	// device name
-	0,			// size of file structure
-	NULL,		// device open
-	NULL,		// device close
-	null_write,	// device write
-	NULL,		// device read
-	NULL,		// device seek
-	NULL,		// device fstat
-	NULL,		// device stat
-	NULL,		// device link
-	NULL,		// device unlink
-	NULL,		// device chdir
-	NULL,		// device rename
-	NULL,		// device mkdir
-	0,		// dirStateSize
-	NULL,		// device diropen_r
-	NULL,		// device dirreset_r
-	NULL,		// device dirnext_r
-	NULL,		// device dirclose_r
-	NULL,		// device statvfs_r
-	NULL,		// device ftruncate_r
-	NULL,		// device fsync_r
-	NULL,		// deviceData
-	NULL,		// chmod_r
-	NULL,		// fchmod_r
-	NULL,		// rmdir_r
-	NULL,		// lstat_r
-	NULL,		// utimes_r
+	.name         = "stdnull",
+	.structSize   = 0,
+	.write_r      = null_write,
+	.dirStateSize = 0
 };
 
 //---------------------------------------------------------------------------------

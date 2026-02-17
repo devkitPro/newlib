@@ -20,3 +20,24 @@ void __funlockfile(FILE *fp)
 	__lock_release_recursive(*(_LOCK_RECURSIVE_T*)&fp->_lock);
 }
 
+void flockfile(FILE *fp)
+{
+	if (!(fp->_flags & __SSTR)) {
+		__lock_acquire_recursive(fp->_lock);
+	}
+}
+
+void funlockfile(FILE *fp)
+{
+	if (!(fp->_flags & __SSTR)) {
+		__lock_release_recursive(fp->_lock);
+	}
+}
+
+int ftrylockfile(FILE *fp)
+{
+	if (!(fp->_flags & __SSTR)) {
+		return __lock_try_acquire_recursive(fp->_lock);
+	}
+	return 0;
+}

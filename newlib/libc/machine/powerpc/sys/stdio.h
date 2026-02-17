@@ -21,5 +21,9 @@
 #  endif
 #endif /* __SINGLE_THREAD__ */
 
+void flockfile    (FILE *fp);
+void funlockfile  (FILE *fp);
+int  ftrylockfile (FILE *fp);
+
 #endif /* _NEWLIB_STDIO_H */
 

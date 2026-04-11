@@ -34,7 +34,7 @@ static __inline void __libc_lock_init_recursive(_LOCK_RECURSIVE_T *lock) {
         *lock = __LOCK_INITIALIZER_RECURSIVE;
 }
 
-static inline void __libc_lock_close_recursive(_LOCK_RECURSIVE_T *lock ) {}
+static __inline void __libc_lock_close_recursive(_LOCK_RECURSIVE_T *lock ) {}
 
 extern void __libc_lock_acquire(_LOCK_T *lock);
 extern void __libc_lock_acquire_recursive(_LOCK_RECURSIVE_T *lock);
